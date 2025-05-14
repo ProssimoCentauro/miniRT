@@ -25,8 +25,6 @@ typedef enum s_type
 	TRIANGLE
 }	t_type;
 
-typedef struct 
-
 typedef struct s_object
 {
 	t_type	type;
