@@ -13,9 +13,23 @@
 #include "../libft/get_next_line.h"
 
 
+typedef enum s_type
+{
+	A_LIGHT,
+	CAMERA,
+	LIGHT,
+	SPHERE,
+	PLANE,
+	CYLINDER,
+	CONE,
+	TRIANGLE
+}	t_type;
+
+typedef struct 
+
 typedef struct s_object
 {
-	char	*type;
+	t_type	type;
 }	t_object;
 
 typedef struct s_data
