@@ -12,7 +12,6 @@
 #include "../libft/ft_printf.h"
 #include "../libft/get_next_line.h"
 
-
 typedef enum s_type
 {
 	A_LIGHT,
@@ -28,6 +27,7 @@ typedef enum s_type
 typedef struct s_object
 {
 	t_type	type;
+	void	*obj
 }	t_object;
 
 typedef struct s_data

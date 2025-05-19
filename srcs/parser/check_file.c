@@ -1,5 +1,56 @@
 #include "minirt.h"
 
+
+int is_valid_integer(char *str)
+{
+    int i = 0;
+    int has_digit = 0;
+
+    if (str[0] == '\0')
+        return (1);
+    if (str[i] == '+' || str[i] == '-')
+        i++;
+    while (str[i] != '\0')
+	{
+        if (ft_isdigit(str[i]))
+            has_digit = 1;
+		else
+            return (1);
+        i++;
+    }
+    if (!has_digit)
+        return (1);
+    return (0);
+}
+
+double	ft_atod(char *str)
+{
+	double	res;
+	size_t	i;
+	size_t	j;
+	int		sign;
+
+	i = 0;
+	j = 1;
+	res = 0;
+	sign = 1;
+	if (str[i] == '+' || str[i] == '-')
+	{
+		if (str[i++] == '-')
+			sign = -sign;
+	}
+	while (str[i] && str[i] != '.')
+		res = res * 10 + (str[i++] - '0');
+	if (str[i++] == '\0')
+		return (res * sign);
+	while (str[i])
+	{
+		res += ((str[i++] - '0') / pow(10, j));
+		j++;
+	}
+	return (res * sign);
+}
+
 void	free_mat(char **mat)
 {
 	while (*mat)
@@ -64,27 +115,26 @@ int	is_valid_rgb_component(char *str)
 
 int	check_colors(char *line)
 {
-	char	**mat;
+	char	**rgb;
 	int i;
 
-	mat = ft_split(line);
+	rgb = ft_split(line, ',');
 	i = 0;
-	if (count_lines(mat != 3))
+	if (count_lines(rgb != 3))
 	{
-		free_mat(mat);
+		free_mat(rgb);
 		return (1);
 	}
 	while (rgb[i])
 	{
 		if (is_valid_rgb_component(rgb[i]))
 		{
-			free_mat(mat);
+			free_mat(rgb);
 			return (1);
 		}
 		i++;
 	}
 	return (0);
-
 }
 
 int	check_amb_light(char **line)
@@ -95,6 +145,176 @@ int	check_amb_light(char **line)
 		return (1);
 	if (check_colors(line[2]))
 		return (1);
+	return (0);
+}
+
+int is_valid_double(char *str)
+{
+    int i = 0;
+    int dot_count = 0;
+    int has_digit = 0;
+
+    if (str[0] == '\0')
+		return (1);
+    if (str[i] == '+' || str[i] == '-')
+        i++;
+    while (str[i] != '\0')
+	{
+        if (ft_isdigit(str[i]))
+            has_digit = 1;
+		else if (str[i] == '.')
+		{
+            dot_count++;
+            if (dot_count > 1)
+                return (1);
+        }
+		else
+            return (1);
+        i++;
+    }
+    if (!has_digit)
+        return (1);
+    return (0);
+}
+
+int	check_coordinates(char *line)
+{
+	char	**mat;
+	int i;
+
+	mat = ft_split(line, ',');
+	i = 0;
+	if (count_lines(mat != 3))
+	{
+		free_mat(mat);
+		return (1);
+	}
+	while (mat[i])
+	{
+		if (is_valid_double(mat[i]))
+		{
+			free_mat(mat);
+			return (1);
+		}
+		i++;
+	}
+	free_mat(mat);
+	return (0);
+}
+
+int is_valid_vector_range(char* str)
+{
+	double	res;
+
+	if (is_valid_double(str))
+		return (1);
+	res = ft_atod(str);
+	if (val < -1.0 || val > 1.0)
+		return (1);
+	return (0);
+}
+
+int	check_vector(char *line)
+{
+	char	**mat;
+	int i;
+
+	mat = ft_split(line, ',');
+	i = 0;
+	if (count_lines(mat != 3))
+	{
+		free_mat(mat);
+		return (1);
+	}
+	while (mat[i])
+	{
+		if (is_valid_vector_range(mat[i]))
+		{
+			free_mat(mat);
+			return (1);
+		}
+		i++;
+	}
+	free_mat(mat);
+	return (0);
+}
+
+int  check_fov(char *line)
+{
+	int res;
+
+	if (is_valid_integer(line))
+		return (1);
+	res = ft_atoi(line);
+	if (res < 0 || res > 180)
+		return (1);
+	return (0);
+}
+
+int check_camera(char **line)
+{
+	if (count_line(line) != 4)
+		return (1);
+	if (check_coordinates(line[1]))
+		return (1);
+	if (check_vector(line[2]))
+		return (1);
+	if (check_fov(line[3]))
+		return (1);
+	return (0);
+}
+
+int	check_light(char **line)
+{
+	if (count_line(line) !=	4)
+		return (1);
+	if (check_coordinates(line[1]))
+		return (1);
+	if (check_ratio(line[1]))
+		return (1);
+	if (check_colors(line[2]))
+		return (1);
+	return (0);
+}
+
+int	check_sphere(char **line)
+{
+	if (count_line(line) !=	4)
+		return (1);
+	if (check_coordinates(line[1]))
+		return (1);
+	if (is_valid_double(line[1]))
+		return (1);
+	if (check_colors(line[2]))
+		return (1);
+	return (0);
+}
+
+int	check_plane(char **line)
+{
+	if (count_line(line) !=	4)
+		return (1);
+	if (check_coordinates(line[1]))
+		return (1);
+	if (check_vector(line[1]))
+		return (1);
+	if (check_colors(line[2]))
+		return (1);
+	return (0);
+}
+
+//da finire
+int	check_cylinder(char **line)
+{
+	if (count_line(line) !=	4)
+		return (1);
+	if (check_coordinates(line[1]))
+		return (1);
+	if (check_vector(line[1]))
+		return (1);
+	if (check_colors(line[2]))
+		return (1);
+	return (0);
 }
 
 int	detect_checker(char **line)
@@ -126,7 +346,7 @@ int	check_file(t_data *data)
 	char	*line;
 	char	**mat;
 
-	fd = open(data->line, NULL, W_RDONLY);
+	fd = open(data->file, NULL, W_RDONLY);
 	while (42)
 	{
 		line = get_next_line(fd);
