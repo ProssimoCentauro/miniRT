@@ -1,6 +1,8 @@
 #include "minirt.h"
 
 
+size_t	count_lines(char **mat);
+
 int is_valid_integer(char *str)
 {
     int i = 0;
@@ -56,7 +58,7 @@ void	free_mat(char **mat)
 	while (*mat)
 	{
 		free(*mat);
-		mat++
+		mat++;
 	}
 	free(mat);
 	mat = NULL;
@@ -120,7 +122,7 @@ int	check_colors(char *line)
 
 	rgb = ft_split(line, ',');
 	i = 0;
-	if (count_lines(rgb != 3))
+	if (count_lines(rgb) != 3)
 	{
 		free_mat(rgb);
 		return (1);
@@ -184,7 +186,7 @@ int	check_coordinates(char *line)
 
 	mat = ft_split(line, ',');
 	i = 0;
-	if (count_lines(mat != 3))
+	if (count_lines(mat) != 3)
 	{
 		free_mat(mat);
 		return (1);
@@ -205,11 +207,11 @@ int	check_coordinates(char *line)
 int is_valid_vector_range(char* str)
 {
 	double	res;
-
+	
 	if (is_valid_double(str))
 		return (1);
 	res = ft_atod(str);
-	if (val < -1.0 || val > 1.0)
+	if (res < -1.0 || res > 1.0)
 		return (1);
 	return (0);
 }
@@ -221,7 +223,7 @@ int	check_vector(char *line)
 
 	mat = ft_split(line, ',');
 	i = 0;
-	if (count_lines(mat != 3))
+	if (count_lines(mat) != 3)
 	{
 		free_mat(mat);
 		return (1);
@@ -253,7 +255,7 @@ int  check_fov(char *line)
 
 int check_camera(char **line)
 {
-	if (count_line(line) != 4)
+	if (count_lines(line) != 4)
 		return (1);
 	if (check_coordinates(line[1]))
 		return (1);
@@ -266,39 +268,39 @@ int check_camera(char **line)
 
 int	check_light(char **line)
 {
-	if (count_line(line) !=	4)
+	if (count_lines(line) !=	4)
 		return (1);
 	if (check_coordinates(line[1]))
 		return (1);
-	if (check_ratio(line[1]))
+	if (check_ratio(line[2]))
 		return (1);
-	if (check_colors(line[2]))
+	if (check_colors(line[3]))
 		return (1);
 	return (0);
 }
 
 int	check_sphere(char **line)
 {
-	if (count_line(line) !=	4)
+	if (count_lines(line) !=	4)
 		return (1);
 	if (check_coordinates(line[1]))
 		return (1);
-	if (is_valid_double(line[1]))
+	if (is_valid_double(line[2]))
 		return (1);
-	if (check_colors(line[2]))
+	if (check_colors(line[3]))
 		return (1);
 	return (0);
 }
 
 int	check_plane(char **line)
 {
-	if (count_line(line) !=	4)
+	if (count_lines(line) !=	4)
 		return (1);
 	if (check_coordinates(line[1]))
 		return (1);
-	if (check_vector(line[1]))
+	if (check_vector(line[2]))
 		return (1);
-	if (check_colors(line[2]))
+	if (check_colors(line[3]))
 		return (1);
 	return (0);
 }
@@ -306,13 +308,17 @@ int	check_plane(char **line)
 //da finire
 int	check_cylinder(char **line)
 {
-	if (count_line(line) !=	4)
+	if (count_lines(line) !=	6)
 		return (1);
 	if (check_coordinates(line[1]))
 		return (1);
-	if (check_vector(line[1]))
+	if (check_vector(line[2]))
 		return (1);
-	if (check_colors(line[2]))
+	if (is_valid_double(line[3]))
+		return (1);
+	if (is_valid_double(line[4]))
+		return (1);
+	if (check_colors(line[5]))
 		return (1);
 	return (0);
 }
@@ -338,6 +344,16 @@ int	check_line(char **line)
 {
 	if (detect_checker(line))
 		return (1);
+	return (0);
+}
+
+int	not_empty_line(char *line)
+{
+	while (*line && (*line == ' ' || *line == '\t'))
+		line++;
+	if (*line == '\n' || !*line)
+		return (1);
+	return (0);
 }
 
 int	check_file(t_data *data)
@@ -346,21 +362,28 @@ int	check_file(t_data *data)
 	char	*line;
 	char	**mat;
 
-	fd = open(data->file, NULL, W_RDONLY);
+	fd = open(data->file, 0, O_WRONLY);
 	while (42)
 	{
 		line = get_next_line(fd);
 		if (!line)
 			break ;
+		if (not_empty_line(line))
+		{
+			free(line);
+			continue;
+		}
 		mat = ft_split2(line, " \t");
 		if (!mat)
 		{
 			free(line);
 			break ;
-		}	
+		}
 		if (check_line(mat))
-			exit_error(data, "Error" "INVALID SYNTAX!");
+			exit_error(data, "Error", "INVALID SYNTAX!");
 	}
+	ft_printf("VALID FILE!");
+	return (0);
 }
 
 int	main(int ac, char **av)
@@ -372,6 +395,7 @@ int	main(int ac, char **av)
 		print_error("INVALID ARGUMENTS!", NULL);
 		exit(EXIT_FAILURE);
 	}
-	data = initialize_data(av[1]);
-	check_file(t_data *data);
+	data = init_data(av[1]);
+	check_file(data);
+	return (0);
 }
