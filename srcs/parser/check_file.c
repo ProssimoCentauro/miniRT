@@ -55,12 +55,15 @@ double	ft_atod(char *str)
 
 void	free_mat(char **mat)
 {
+	size_t	i;
+
+	i = count_lines(mat);
 	while (*mat)
 	{
 		free(*mat);
 		mat++;
 	}
-	free(mat);
+	free(mat - i);
 	mat = NULL;
 }
 
@@ -83,7 +86,7 @@ int	check_ratio(char *ratio)
 		if (ratio[2] < '0' && ratio[2] > '9')
 			return (1);
 	}
-	if (ratio[0] == '1')
+	else if (ratio[0] == '1')
 	{
 		if (ratio[1] != '.')
 			return (1);
@@ -136,6 +139,7 @@ int	check_colors(char *line)
 		}
 		i++;
 	}
+	free_mat(rgb);
 	return (0);
 }
 
@@ -373,16 +377,18 @@ int	check_file(t_data *data)
 			free(line);
 			continue;
 		}
-		mat = ft_split2(line, " \t");
+		mat = ft_split2(line, " \t\n");
 		if (!mat)
 		{
 			free(line);
 			break ;
 		}
 		if (check_line(mat))
-			exit_error(data, "Error", "INVALID SYNTAX!");
+			exit_error(data, "Error\n", "INVALID SYNTAX!");
+		free(line);
+		free_mat(mat);
 	}
-	ft_printf("VALID FILE!");
+	printf("VALID FILE!\n");
 	return (0);
 }
 
@@ -397,5 +403,6 @@ int	main(int ac, char **av)
 	}
 	data = init_data(av[1]);
 	check_file(data);
+	free(data);
 	return (0);
 }
