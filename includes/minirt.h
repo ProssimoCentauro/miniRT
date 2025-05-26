@@ -12,17 +12,7 @@
 #include "ft_printf.h"
 #include "get_next_line.h"
 
-typedef enum s_type
-{
-	A_LIGHT,
-	CAMERA,
-	LIGHT,
-	SPHERE,
-	PLANE,
-	CYLINDER,
-	CONE,
-	TRIANGLE
-}	t_type;
+
 
 typedef struct s_object
 {
