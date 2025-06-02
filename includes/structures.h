@@ -39,24 +39,74 @@ typedef struct	s_sphere
 typedef struct	s_plane
 {
 	t_vector	coord;
-	t_vector	origin;
+	t_vector	normal;
 	t_rgb		rgb;
 }	t_plane;
 
 typedef	struct	s_cylinder
 {
 	t_vector	coord;
-	t_vector	orig;
+	t_vector	normal;
 	double		diameter;
 	double		height;
 	t_rgb		rgb;
 }	t_cylinder;
 
-union	s_objects
+typedef union	u_figures
 {
 	t_sphere	sphere;
 	t_plane		plane;
 	t_cylinder	cylinder;
+}	t_figures;
+
+typedef struct	s_objects
+{
+	t_type		type;
+	t_figures	figure;
+	struct s_objects	*next;
 }	t_objects;
+
+
+
+typedef struct	s_camera
+{
+	t_type		type;
+	t_vector	coord;
+	t_vector	orientation;
+	double			fov;
+}	t_camera;
+
+typedef	struct	s_ambient
+{
+	t_type	type;
+	double	ratio;
+	t_rgb	rgb;
+}	t_ambient;
+
+typedef	struct	s_light
+{
+	t_vector		coord;
+	double			brightness;
+	t_rgb			rgb;
+	struct s_light	*next;
+}	t_light;
+
+typedef	struct	s_scene
+{
+	t_camera	cam;
+	t_ambient	amb;
+	t_light		*lights;
+	t_objects	*objs;
+}	t_scene;
+
+
+
+
+
+
+
+
+
+
 
 #endif
