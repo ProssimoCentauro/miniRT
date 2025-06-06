@@ -59,12 +59,12 @@ typedef union	u_figures
 	t_cylinder	cylinder;
 }	t_figures;
 
-typedef struct	s_objects
+typedef struct	s_object
 {
 	t_type		type;
 	t_figures	figure;
-	struct s_objects	*next;
-}	t_objects;
+	struct s_object	*next;
+}	t_object;
 
 
 
@@ -96,17 +96,53 @@ typedef	struct	s_scene
 	t_camera	cam;
 	t_ambient	amb;
 	t_light		*lights;
-	t_objects	*objs;
+	t_object	*objs;
 }	t_scene;
 
+typedef struct	s_hit
+{
+	t_object	*obj;
+	double		dist;
+	t_vector	point;
+	t_vector	normal;
+	t_rgb		rgb;
+}	t_hit;
 
+typedef struct	s_ray
+{
+	t_vector	direction;
+	t_vector	coord;
+	t_hit		*hit;
+}	t_ray;
 
+typedef struct s_image
+{
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}	t_image;
 
+typedef struct s_mlx
+{
+	void	*mlx_instance;
+	void	*window;
+	int		width;
+	int		height;
+	t_image	image;
+}	t_mlx;
 
+typedef struct s_data
+{
+	char *file;
+}	t_data;
 
-
-
-
-
+typedef	struct	s_renderer
+{
+	t_data	*data;
+	t_mlx	*mlx;
+	t_scene	*scene;
+}	t_renderer;
 
 #endif

@@ -12,19 +12,11 @@
 #include "ft_printf.h"
 #include "get_next_line.h"
 
+#include "structures.h"
 
 
-typedef struct s_object
-{
-	t_type	type;
-	void	*obj;
-}	t_object;
 
-typedef struct s_data
-{
-	char *file;
 
-}	t_data;
 
 //error_utils.c
 void	print_error(char *line1, char *line2);
