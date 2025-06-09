@@ -393,30 +393,23 @@ int	check_file(t_data *data)
 }
 
 
-void	check_args(int ac, char **av)
+void	check_args(int ac, char *file)
 {
-	size_t	i = 0;
+	size_t	len = 0;
+	int		check = 1;
 
 	if (ac != 2)
 	{
 		print_error("INVALID ARGUMENTS!", NULL);
 		exit(EXIT_FAILURE);
 	}
-	while (av[1][i])
-		i++;
-	if (av[1][--i] != 't')
+	len = ft_strlen(file);
+	check = file[len - 3] == '.' && file[len - 2] == 'r' && file[len - 1] == 't';
+	if (len < 4)
+		check = 0;
+	if (!check)
 	{
-		print_error("NOT .rt FILE!", NULL);
-		exit(EXIT_FAILURE);
-	}
-	if (av[1][--i] != 'r')
-	{
-		print_error("NOT .rt FILE!", NULL);
-		exit(EXIT_FAILURE);
-	}
-	if (av[1][--i] != '.')
-	{
-		print_error("NOT .rt FILE!", NULL);
+		print_error("NOT .rt / INVALID FILE!", NULL);
 		exit(EXIT_FAILURE);
 	}
 }
@@ -425,7 +418,7 @@ int	main(int ac, char **av)
 {
 	t_data	*data;
 
-	check_args(ac, av);
+	check_args(ac, av[1]);
 
 	data = init_data(av[1]);
 	check_file(data);
