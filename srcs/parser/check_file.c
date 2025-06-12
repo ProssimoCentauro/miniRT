@@ -259,6 +259,7 @@ int  check_fov(char *line)
 
 int check_camera(char **line)
 {
+
 	if (count_lines(line) != 4)
 		return (1);
 	if (check_coordinates(line[1]))
@@ -360,13 +361,13 @@ int	not_empty_line(char *line)
 	return (0);
 }
 
-int	check_file(t_data *data)
+int	check_file(t_renderer *r)
 {
 	int	fd;
 	char	*line;
 	char	**mat;
 
-	fd = open(data->file, 0, O_WRONLY);
+	fd = open(r->data->file, 0, O_WRONLY);
 	while (42)
 	{
 		line = get_next_line(fd);
@@ -384,7 +385,7 @@ int	check_file(t_data *data)
 			break ;
 		}
 		if (check_line(mat))
-			exit_error(data, "Error\n", "INVALID SYNTAX!");
+			exit_error(r, "Error\n", "INVALID SYNTAX!");
 		free(line);
 		free_mat(mat);
 	}
@@ -416,12 +417,12 @@ void	check_args(int ac, char *file)
 
 int	main(int ac, char **av)
 {
-	t_data	*data;
+	t_renderer	*renderer;
 
 	check_args(ac, av[1]);
 
-	data = init_data(av[1]);
-	check_file(data);
-	free(data);
+	renderer = init_renderer(av[1]);
+	check_file(renderer);
+	free(renderer);
 	return (0);
 }

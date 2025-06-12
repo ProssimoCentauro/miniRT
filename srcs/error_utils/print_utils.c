@@ -1,8 +1,8 @@
 #include "minirt.h"
 
-void	free_data(t_data *data)
+void	free_renderer(t_renderer *renderer)
 {
-	free(data);
+	free(renderer);
 }
 
 void	print_error(char *line1, char *line2)
@@ -14,9 +14,9 @@ void	print_error(char *line1, char *line2)
 	write(STDERR_FILENO, "\n", 1);
 }
 
-void	exit_error(t_data *data, char *l1, char *l2)
+void	exit_error(t_renderer *r, char *l1, char *l2)
 {
 	print_error(l1, l2);
-	free_data(data);
+	free_renderer(r);
 	exit(EXIT_FAILURE);
 }

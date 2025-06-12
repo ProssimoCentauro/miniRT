@@ -136,6 +136,7 @@ typedef struct s_mlx
 typedef struct s_data
 {
 	char *file;
+	int	cameras;
 }	t_data;
 
 typedef	struct	s_renderer

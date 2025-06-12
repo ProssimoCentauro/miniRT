@@ -20,11 +20,11 @@
 
 //error_utils.c
 void	print_error(char *line1, char *line2);
-void	exit_error(t_data *data, char *l1, char *l2);
-void	free_data(t_data *data);
+void	exit_error(t_renderer *r, char *l1, char *l2);
+void	free_renderer(t_renderer *renderer);
 //data_init.c
-t_data	*init_data(char* line);
+t_renderer	*init_renderer(char* line);
 
 //check_file.c
-int	check_file(t_data *data);
+int	check_file(t_renderer *r);
 #endif
