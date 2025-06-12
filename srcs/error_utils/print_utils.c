@@ -1,8 +1,26 @@
 #include "minirt.h"
 
-void	free_renderer(t_renderer *renderer)
+void	free_mlx(t_mlx *mlx)
 {
-	free(renderer);
+	free(mlx);
+}
+
+void	free_scene(t_scene *scene)
+{
+	free(scene);
+}
+
+void	free_data(t_data *data)
+{
+	free(data);
+}
+
+void	free_renderer(t_renderer *r)
+{
+	free_mlx(r->mlx);
+	free_scene(r->scene);
+	free_data(r->data);
+	free(r);
 }
 
 void	print_error(char *line1, char *line2)

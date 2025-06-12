@@ -423,6 +423,6 @@ int	main(int ac, char **av)
 
 	renderer = init_renderer(av[1]);
 	check_file(renderer);
-	free(renderer);
+	free_renderer(renderer);
 	return (0);
 }
