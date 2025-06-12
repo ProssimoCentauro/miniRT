@@ -7,7 +7,21 @@ void	free_mlx(t_mlx *mlx)
 
 void	free_scene(t_scene *scene)
 {
-	free(scene);
+	t_object	*tmp_obj;
+	t_light		*tmp_light;
+
+	while (scene->objs)
+	{
+		tmp_obj = scene->objs;
+		scene->objs = scene->objs->next;
+		free(tmp_obj);
+	}
+	while (scene->lights)
+	{
+		tmp_light = scene->lights;
+		scene->lights = scene->lights->next;
+		free(tmp_light);
+	}
 }
 
 void	free_data(t_data *data)

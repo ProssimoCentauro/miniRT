@@ -29,6 +29,19 @@ typedef struct	s_vector
 	double	z;
 }	t_vector;
 
+typedef struct s_object_data
+{
+	t_type		type;
+	t_vector	coord;
+	t_vector	normal;
+	double		diameter;
+	double		height;
+	t_rgb		rgb;
+	double		fov;
+	double		ratio;
+	double		brightness;
+}	t_object_data;
+
 typedef struct	s_sphere
 {
 	t_vector	coord;
@@ -137,6 +150,7 @@ typedef struct s_data
 {
 	char *file;
 	int	cameras;
+	t_object_data	obj_data;
 }	t_data;
 
 typedef	struct	s_renderer

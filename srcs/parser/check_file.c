@@ -328,7 +328,7 @@ int	check_cylinder(char **line)
 	return (0);
 }
 
-int	detect_checker(char **line)
+int	detect_checker(char **line, t_renderer *r)
 {
 	if (!ft_strncmp(*line, "A\0", 2))
 		return (check_amb_light(line));
@@ -341,13 +341,13 @@ int	detect_checker(char **line)
 	if (!ft_strncmp(*line, "pl\0", 3))
 		return (check_plane(line));
 	if (!ft_strncmp(*line, "cy\0", 3))
-		return (check_cylinder(line));
+		return (check_cylinder(line, r));
 	return (1);
 }
 
-int	check_line(char **line)
+int	check_line(char **line, t_renderer *r)
 {
-	if (detect_checker(line))
+	if (detect_checker(line, r))
 		return (1);
 	return (0);
 }
