@@ -332,10 +332,10 @@ int	check_sphere(char **line)
 	return (0);
 }
 
-int	check_plane(char **line)
+int	check_plane(char **line, t_renderer *r)
 {
 	t_object_data	data;
-
+	(void)r;
 	if (count_lines(line) != 4)
 		return (1);
 	if (check_coordinates(line[1], &(data).coord))
@@ -344,6 +344,7 @@ int	check_plane(char **line)
 		return (1);
 	if (check_colors(line[3], &(data).rgb))
 		return (1);
+	print_object_data(data);
 	return (0);
 }
 
@@ -378,7 +379,7 @@ int	detect_checker(char **line, t_renderer *r)
 	if (!ft_strncmp(*line, "sp\0", 3))
 		return (check_sphere(line));
 	if (!ft_strncmp(*line, "pl\0", 3))
-		return (check_plane(line));
+		return (check_plane(line, r));
 	if (!ft_strncmp(*line, "cy\0", 3))
 		return (check_cylinder(line, r));
 	return (1);

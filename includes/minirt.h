@@ -16,6 +16,7 @@
 
 
 
+void print_object_data(t_object_data obj);
 
 
 //free_utils.c
