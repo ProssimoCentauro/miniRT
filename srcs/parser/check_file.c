@@ -271,11 +271,12 @@ int  check_fov(char *line, double *num)
 	return (0);
 }
 
-int check_camera(char **line)
+int check_camera(char **line, t_renderer *r)
 {
-
 	t_object_data	data;
 
+	if (r->data->cameras == 1)
+		return (1);
 	if (count_lines(line) != 4)
 		return (1);
 	if (check_coordinates(line[1], &(data).coord))
@@ -284,6 +285,7 @@ int check_camera(char **line)
 		return (1);
 	if (check_fov(line[3], &(data).fov))
 		return (1);
+	r->data->cameras++;
 	return (0);
 }
 
@@ -370,7 +372,7 @@ int	detect_checker(char **line, t_renderer *r)
 	if (!ft_strncmp(*line, "A\0", 2))
 		return (check_amb_light(line));
 	if (!ft_strncmp(*line, "C\0", 2))
-		return (check_camera(line));
+		return (check_camera(line, r));
 	if (!ft_strncmp(*line, "L\0", 2))
 		return (check_light(line));
 	if (!ft_strncmp(*line, "sp\0", 3))

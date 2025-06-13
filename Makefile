@@ -4,9 +4,11 @@ NAME = minirt
 PARSERF = ./srcs/parser/
 INITF = ./srcs/init_funcs/
 ERRORF = ./srcs/error_utils/
+UTILSF = ./srcs/utils/
+
 #CHECKF = ./srcs/check_objs/check
 
-SRC = $(PARSERF)check_file.c $(INITF)data_init.c $(ERRORF)print_utils.c
+SRC = $(PARSERF)check_file.c $(INITF)data_init.c $(UTILSF)error_utils.c $(UTILSF)free_utils.c
 OBJ = $(SRC:.c=.o)
 
 CC = cc

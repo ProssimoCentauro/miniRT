@@ -18,10 +18,16 @@
 
 
 
+//free_utils.c
+void	free_mlx(t_mlx *mlx);
+void	free_scene(t_scene *scene);
+void	free_data(t_data *data);
+void	free_renderer(t_renderer *r);
+
 //error_utils.c
+int		launch_error(int error, char *line1, char *line2);
 void	print_error(char *line1, char *line2);
 void	exit_error(t_renderer *r, char *l1, char *l2);
-void	free_renderer(t_renderer *renderer);
 //data_init.c
 t_renderer	*init_renderer(char* line);
 
