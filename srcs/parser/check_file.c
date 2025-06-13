@@ -274,6 +274,7 @@ int  check_fov(char *line, double *num)
 int check_camera(char **line, t_renderer *r)
 {
 	t_object_data	data;
+	data.type = CAMERA;
 
 	if (r->data->cameras == 1)
 		return (1);
@@ -286,12 +287,14 @@ int check_camera(char **line, t_renderer *r)
 	if (check_fov(line[3], &(data).fov))
 		return (1);
 	r->data->cameras++;
+	print_object_data(data);
 	return (0);
 }
 
 int	check_amb_light(char **line)
 {
 	t_object_data	data;
+	data.type = A_LIGHT;
 
 	if (count_lines(line) != 3)
 		return (1);
@@ -299,12 +302,14 @@ int	check_amb_light(char **line)
 		return (1);
 	if (check_colors(line[2], &(data).rgb))
 		return (1);
+	print_object_data(data);
 	return (0);
 }
 
 int	check_light(char **line)
 {
 	t_object_data	data;
+	data.type = LIGHT;
 
 	if (count_lines(line) != 4)
 		return (1);
@@ -314,12 +319,14 @@ int	check_light(char **line)
 		return (1);
 	if (check_colors(line[3], &(data).rgb))
 		return (1);
+	print_object_data(data);
 	return (0);
 }
 
 int	check_sphere(char **line)
 {
 	t_object_data	data;
+	data.type = SPHERE;
 
 	if (count_lines(line) != 4)
 		return (1);
@@ -329,12 +336,14 @@ int	check_sphere(char **line)
 		return (1);
 	if (check_colors(line[3], &(data).rgb))
 		return (1);
+	print_object_data(data);
 	return (0);
 }
 
 int	check_plane(char **line, t_renderer *r)
 {
 	t_object_data	data;
+	data.type = PLANE;
 	(void)r;
 	if (count_lines(line) != 4)
 		return (1);
@@ -352,6 +361,7 @@ int	check_plane(char **line, t_renderer *r)
 int	check_cylinder(char **line, t_renderer *r)
 {
 	t_object_data data;
+	data.type = CYLINDER;
 	(void)r;
 	if (count_lines(line) != 6)
 		return (1);
@@ -365,6 +375,7 @@ int	check_cylinder(char **line, t_renderer *r)
 		return (1);
 	if (check_colors(line[5], &(data).rgb))
 		return (1);
+	print_object_data(data);
 	return (0);
 }
 

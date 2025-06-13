@@ -12,6 +12,8 @@ const char *get_type_name(t_type type)
         return "CAMERA";
     if (type == LIGHT)
         return "LIGHT";
+    if (type == A_LIGHT)
+        return "AMBIENT LIGHT";
     return "UNKNOWN";
 }
 
@@ -27,6 +29,7 @@ void print_rgb(t_rgb color)
 
 void print_object_data(t_object_data obj)
 {
+	printf(BOLD_YELLOW "--START OBJECT DATA INFO--" RESET "\n");
     printf("Type: %s\n", get_type_name(obj.type));
     printf("Coordinates: "); print_vector(obj.coord); printf("\n");
     printf("Normal: "); print_vector(obj.normal); printf("\n");
@@ -36,5 +39,6 @@ void print_object_data(t_object_data obj)
     printf("FOV: %.2f\n", obj.fov);
     printf("Ratio: %.2f\n", obj.ratio);
     printf("Brightness: %.2f\n", obj.brightness);
+	printf(BOLD_YELLOW "--------------------------" RESET "\n\n");
 }
 
