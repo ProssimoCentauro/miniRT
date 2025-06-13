@@ -77,7 +77,7 @@ size_t	count_lines(char **mat)
 	return (i);
 }
 
-int	check_ratio(char *ratio)
+int	check_ratio(char *ratio, double *num)
 {
 	if (ratio[0] == '0')
 	{
@@ -95,6 +95,7 @@ int	check_ratio(char *ratio)
 	}
 	else
 		return (1);
+	*num = ft_atod(ratio);
 	return (0);
 }
 
@@ -118,7 +119,7 @@ int	is_valid_rgb_component(char *str)
 	return (0);
 }
 
-int	check_colors(char *line)
+int	check_colors(char *line, t_rgb* colors)
 {
 	char	**rgb;
 	int i;
@@ -137,53 +138,53 @@ int	check_colors(char *line)
 			free_mat(rgb);
 			return (1);
 		}
+		if (i == 0)
+			colors->r = ft_atoi(rgb[i]);
+		else if (i == 1)
+			colors->g = ft_atoi(rgb[i]);
+		else if (i == 2)
+			colors->b = ft_atoi(rgb[i]);
 		i++;
 	}
 	free_mat(rgb);
 	return (0);
 }
 
-int	check_amb_light(char **line)
-{
-	if (count_lines(line) != 3)
-		return (1);
-	if (check_ratio(line[1]))
-		return (1);
-	if (check_colors(line[2]))
-		return (1);
-	return (0);
-}
 
-int is_valid_double(char *str)
+int is_valid_double(char *str, double *num)
 {
     int i = 0;
     int dot_count = 0;
     int has_digit = 0;
 
-    if (str[0] == '\0')
+	if (str[0] == '\0')
 		return (1);
-    if (str[i] == '+' || str[i] == '-')
-        i++;
-    while (str[i] != '\0')
+	if (str[i] == '+' || str[i] == '-')
+		i++;
+	while (str[i] != '\0')
 	{
-        if (ft_isdigit(str[i]))
-            has_digit = 1;
+		if (ft_isdigit(str[i]))
+			has_digit = 1;
 		else if (str[i] == '.')
 		{
-            dot_count++;
-            if (dot_count > 1)
-                return (1);
-        }
+			dot_count++;
+			if (dot_count > 1)
+				return (1);
+		}
 		else
-            return (1);
-        i++;
-    }
-    if (!has_digit)
-        return (1);
-    return (0);
+			return (1);
+		i++;
+	}
+	if (!has_digit)
+	{
+		return (1);
+	}
+	if (num)
+		*num = ft_atod(str);
+	return (0);
 }
 
-int	check_coordinates(char *line)
+int	check_coordinates(char *line, t_vector *coords)
 {
 	char	**mat;
 	int i;
@@ -197,11 +198,17 @@ int	check_coordinates(char *line)
 	}
 	while (mat[i])
 	{
-		if (is_valid_double(mat[i]))
+		if (is_valid_double(mat[i], NULL))
 		{
 			free_mat(mat);
 			return (1);
 		}
+		if (i == 0)
+			coords->x = ft_atod(mat[i]);
+		else if (i == 1)
+			coords->y = ft_atod(mat[i]);
+		else if (i == 2)
+			coords->z = ft_atod(mat[i]);
 		i++;
 	}
 	free_mat(mat);
@@ -212,7 +219,7 @@ int is_valid_vector_range(char* str)
 {
 	double	res;
 	
-	if (is_valid_double(str))
+	if (is_valid_double(str, NULL))
 		return (1);
 	res = ft_atod(str);
 	if (res < -1.0 || res > 1.0)
@@ -220,7 +227,7 @@ int is_valid_vector_range(char* str)
 	return (0);
 }
 
-int	check_vector(char *line)
+int	check_normal(char *line, t_vector *normal)
 {
 	char	**mat;
 	int i;
@@ -239,13 +246,19 @@ int	check_vector(char *line)
 			free_mat(mat);
 			return (1);
 		}
+		if (i == 0)
+			normal->x = ft_atod(mat[i]);
+		else if (i == 1)
+			normal->y = ft_atod(mat[i]);
+		else if (i == 2)
+			normal->z = ft_atod(mat[i]);
 		i++;
 	}
 	free_mat(mat);
 	return (0);
 }
 
-int  check_fov(char *line)
+int  check_fov(char *line, double *num)
 {
 	int res;
 
@@ -254,76 +267,100 @@ int  check_fov(char *line)
 	res = ft_atoi(line);
 	if (res < 0 || res > 180)
 		return (1);
+	*num = ft_atod(line);
 	return (0);
 }
 
 int check_camera(char **line)
 {
 
+	t_object_data	data;
+
 	if (count_lines(line) != 4)
 		return (1);
-	if (check_coordinates(line[1]))
+	if (check_coordinates(line[1], &(data).coord))
 		return (1);
-	if (check_vector(line[2]))
+	if (check_normal(line[2], &(data).normal))
 		return (1);
-	if (check_fov(line[3]))
+	if (check_fov(line[3], &(data).fov))
+		return (1);
+	return (0);
+}
+
+int	check_amb_light(char **line)
+{
+	t_object_data	data;
+
+	if (count_lines(line) != 3)
+		return (1);
+	if (check_ratio(line[1], &(data).ratio))
+		return (1);
+	if (check_colors(line[2], &(data).rgb))
 		return (1);
 	return (0);
 }
 
 int	check_light(char **line)
 {
-	if (count_lines(line) !=	4)
+	t_object_data	data;
+
+	if (count_lines(line) != 4)
 		return (1);
-	if (check_coordinates(line[1]))
+	if (check_coordinates(line[1], &(data).coord))
 		return (1);
-	if (check_ratio(line[2]))
+	if (check_ratio(line[2], &(data).brightness))
 		return (1);
-	if (check_colors(line[3]))
+	if (check_colors(line[3], &(data).rgb))
 		return (1);
 	return (0);
 }
 
 int	check_sphere(char **line)
 {
-	if (count_lines(line) !=	4)
+	t_object_data	data;
+
+	if (count_lines(line) != 4)
 		return (1);
-	if (check_coordinates(line[1]))
+	if (check_coordinates(line[1], &(data).coord))
 		return (1);
-	if (is_valid_double(line[2]))
+	if (is_valid_double(line[2], &(data).diameter))
 		return (1);
-	if (check_colors(line[3]))
+	if (check_colors(line[3], &(data).rgb))
 		return (1);
 	return (0);
 }
 
 int	check_plane(char **line)
 {
-	if (count_lines(line) !=	4)
+	t_object_data	data;
+
+	if (count_lines(line) != 4)
 		return (1);
-	if (check_coordinates(line[1]))
+	if (check_coordinates(line[1], &(data).coord))
 		return (1);
-	if (check_vector(line[2]))
+	if (check_normal(line[2], &(data).normal))
 		return (1);
-	if (check_colors(line[3]))
+	if (check_colors(line[3], &(data).rgb))
 		return (1);
 	return (0);
 }
 
 //da finire
-int	check_cylinder(char **line)
+int	check_cylinder(char **line, t_renderer *r)
 {
-	if (count_lines(line) !=	6)
+	t_object_data data;
+	(void)r;
+	if (count_lines(line) != 6)
 		return (1);
-	if (check_coordinates(line[1]))
+	if (check_coordinates(line[1], &(data).coord))
 		return (1);
-	if (check_vector(line[2]))
+	if (check_normal(line[2], &(data).normal))
 		return (1);
-	if (is_valid_double(line[3]))
+	if (is_valid_double(line[3], &(data).diameter))
 		return (1);
-	if (is_valid_double(line[4]))
+	if (is_valid_double(line[4], &(data).height))
 		return (1);
-	if (check_colors(line[5]))
+	if (check_colors(line[5], &(data).rgb))
 		return (1);
 	return (0);
 }
@@ -384,7 +421,7 @@ int	check_file(t_renderer *r)
 			free(line);
 			break ;
 		}
-		if (check_line(mat))
+		if (check_line(mat, r))
 			exit_error(r, "Error\n", "INVALID SYNTAX!");
 		free(line);
 		free_mat(mat);
