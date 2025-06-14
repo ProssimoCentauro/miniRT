@@ -440,6 +440,13 @@ int	check_file(t_renderer *r)
 	char	**mat;
 
 	fd = open(r->data->file, 0, O_WRONLY);
+	if (fd == -1)
+	{
+		if (errno == ENOENT)
+			exit_error(r, "THE INDICATED FILE DOES NOT EXIST!", NULL);
+		else
+			exit_error(r, "ERROR OPENING FILE!", NULL);
+    }
 	while (42)
 	{
 		line = get_next_line(fd);

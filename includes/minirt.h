@@ -7,6 +7,7 @@
 #include <string.h>
 #include <fcntl.h>
 #include <math.h>
+#include <errno.h>
 
 #include "libft.h"
 #include "ft_printf.h"
