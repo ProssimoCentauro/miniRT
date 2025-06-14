@@ -290,6 +290,7 @@ int check_camera(char **line, t_renderer *r)
 	r->data->cameras++;
 	create_from_data(&data, (void **)&cam);
 	r->scene->cam = *cam;
+	free(cam);
 	print_object_data(data);
 	return (0);
 }
@@ -311,6 +312,7 @@ int	check_amb_light(char **line, t_renderer *r)
 	r->data->a_lights++;
 	create_from_data(&data, (void **)&a_light);
 	r->scene->amb = *a_light;
+	free(a_light);
 	print_object_data(data);
 	return (0);
 }
