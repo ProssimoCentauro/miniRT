@@ -28,8 +28,23 @@
 #define BOLD_WHITE  "\x1b[1;37m"
 
 
+
+
+//debug_utils.c
 void print_object_data(t_object_data obj);
 
+//figures_funcs.c
+t_object *create_sphere(t_object_data *d);
+t_object *create_plane(t_object_data *d);
+t_object *create_cylinder(t_object_data *d);
+
+//environment_objects_funcs.c
+t_camera *create_camera(t_object_data *d);
+t_light *create_light(t_object_data *d);
+t_ambient *create_ambient(t_object_data *d);
+
+//general_funcs.c
+t_type	create_from_data(t_object_data *d, void **out);
 
 //free_utils.c
 void	free_mlx(t_mlx *mlx);
