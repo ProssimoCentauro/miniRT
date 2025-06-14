@@ -21,7 +21,7 @@ UTILSF = ./srcs/utils/
 DEBUGF = ./srcs/debug_funcs/
 #CHECKF = ./srcs/check_objs/check
 
-SRC = $(PARSERF)check_file.c $(CREATIONF)environment_funcs.c $(CREATIONF)figures_funcs.c $(CREATIONF)general_funcs.c $(P_UTILSF)scene_utils.c $(INITF)data_init.c $(UTILSF)error_utils.c $(UTILSF)free_utils.c $(DEBUGF)debug_utils.c
+SRC = $(PARSERF)check_file.c $(CREATIONF)environment_funcs.c $(CREATIONF)figures_funcs.c $(CREATIONF)general_funcs.c $(P_UTILSF)scene_utils.c $(INITF)data_init.c $(UTILSF)error_utils.c $(UTILSF)free_utils.c $(DEBUGF)debug_utils.c $(DEBUGF)scene_debug.c
 OBJ = $(SRC:.c=.o)
 
 CC = cc

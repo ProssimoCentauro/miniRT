@@ -150,6 +150,7 @@ typedef struct s_data
 {
 	char *file;
 	int	cameras;
+	int	a_lights;
 	t_object_data	obj_data;
 }	t_data;
 

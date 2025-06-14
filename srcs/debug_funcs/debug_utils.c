@@ -1,6 +1,6 @@
 #include "minirt.h"
 
-const char *get_type_name(t_type type)
+static const char *get_type_name(t_type type)
 {
     if (type == SPHERE)
         return "SPHERE";
@@ -17,12 +17,12 @@ const char *get_type_name(t_type type)
     return "UNKNOWN";
 }
 
-void print_vector(t_vector v)
+static void print_vector(t_vector v)
 {
     printf("x: %.2f, y: %.2f, z: %.2f", v.x, v.y, v.z);
 }
 
-void print_rgb(t_rgb color)
+static void print_rgb(t_rgb color)
 {
     printf("r: %d, g: %d, b: %d", color.r, color.g, color.b);
 }
