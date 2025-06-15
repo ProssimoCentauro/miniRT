@@ -1,5 +1,7 @@
 #!/bin/bash
 
+#RUN THIS SCRIPT WHILE IN THE invalid_scenes FOLDER
+
 # ANSI Colors
 YELLOW='\033[1;33m'
 NC='\033[0m' # Nessun colore
