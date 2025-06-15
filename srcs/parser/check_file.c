@@ -445,9 +445,9 @@ int	check_file(t_renderer *r)
 	if (fd == -1)
 	{
 		if (errno == ENOENT)
-			exit_error(r, "THE INDICATED FILE DOES NOT EXIST!", NULL);
+			exit_error(r, NON_EXISTENT_FILE_ERROR, NULL);
 		else
-			exit_error(r, "ERROR OPENING FILE!", NULL);
+			exit_error(r, FILE_OPENING_ERROR, NULL);
     }
 	while (42)
 	{
@@ -466,12 +466,12 @@ int	check_file(t_renderer *r)
 			break ;
 		}
 		if (check_line(mat, r))
-			exit_error(r, "Error\n", "INVALID SYNTAX!");
+			exit_error(r, ERROR, SYNTAX_ERROR);
 		free(line);
 		free_mat(mat);
 	}
 	print_scene(r->scene);
-	printf(BOLD_GREEN "\nVALID FILE!\n" RESET);
+	printf(VALID_FILE_MSG);
 	return (0);
 }
 
@@ -483,7 +483,7 @@ void	check_args(int ac, char *file)
 
 	if (ac != 2)
 	{
-		print_error("INVALID ARGUMENTS!", NULL);
+		print_error(ARGS_ERROR, NULL);
 		exit(EXIT_FAILURE);
 	}
 	len = ft_strlen(file);
@@ -492,7 +492,7 @@ void	check_args(int ac, char *file)
 		check = 0;
 	if (!check)
 	{
-		print_error("NOT .rt / INVALID FILE!", NULL);
+		print_error(NOT_RT_FILE_ERROR, NULL);
 		exit(EXIT_FAILURE);
 	}
 }

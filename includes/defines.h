@@ -1,0 +1,30 @@
+#ifndef DEFINES_H
+#define DEFINES_H
+
+#include "minirt.h"
+
+// Reset
+#define RESET       "\x1b[0m"
+
+// Bold colors
+#define BOLD_BLACK  "\x1b[1;30m"
+#define BOLD_RED    "\x1b[1;31m"
+#define BOLD_GREEN  "\x1b[1;32m"
+#define BOLD_YELLOW "\x1b[1;33m"
+#define BOLD_BLUE   "\x1b[1;34m"
+#define BOLD_MAGENTA "\x1b[1;35m"
+#define BOLD_CYAN   "\x1b[1;36m"
+#define BOLD_WHITE  "\x1b[1;37m"
+
+//errors
+#define MALLOC_ERROR BOLD_RED"MALLOC ERROR"RESET
+#define ERROR BOLD_RED"Error\n"RESET
+#define ARGS_ERROR BOLD_RED"INVALID ARGUMENTS!"RESET
+#define NOT_RT_FILE_ERROR BOLD_RED"NOT .rt or INVALID FILE!"RESET
+#define SYNTAX_ERROR BOLD_RED"INVALID_SYNTAX!"RESET
+#define NON_EXISTENT_FILE_ERROR BOLD_RED"THE INDICATED FILE DOES NOT EXIST!"RESET
+#define FILE_OPENING_ERROR BOLD_RED"ERROR OPENING THE FILE!"RESET
+
+//messages
+#define VALID_FILE_MSG BOLD_GREEN"\nVALID FILE!\n"RESET
+#endif
