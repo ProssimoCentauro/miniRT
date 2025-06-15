@@ -433,6 +433,20 @@ int	not_empty_line(char *line)
 	return (0);
 }
 
+void	check_scene(t_renderer *r)
+{
+	t_scene *s = r->scene;
+
+	if (!s->cam && !s->amb && !s->objs && !s->lights)
+		exit_error(r, GENERAL_ERROR, EMPTY_FILE_ERROR, NULL);
+	else if (!s->cam)
+		exit_error(r, SYNTAX_ERROR, MISSING_ERROR, CAM_MSG);
+	else if (!s->amb)
+		exit_error(r, SYNTAX_ERROR, MISSING_ERROR, A_LIGHT_MSG);
+	else if (!s->lights)
+		exit_error(r, SYNTAX_ERROR, MISSING_ERROR, LIGHT_MSG);
+}
+
 int	check_file(t_renderer *r)
 {
 	int	fd;
@@ -468,6 +482,7 @@ int	check_file(t_renderer *r)
 		free(line);
 		free_mat(mat);
 	}
+	check_scene(r);
 	print_scene(r->scene);
 	printf(VALID_FILE_MSG);
 	return (0);

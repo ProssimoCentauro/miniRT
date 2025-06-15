@@ -1,9 +1,21 @@
 #!/bin/bash
 
-EXEC="./minirt invalid_scenes/"
+# ANSI Colors
+YELLOW='\033[1;33m'
+NC='\033[0m' # Nessun colore
+
+# Executable Path
+EXEC="./minirt"
+
+# Scenes Folder
+SCENES_DIR="invalid_scenes"
+
 cd ..
-$EXEC"1.rt"
-$EXEC"2.rt"
-$EXEC"3.rt"
-$EXEC"4.rt"
-$EXEC"5.rt"
+
+#Loop all .rt files
+for FILE in $SCENES_DIR/*.rt; do
+    echo -e "${YELLOW}== testing file $(basename "$FILE") ==${NC}"
+    $EXEC "$FILE"
+    echo -e "${YELLOW}=============================${NC}\n"
+done
+
