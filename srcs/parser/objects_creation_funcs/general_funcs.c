@@ -20,7 +20,7 @@ t_type	create_from_data(t_object_data *d, void **out)
 	else
 		return 1;
 	if (!*out)
-		return (launch_error(1, "MALLOC_ERROR", NULL));
+		return (launch_error(1, "MALLOC_ERROR", NULL, NULL));
 	return (d->type);
 }
 

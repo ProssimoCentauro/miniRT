@@ -44,9 +44,9 @@ void	free_data(t_data *data);
 void	free_renderer(t_renderer *r);
 
 //error_utils.c
-int		launch_error(int error, char *line1, char *line2);
-void	print_error(char *line1, char *line2);
-void	exit_error(t_renderer *r, char *l1, char *l2);
+int		launch_error(int error, char *line1, char *line2, char *line3);
+void	print_error(char *line1, char *line2, char *line3);
+void	exit_error(t_renderer *r, char *l1, char *l2, char *l3);
 //data_init.c
 t_renderer	*init_renderer(char* line);
 

@@ -106,8 +106,8 @@ typedef	struct	s_light
 
 typedef	struct	s_scene
 {
-	t_camera	cam;
-	t_ambient	amb;
+	t_camera	*cam;
+	t_ambient	*amb;
 	t_light		*lights;
 	t_object	*objs;
 }	t_scene;

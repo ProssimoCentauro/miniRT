@@ -10,6 +10,8 @@ void	free_scene(t_scene *scene)
 	t_object	*tmp_obj;
 	t_light		*tmp_light;
 
+	free(scene->cam);
+	free(scene->amb);
 	while (scene->lights)
 	{
 		tmp_light = scene->lights;

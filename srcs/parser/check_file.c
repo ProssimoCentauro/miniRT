@@ -278,20 +278,19 @@ int check_camera(char **line, t_renderer *r)
 	data.type = CAMERA;
 
 	if (r->data->cameras == 1)
-		return (1);
+		return (launch_error(1, SYNTAX_ERROR, TOO_MANY, CAM_MSG));
 	if (count_lines(line) != 4)
-		return (1);
+		return (launch_error(1, SYNTAX_ERROR, INVALID_PARAMS, CAM_MSG));
 	if (check_coordinates(line[1], &(data).coord))
-		return (1);
+		return (launch_error(1, SYNTAX_ERROR, COORD_ERROR, CAM_MSG));
 	if (check_normal(line[2], &(data).normal))
-		return (1);
+		return (launch_error(1, SYNTAX_ERROR, NORMAL_ERROR, CAM_MSG));
 	if (check_fov(line[3], &(data).fov))
-		return (1);
+		return (launch_error(1, SYNTAX_ERROR, FOV_ERROR, CAM_MSG));
 	r->data->cameras++;
 	create_from_data(&data, (void **)&cam);
-	r->scene->cam = *cam;
-	free(cam);
-	print_object_data(data);
+	r->scene->cam = cam;
+	//print_object_data(data);
 	return (0);
 }
 
@@ -302,18 +301,17 @@ int	check_amb_light(char **line, t_renderer *r)
 
 	data.type = A_LIGHT;
 	if (r->data->a_lights == 1)
-		return (-1);
+		return (launch_error(1, SYNTAX_ERROR, TOO_MANY, A_LIGHT_MSG));
 	if (count_lines(line) != 3)
-		return (1);
+		return (launch_error(1, SYNTAX_ERROR, INVALID_PARAMS, A_LIGHT_MSG));
 	if (check_ratio(line[1], &(data).ratio))
-		return (1);
+		return (launch_error(1, SYNTAX_ERROR, RATIO_ERROR, A_LIGHT_MSG));
 	if (check_colors(line[2], &(data).rgb))
-		return (1);
+		return (launch_error(1, SYNTAX_ERROR, COLOR_ERROR, A_LIGHT_MSG));
 	r->data->a_lights++;
 	create_from_data(&data, (void **)&a_light);
-	r->scene->amb = *a_light;
-	free(a_light);
-	print_object_data(data);
+	r->scene->amb = a_light;
+	//print_object_data(data);
 	return (0);
 }
 
@@ -324,16 +322,16 @@ int	check_light(char **line, t_renderer *r)
 
 	data.type = LIGHT;
 	if (count_lines(line) != 4)
-		return (1);
+		return (launch_error(1, SYNTAX_ERROR, INVALID_PARAMS, LIGHT_MSG));
 	if (check_coordinates(line[1], &(data).coord))
-		return (1);
+		return (launch_error(1, SYNTAX_ERROR, COORD_ERROR, LIGHT_MSG));
 	if (check_ratio(line[2], &(data).brightness))
-		return (1);
+		return (launch_error(1, SYNTAX_ERROR, RATIO_ERROR, LIGHT_MSG));
 	if (check_colors(line[3], &(data).rgb))
-		return (1);
+		return (launch_error(1, SYNTAX_ERROR, COLOR_ERROR, LIGHT_MSG));
 	create_from_data(&data, (void **)&light);
 	add_light(r->scene, light);
-	print_object_data(data);
+	//print_object_data(data);
 	return (0);
 }
 
@@ -344,16 +342,16 @@ int	check_sphere(char **line, t_renderer *r)
 
 	data.type = SPHERE;
 	if (count_lines(line) != 4)
-		return (1);
+		return (launch_error(1, SYNTAX_ERROR, INVALID_PARAMS, SP_MSG));
 	if (check_coordinates(line[1], &(data).coord))
-		return (1);
+		return (launch_error(1, SYNTAX_ERROR, COORD_ERROR, SP_MSG));
 	if (is_valid_double(line[2], &(data).diameter))
-		return (1);
+		return (launch_error(1, SYNTAX_ERROR, DIAMETER_ERROR, SP_MSG));
 	if (check_colors(line[3], &(data).rgb))
-		return (1);
+		return (launch_error(1, SYNTAX_ERROR, COLOR_ERROR, SP_MSG));
 	create_from_data(&data, (void **)&sp);
 	add_object(r->scene, sp);
-	print_object_data(data);
+	//print_object_data(data);
 	return (0);
 }
 
@@ -364,16 +362,16 @@ int	check_plane(char **line, t_renderer *r)
 
 	data.type = PLANE;
 	if (count_lines(line) != 4)
-		return (1);
+		return (launch_error(1, SYNTAX_ERROR, INVALID_PARAMS, PL_MSG));
 	if (check_coordinates(line[1], &(data).coord))
-		return (1);
+		return (launch_error(1, SYNTAX_ERROR, COORD_ERROR, PL_MSG));
 	if (check_normal(line[2], &(data).normal))
-		return (1);
+		return (launch_error(1, SYNTAX_ERROR, NORMAL_ERROR, PL_MSG));
 	if (check_colors(line[3], &(data).rgb))
-		return (1);
+		return (launch_error(1, SYNTAX_ERROR, COLOR_ERROR, PL_MSG));
 	create_from_data(&data, (void **)&pl);
 	add_object(r->scene, pl);
-	print_object_data(data);
+	//print_object_data(data);
 	return (0);
 }
 
@@ -385,20 +383,20 @@ int	check_cylinder(char **line, t_renderer *r)
 	
 	data.type = CYLINDER;
 	if (count_lines(line) != 6)
-		return (1);
+		return (launch_error(1, SYNTAX_ERROR, INVALID_PARAMS, CY_MSG));
 	if (check_coordinates(line[1], &(data).coord))
-		return (1);
+		return (launch_error(1, SYNTAX_ERROR, COORD_ERROR, CY_MSG));
 	if (check_normal(line[2], &(data).normal))
-		return (1);
+		return (launch_error(1, SYNTAX_ERROR, NORMAL_ERROR, CY_MSG));
 	if (is_valid_double(line[3], &(data).diameter))
-		return (1);
+		return (launch_error(1, SYNTAX_ERROR, DIAMETER_ERROR, CY_MSG));
 	if (is_valid_double(line[4], &(data).height))
-		return (1);
+		return (launch_error(1, SYNTAX_ERROR, HEIGHT_ERROR, CY_MSG));
 	if (check_colors(line[5], &(data).rgb))
-		return (1);
+		return (launch_error(1, SYNTAX_ERROR, COLOR_ERROR, CY_MSG));
 	create_from_data(&data, (void **)&cy);
 	add_object(r->scene, cy);
-	print_object_data(data);
+	//print_object_data(data);
 	return (0);
 }
 
@@ -445,9 +443,9 @@ int	check_file(t_renderer *r)
 	if (fd == -1)
 	{
 		if (errno == ENOENT)
-			exit_error(r, NON_EXISTENT_FILE_ERROR, NULL);
+			exit_error(r, NON_EXISTENT_FILE_ERROR, NULL, NULL);
 		else
-			exit_error(r, FILE_OPENING_ERROR, NULL);
+			exit_error(r, FILE_OPENING_ERROR, NULL, NULL);
     }
 	while (42)
 	{
@@ -466,7 +464,7 @@ int	check_file(t_renderer *r)
 			break ;
 		}
 		if (check_line(mat, r))
-			exit_error(r, ERROR, SYNTAX_ERROR);
+			exit_error(r, NULL, NULL, NULL);
 		free(line);
 		free_mat(mat);
 	}
@@ -483,7 +481,7 @@ void	check_args(int ac, char *file)
 
 	if (ac != 2)
 	{
-		print_error(ARGS_ERROR, NULL);
+		print_error(ARGS_ERROR, NULL, NULL);
 		exit(EXIT_FAILURE);
 	}
 	len = ft_strlen(file);
@@ -492,7 +490,7 @@ void	check_args(int ac, char *file)
 		check = 0;
 	if (!check)
 	{
-		print_error(NOT_RT_FILE_ERROR, NULL);
+		print_error(NOT_RT_FILE_ERROR, NULL, NULL);
 		exit(EXIT_FAILURE);
 	}
 }

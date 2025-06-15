@@ -72,15 +72,15 @@ void print_scene(t_scene *scene)
     // Camera
     printf(BOLD_CYAN "=== Camera ===\n" RESET);
     printf("Coord: ");
-    print_vector(scene->cam.coord);
+    print_vector(scene->cam->coord);
     printf("\nOrientation: ");
-    print_vector(scene->cam.orientation);
-    printf("\nFOV: %.2f\n\n", scene->cam.fov);
+    print_vector(scene->cam->orientation);
+    printf("\nFOV: %.2f\n\n", scene->cam->fov);
 
     // Ambient Light
     printf(BOLD_MAGENTA "=== Ambient Light ===\n" RESET);
-    printf("Ratio: %.2f\nColor: ", scene->amb.ratio);
-    print_rgb(scene->amb.rgb);
+    printf("Ratio: %.2f\nColor: ", scene->amb->ratio);
+    print_rgb(scene->amb->rgb);
     printf("\n\n");
 
     // Lights (linked list)
