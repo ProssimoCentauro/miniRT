@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   scene_utils.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rtodaro <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/16 19:52:04 by rtodaro           #+#    #+#             */
+/*   Updated: 2025/06/16 19:52:05 by rtodaro          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minirt.h"
 
 void	add_object(t_scene *scene, t_object *new_obj)
@@ -35,6 +47,3 @@ void	add_light(t_scene *scene, t_light *new_light)
 		tmp = tmp->next;
 	tmp->next = new_light;
 }
-
-
-
