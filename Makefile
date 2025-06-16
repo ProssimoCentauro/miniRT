@@ -74,15 +74,19 @@ $(NAME): .header_shown libft/libft.a $(OBJ)
 	@$(CC) $(OBJ) -o $(NAME) libft/libft.a -lreadline -lncurses -lm -g
 	@printf "$(GREEN)✔ Compilation completed successfully!$(RESET)\n"
 	@printf "$(BLUE)"
-	@printf "          .--.\n"
-	@printf "         |o_o |\n"
-	@printf "         |:_/ |\n"
-	@printf "        //   \\\\ \\\\\n"
-	@printf "       (|     | )   $(MAGENTA)MiniRT Ready!$(BLUE)\n"
-	@printf "      /'\\\\_   _/\\\\'\n"
-	@printf "      \\\\___)=(___/\n"
+	@printf "      _----------_,\n"
+	@printf "    ,\"__         _-:,\n" 
+	@printf "   /    \"\"--_--\"\"...:\\\\\n"
+	@printf "  /         |.........\\\\\n"
+	@printf " /          |..........\\\\\n"
+	@printf "/,         _'_........./:   $(MAGENTA)MiniRT Ready!$(BLUE)\n"
+	@printf "! -,    _-\"   \"-_... ,;;:\n"
+	@printf "\\\\   -_-\"         \"-_/;;;;\n"
+	@printf " \\\\   \\\\             /;;;;'\n"
+	@printf "  \\\\   \\\\           /;;;;\n"
+	@printf "   '.  \\\\         /;;;'\n"
+	@printf "     \"-_\\\\_______/;;'\n"
 	@printf "$(RESET)"
-
 # === LIBFT COMPILATION CON SPINNER ===
 libft/libft.a: .header_shown
 	$(call spinner)
