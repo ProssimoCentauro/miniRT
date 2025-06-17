@@ -6,7 +6,7 @@
 /*   By: rtodaro <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 19:54:35 by rtodaro           #+#    #+#             */
-/*   Updated: 2025/06/16 19:54:36 by rtodaro          ###   ########.fr       */
+/*   Updated: 2025/06/17 13:20:28 by rtodaro          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,18 @@ void	free_renderer(t_renderer *r)
 	free_scene(r->scene);
 	free_data(r->data);
 	free(r);
+}
+
+void	free_mat(char **mat)
+{
+	size_t	i;
+
+	i = count_lines(mat);
+	while (*mat)
+	{
+		free(*mat);
+		mat++;
+	}
+	free(mat - i);
+	mat = NULL;
 }

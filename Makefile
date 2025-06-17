@@ -45,6 +45,12 @@ SRC = \
 	$(CREATIONF)figures_funcs.c \
 	$(CREATIONF)general_funcs.c \
 	$(P_UTILSF)scene_utils.c \
+	$(P_UTILSF)general_parser_utils.c \
+	$(P_UTILSF)check_env_objs_utils.c \
+	$(P_UTILSF)check_objs_utils.c \
+	$(P_UTILSF)check_objs_params_utils_1.c \
+	$(P_UTILSF)check_objs_params_utils_2.c \
+	$(P_UTILSF)check_objs_params_utils_3.c \
 	$(INITF)data_init.c \
 	$(UTILSF)error_utils.c \
 	$(UTILSF)free_utils.c \
