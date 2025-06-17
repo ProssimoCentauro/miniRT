@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_objs_params_utils_3.c                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rtodaro <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/17 16:43:57 by rtodaro           #+#    #+#             */
+/*   Updated: 2025/06/17 16:43:59 by rtodaro          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minirt.h"
 
 int	check_ratio(char *ratio, double *num)
@@ -22,9 +34,9 @@ int	check_ratio(char *ratio, double *num)
 	return (0);
 }
 
-int  check_fov(char *line, double *num)
+int	check_fov(char *line, double *num)
 {
-	int res;
+	int	res;
 
 	if (is_valid_integer(line))
 		return (1);

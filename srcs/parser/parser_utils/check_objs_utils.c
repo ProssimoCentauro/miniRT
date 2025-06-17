@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_objs_utils.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rtodaro <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/17 16:44:03 by rtodaro           #+#    #+#             */
+/*   Updated: 2025/06/17 16:44:04 by rtodaro          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minirt.h"
 
 int	check_sphere(char **line, t_renderer *r)
@@ -16,7 +28,6 @@ int	check_sphere(char **line, t_renderer *r)
 		return (launch_error(1, SYNTAX_ERROR, COLOR_ERROR, SP_MSG));
 	create_from_data(&data, (void **)&sp);
 	add_object(r->scene, sp);
-	//print_object_data(data);
 	return (0);
 }
 
@@ -36,7 +47,6 @@ int	check_plane(char **line, t_renderer *r)
 		return (launch_error(1, SYNTAX_ERROR, COLOR_ERROR, PL_MSG));
 	create_from_data(&data, (void **)&pl);
 	add_object(r->scene, pl);
-	//print_object_data(data);
 	return (0);
 }
 
@@ -44,7 +54,7 @@ int	check_cylinder(char **line, t_renderer *r)
 {
 	t_object		*cy;
 	t_object_data	data;
-	
+
 	data.type = CYLINDER;
 	if (count_lines(line) != 6)
 		return (launch_error(1, SYNTAX_ERROR, INVALID_PARAMS, CY_MSG));
@@ -60,6 +70,5 @@ int	check_cylinder(char **line, t_renderer *r)
 		return (launch_error(1, SYNTAX_ERROR, COLOR_ERROR, CY_MSG));
 	create_from_data(&data, (void **)&cy);
 	add_object(r->scene, cy);
-	//print_object_data(data);
 	return (0);
 }

@@ -52,20 +52,20 @@ size_t	count_lines(char **mat)
 
 void	modify_vector(t_vector *v, double num, int i)
 {
-		if (i == 0)
-			v->x = num;
-		else if (i == 1)
-			v->y = num;
-		else if (i == 2)
-			v->z = num;
+	if (i == 0)
+		v->x = num;
+	else if (i == 1)
+		v->y = num;
+	else if (i == 2)
+		v->z = num;
 }
 
 void	modify_rgb(t_rgb *rgb, int num, int i)
 {
-		if (i == 0)
-			rgb->r = num;
-		else if (i == 1)
-			rgb->g = num;
-		else if (i == 2)
-			rgb->b = num;
+	if (i == 0)
+		rgb->r = num;
+	else if (i == 1)
+		rgb->g = num;
+	else if (i == 2)
+		rgb->b = num;
 }

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_objs_params_utils_2.c                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rtodaro <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/17 16:43:51 by rtodaro           #+#    #+#             */
+/*   Updated: 2025/06/17 16:43:52 by rtodaro          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minirt.h"
 
 int	is_valid_rgb_component(char *str)
@@ -20,11 +32,10 @@ int	is_valid_rgb_component(char *str)
 	return (0);
 }
 
-
-int	check_colors(char *line, t_rgb* colors)
+int	check_colors(char *line, t_rgb *colors)
 {
 	char	**rgb;
-	int i;
+	int		i;
 
 	rgb = ft_split(line, ',');
 	i = 0;
@@ -50,7 +61,7 @@ int	check_colors(char *line, t_rgb* colors)
 int	check_coordinates(char *line, t_vector *coords)
 {
 	char	**mat;
-	int i;
+	int		i;
 
 	mat = ft_split(line, ',');
 	i = 0;
@@ -76,7 +87,7 @@ int	check_coordinates(char *line, t_vector *coords)
 int	check_normal(char *line, t_vector *normal)
 {
 	char	**mat;
-	int i;
+	int		i;
 
 	mat = ft_split(line, ',');
 	i = 0;
