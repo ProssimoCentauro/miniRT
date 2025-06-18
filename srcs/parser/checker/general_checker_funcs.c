@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   general_checker_funcs.c                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rtodaro <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/18 19:48:40 by rtodaro           #+#    #+#             */
+/*   Updated: 2025/06/18 19:48:59 by rtodaro          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minirt.h"
 
 int	detect_checker(char **line, t_renderer *r)
@@ -19,8 +31,9 @@ int	detect_checker(char **line, t_renderer *r)
 
 void	check_scene(t_renderer *r)
 {
-	t_scene *s = r->scene;
+	t_scene	*s;
 
+	s = r->scene;
 	if (!s->cam && !s->amb && !s->objs && !s->lights)
 		exit_error(r, GENERAL_ERROR, EMPTY_FILE_ERROR, NULL);
 	else if (!s->cam)
@@ -33,16 +46,19 @@ void	check_scene(t_renderer *r)
 
 void	check_args(int ac, char *file)
 {
-	size_t	len = 0;
-	int		check = 1;
+	size_t	len;
+	int		check;
 
+	len = 0;
+	check = 1;
 	if (ac != 2)
 	{
 		print_error(ARGS_ERROR, NULL, NULL);
 		exit(EXIT_FAILURE);
 	}
 	len = ft_strlen(file);
-	check = file[len - 3] == '.' && file[len - 2] == 'r' && file[len - 1] == 't';
+	check = file[len - 3] == '.' && file[len - 2] == 'r' && file[len
+		- 1] == 't';
 	if (len < 4)
 		check = 0;
 	if (!check)

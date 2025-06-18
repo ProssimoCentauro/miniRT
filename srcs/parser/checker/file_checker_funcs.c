@@ -6,7 +6,7 @@
 /*   By: rtodaro <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 19:51:49 by rtodaro           #+#    #+#             */
-/*   Updated: 2025/06/18 19:43:24 by rtodaro          ###   ########.fr       */
+/*   Updated: 2025/06/18 19:48:29 by rtodaro          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	checker_loop(t_renderer *r, int *fd)
 {
 	char	*line;
 	char	**mat;
-	
+
 	while (42)
 	{
 		line = get_next_line(*fd);
@@ -34,7 +34,7 @@ static void	checker_loop(t_renderer *r, int *fd)
 		if (not_empty_line(line))
 		{
 			free(line);
-			continue;
+			continue ;
 		}
 		mat = ft_split2(line, " \t\n");
 		if (!mat)
@@ -60,7 +60,7 @@ int	check_file(t_renderer *r)
 			exit_error(r, NON_EXISTENT_FILE_ERROR, NULL, NULL);
 		else
 			exit_error(r, FILE_OPENING_ERROR, NULL, NULL);
-    }
+	}
 	checker_loop(r, &fd);
 	check_scene(r);
 	print_scene(r->scene);
