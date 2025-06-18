@@ -32,7 +32,9 @@ endef
 
 # === NOME E FILE ===
 NAME = minirt
+SRCSF = ./srcs/
 PARSERF = ./srcs/parser/
+CHECKERF = ./srcs/parser/checker/
 CREATIONF = ./srcs/parser/objects_creation_funcs/
 P_UTILSF = ./srcs/parser/parser_utils/
 INITF = ./srcs/init_funcs/
@@ -40,7 +42,9 @@ ERRORF = ./srcs/error_utils/
 UTILSF = ./srcs/utils/
 DEBUGF = ./srcs/debug_funcs/
 SRC = \
-	$(PARSERF)check_file.c \
+	$(SRCSF)main.c \
+	$(CHECKERF)file_checker_funcs.c \
+	$(CHECKERF)general_checker_funcs.c \
 	$(CREATIONF)environment_funcs.c \
 	$(CREATIONF)figures_funcs.c \
 	$(CREATIONF)general_funcs.c \

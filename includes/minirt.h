@@ -84,6 +84,12 @@ void	exit_error(t_renderer *r, char *l1, char *l2, char *l3);
 //data_init.c
 t_renderer	*init_renderer(char* line);
 
-//check_file.c
+//file_checker_funcs.c
 int	check_file(t_renderer *r);
+
+//general_checker_funcs.c
+int	detect_checker(char **line, t_renderer *r);
+void	check_scene(t_renderer *r);
+void	check_args(int ac, char *file);
+
 #endif
