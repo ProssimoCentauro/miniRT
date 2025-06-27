@@ -4,6 +4,7 @@ HEADERS_DIR := header_files
 LIBFT_DIR := source_files/libft_srcs/
 PRINTF_DIR := source_files/printf_srcs/
 GNL_DIR := source_files/gnl_srcs/
+VECTOR_DIR := source_files/vector_srcs/
 
 
 #Main sourcers
@@ -22,11 +23,17 @@ PRINTF_SRCS := $(PRINTF_DIR)ft_printf.c  $(PRINTF_DIR)libc_utils.c  $(PRINTF_DIR
 
 GNL_SRCS := $(GNL_DIR)get_next_line_bonus.c  $(GNL_DIR)get_next_line_utils_bonus.c $(GNL_DIR)get_next_line.c $(GNL_DIR)get_next_line_utils.c
 
+VECTOR_SRCS = vector_add.c  vector_cross.c  vector_dot.c  vector_lenght.c \
+		vector_length_squared.c  vector_normalize.c  vector_project.c  vector_set_zero.c \
+		vector_sub.c vector_scale.c
+VECTOR_SRCS := $(addprefix $(VECTOR_DIR), $(VECTOR_SRCS))
+
 
 #Variables to convert SRCS and BONUS *.c in *.o (object files)
 LIBFT_OBJS = $(LIBFT_SRCS:.c=.o)
 PRINTF_OBJS = $(PRINTF_SRCS:.c=.o)
 GNL_OBJS = $(GNL_SRCS:.c=.o)
+VECTOR_OBJS = $(VECTOR_SRCS:.c=.o)
 
 
 
@@ -34,11 +41,11 @@ GNL_OBJS = $(GNL_SRCS:.c=.o)
 CC = cc
 AR = ar rcs
 RM = rm -f
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra -flto -O3 -g
 IFLAG = -I $(HEADERS_DIR)
 
 #All files must exist
-$(NAME): $(LIBFT_OBJS) $(PRINTF_OBJS) $(GNL_OBJS)
+$(NAME): $(LIBFT_OBJS) $(PRINTF_OBJS) $(GNL_OBJS) $(VECTOR_OBJS)
 	$(AR) $@ $^
 
 #Every *.c must be compiled in *.o files
@@ -50,7 +57,7 @@ all: $(NAME)
 
 #Rule that delete all the *.o files
 clean:
-	$(RM) $(LIBFT_OBJS) $(PRINTF_OBJS) $(GNL_OBJS)
+	$(RM) $(LIBFT_OBJS) $(PRINTF_OBJS) $(GNL_OBJS) $(VECTOR_OBJS)
 
 #Rule that delete all the *.o files and also $(NAME)
 fclean: clean
