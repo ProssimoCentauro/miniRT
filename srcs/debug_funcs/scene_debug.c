@@ -75,7 +75,7 @@ void print_scene(t_scene *scene)
     print_vector(scene->cam->coord);
     printf("\nOrientation: ");
     print_vector(scene->cam->orientation);
-    printf("\nFOV: %.2f\n\n", scene->cam->fov);
+    printf("\nFOV: %.2f\n\n", scene->cam->fov); 
 
     // Ambient Light
     printf(BOLD_MAGENTA "=== Ambient Light ===\n" RESET);

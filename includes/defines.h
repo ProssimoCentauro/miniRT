@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rtodaro <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: ibrunial <ibrunial@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 20:02:34 by rtodaro           #+#    #+#             */
-/*   Updated: 2025/06/18 20:02:34 by rtodaro          ###   ########.fr       */
+/*   Updated: 2025/06/27 14:08:16 by ibrunial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 # define BOLD_WHITE "\x1b[1;37m"
 
 // Errors (hardcoded colors for 42 norm)
-# define MALLOC_ERROR "\x1b[1;31mMALLOC ERROR\x1b[0m"
+# define MALLOC_ERROR BOLD_RED "MALLOC ERROR" RESET
 # define GENERAL_ERROR "\x1b[1;31mError\n\x1b[0m"
 # define ARGS_ERROR "\x1b[1;31mINVALID ARGUMENTS!\x1b[0m"
 # define NOT_RT_FILE_ERROR "\x1b[1;31mNOT .rt or INVALID FILE!\x1b[0m"
@@ -69,5 +69,13 @@ NOT EXIST!\x1b[0m"
 
 // Messages
 # define VALID_FILE_MSG "\x1b[1;32m\nVALID FILE!\n\x1b[0m"
+
+// mlx 
+# define WINDOW_NAME "miniRT"
+# define HEIGHT 500
+# define WIDTH 500
+
+// mathematical constant
+# define PI 3.14159265358979323846
 
 #endif

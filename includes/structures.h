@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structures.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rtodaro <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: ibrunial <ibrunial@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 19:53:03 by rtodaro           #+#    #+#             */
-/*   Updated: 2025/06/18 19:53:10 by rtodaro          ###   ########.fr       */
+/*   Updated: 2025/06/27 14:22:53 by ibrunial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,29 @@ typedef struct s_rgb
 	int				b;
 }					t_rgb;
 
-typedef struct s_vector
+
+// secondo me i colori è meglio gestirli così che occumano meno memoria
+/*
+typedef union u_rgb
 {
-	double			x;
-	double			y;
-	double			z;
-}					t_vector;
+    struct
+    {
+        unsigned char r;
+        unsigned char g;
+        unsigned char b;
+        unsigned char t;
+    };
+    uint64_t rgb;
+}       t_rgb;
+*/
+
+// spostato in vector.h
+// typedef struct s_vector
+// {
+// 	double			x;
+// 	double			y;
+// 	double			z;
+// }					t_vector;
 
 typedef struct s_object_data
 {
