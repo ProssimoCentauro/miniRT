@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_functions.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rtodaro <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: ibrunial <ibrunial@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 15:17:05 by rtodaro           #+#    #+#             */
-/*   Updated: 2024/12/27 15:17:06 by rtodaro          ###   ########.fr       */
+/*   Updated: 2025/06/27 11:31:35 by ibrunial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	print_dec_to_hex(unsigned int n, char flag, int prefix, int count)
 
 	if (prefix == 1)
 	{
-		write(1, "0x", 2);
+		printf_ft_putstr("0x");
 		prefix = 0;
 	}
 	if (n / 16 != 0)
@@ -44,7 +44,7 @@ int	print_address(unsigned long address, int flag, int prefix, int count)
 	}
 	if (prefix == 1)
 	{
-		write(1, "0x", 2);
+		printf_ft_putstr("0x");
 		prefix = 0;
 		count += 2;
 	}
