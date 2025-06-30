@@ -6,7 +6,7 @@
 /*   By: rtodaro <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 19:57:32 by rtodaro           #+#    #+#             */
-/*   Updated: 2025/06/30 18:58:55 by rtodaro          ###   ########.fr       */
+/*   Updated: 2025/06/30 21:22:10 by rtodaro          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ t_renderer	*init_renderer(char *line)
 	r->data = ft_calloc(1, sizeof(t_data));
 	r->mlx = ft_calloc(1, sizeof(t_mlx));
 	r->scene = ft_calloc(1, sizeof(t_scene));
-	
 	init_data(r->data, line);
 	init_mlx(r->mlx);
 	return (r);

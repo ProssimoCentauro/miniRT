@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   mlx_init.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rtodaro <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/30 21:22:15 by rtodaro           #+#    #+#             */
+/*   Updated: 2025/06/30 21:22:35 by rtodaro          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minirt.h"
 
 static void	init_image(void	*mlx, t_image *image)
@@ -8,7 +20,6 @@ static void	init_image(void	*mlx, t_image *image)
 			&(image)->bits_per_pixel,
 			&(image)->line_length,
 			&(image)->endian);
-
 }
 
 void	init_mlx(t_mlx	*mlx)
