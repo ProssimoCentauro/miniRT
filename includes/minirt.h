@@ -6,7 +6,7 @@
 /*   By: rtodaro <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 19:52:54 by rtodaro           #+#    #+#             */
-/*   Updated: 2025/06/18 19:52:55 by rtodaro          ###   ########.fr       */
+/*   Updated: 2025/06/30 19:03:00 by rtodaro          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include "get_next_line.h"
 # include "libft.h"
 # include "structures.h"
+# include "mlx.h"
 # include <errno.h>
 # include <fcntl.h>
 # include <math.h>
@@ -90,8 +91,13 @@ void		free_mat(char **mat);
 int			launch_error(int error, char *line1, char *line2, char *line3);
 void		print_error(char *line1, char *line2, char *line3);
 void		exit_error(t_renderer *r, char *l1, char *l2, char *l3);
+
 // data_init.c
+void	init_data(t_data *data, char *line);
 t_renderer	*init_renderer(char *line);
+
+//mlx_init.c
+void	init_mlx(t_mlx	*mlx);
 
 // file_checker_funcs.c
 int			check_file(t_renderer *r);

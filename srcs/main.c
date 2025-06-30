@@ -6,7 +6,7 @@
 /*   By: rtodaro <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 19:49:55 by rtodaro           #+#    #+#             */
-/*   Updated: 2025/06/18 19:49:56 by rtodaro          ###   ########.fr       */
+/*   Updated: 2025/06/30 19:14:35 by rtodaro          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	main(int ac, char **av)
 	check_args(ac, av[1]);
 	renderer = init_renderer(av[1]);
 	check_file(renderer);
+	mlx_loop(renderer->mlx->mlx_instance);
 	free_renderer(renderer);
 	return (0);
 }

@@ -56,6 +56,7 @@ SRC = \
 	$(P_UTILSF)check_objs_params_utils_2.c \
 	$(P_UTILSF)check_objs_params_utils_3.c \
 	$(INITF)data_init.c \
+	$(INITF)mlx_init.c \
 	$(UTILSF)error_utils.c \
 	$(UTILSF)free_utils.c \
 	$(DEBUGF)debug_utils.c \
@@ -65,8 +66,9 @@ OBJ = $(SRC:.c=.o)
 # === COMPILAZIONE ===
 CC = cc
 CFLAGS = -Wall -Werror -Wextra -g -gdwarf-4
-INCLUDE = -Ilibft/header_files -I/usr/include -I./includes
+INCLUDE = -Ilibft/header_files -I/usr/include -I./includes -I./minilibx-linux
 LIBFLAGS = -Llibft -lft -lm
+MLXFLAGS = -Imlx -Lmlx -lX11 -lXext
 
 # === TARGET PRINCIPALI ===
 all: $(NAME)
@@ -81,7 +83,7 @@ all: $(NAME)
 # Compila libft con spinner e poi miniRT
 $(NAME): .header_shown libft/libft.a $(OBJ)
 	@printf "\n$(GREEN)[✓] Source files compiled. Linking...$(RESET)\n"
-	@$(CC) $(OBJ) -o $(NAME) libft/libft.a -lreadline -lncurses -lm -g
+	@$(CC) $(OBJ) -o $(NAME) libft/libft.a minilibx-linux/libmlx.a $(MLXFLAGS) $(LIBFLAGS) -lreadline -lncurses -lm -g
 	@printf "$(GREEN)✔ Compilation completed successfully!$(RESET)\n"
 	@printf "$(BLUE)"
 	@printf "      _----------_,\n"
