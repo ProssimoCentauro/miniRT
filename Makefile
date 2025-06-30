@@ -37,6 +37,7 @@ PARSERF = ./srcs/parser/
 CHECKERF = ./srcs/parser/checker/
 CREATIONF = ./srcs/parser/objects_creation_funcs/
 P_UTILSF = ./srcs/parser/parser_utils/
+HANDLERSF = ./srcs/handlers/
 INITF = ./srcs/init_funcs/
 ERRORF = ./srcs/error_utils/
 UTILSF = ./srcs/utils/
@@ -48,6 +49,7 @@ SRC = \
 	$(CREATIONF)environment_funcs.c \
 	$(CREATIONF)figures_funcs.c \
 	$(CREATIONF)general_funcs.c \
+	$(HANDLERSF)events_handlers.c \
 	$(P_UTILSF)scene_utils.c \
 	$(P_UTILSF)general_parser_utils.c \
 	$(P_UTILSF)check_env_objs_utils.c \

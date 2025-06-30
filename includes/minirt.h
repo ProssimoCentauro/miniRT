@@ -6,7 +6,7 @@
 /*   By: rtodaro <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 19:52:54 by rtodaro           #+#    #+#             */
-/*   Updated: 2025/06/30 19:03:00 by rtodaro          ###   ########.fr       */
+/*   Updated: 2025/06/30 21:03:32 by rtodaro          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,10 @@ int			check_fov(char *line, double *num);
 // scene_utils.c
 void		add_object(t_scene *scene, t_object *new_obj);
 void		add_light(t_scene *scene, t_light *new_light);
+
+//events_handlers.c
+int	events_handler(int key, t_renderer *r);
+int	exit_handler(t_renderer *r);
 
 // free_utils.c
 void		free_mlx(t_mlx *mlx);
