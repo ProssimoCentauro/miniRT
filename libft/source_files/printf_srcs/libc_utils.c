@@ -6,28 +6,28 @@
 /*   By: ibrunial <ibrunial@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 15:15:29 by rtodaro           #+#    #+#             */
-/*   Updated: 2025/06/27 11:30:29 by ibrunial         ###   ########.fr       */
+/*   Updated: 2025/07/01 18:23:32 by ibrunial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-inline int	printf_ft_putchar(char c)
+int	printf_ft_putchar(char c)
 {
 	return (write(1, &c, 1));
 }
 
-inline int	printf_ft_putstr(char *str)
+int	printf_ft_putstr(char *str)
 {
-    ssize_t len;
-    
+	ssize_t	len;
+
 	if (!str)
 		return (printf_ft_putstr(FT_NULL_STR));
-    len = 0;
-    while (str[len] != '\0')
-    {
-        ++len;
-    }
+	len = 0;
+	while (str[len] != '\0')
+	{
+		++len;
+	}
 	return (write(STDOUT_FILENO, str, len));
 }
 

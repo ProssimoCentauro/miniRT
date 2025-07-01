@@ -1,3 +1,6 @@
 *.o
 .vscode
 minirt
+libft.a
+.header_shown
+random.c

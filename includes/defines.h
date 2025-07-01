@@ -6,7 +6,7 @@
 /*   By: ibrunial <ibrunial@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 20:02:34 by rtodaro           #+#    #+#             */
-/*   Updated: 2025/06/27 14:08:16 by ibrunial         ###   ########.fr       */
+/*   Updated: 2025/07/01 12:22:27 by ibrunial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,5 +77,7 @@ NOT EXIST!\x1b[0m"
 
 // mathematical constant
 # define PI 3.14159265358979323846
+# define SEED 2524232
+# define EPSILON 0.001
 
 #endif

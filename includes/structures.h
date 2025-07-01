@@ -6,7 +6,7 @@
 /*   By: ibrunial <ibrunial@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 19:53:03 by rtodaro           #+#    #+#             */
-/*   Updated: 2025/06/27 14:22:53 by ibrunial         ###   ########.fr       */
+/*   Updated: 2025/07/01 18:19:30 by ibrunial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ typedef union u_rgb
         unsigned char b;
         unsigned char t;
     };
-    uint64_t rgb;
+    uint32_t rgb;
 }       t_rgb;
 */
 
@@ -141,7 +141,7 @@ typedef struct s_scene
 
 typedef struct s_hit
 {
-	t_object		*obj;
+	t_figures		*obj;
 	double			dist;
 	t_vector		point;
 	t_vector		normal;
