@@ -6,7 +6,7 @@
 /*   By: rtodaro <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 19:54:35 by rtodaro           #+#    #+#             */
-/*   Updated: 2025/06/17 13:20:28 by rtodaro          ###   ########.fr       */
+/*   Updated: 2025/06/30 21:23:37 by rtodaro          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,17 @@
 
 void	free_mlx(t_mlx *mlx)
 {
+	if (!mlx)
+		return ;
+	if (mlx->image.img)
+		mlx_destroy_image(mlx->mlx_instance, mlx->image.img);
+	if (mlx->window)
+		mlx_destroy_window(mlx->mlx_instance, mlx->window);
+	if (mlx->mlx_instance)
+	{
+		mlx_destroy_display(mlx->mlx_instance);
+		free(mlx->mlx_instance);
+	}
 	free(mlx);
 }
 

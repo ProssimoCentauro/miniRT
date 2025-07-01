@@ -6,7 +6,7 @@
 /*   By: rtodaro <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 19:53:03 by rtodaro           #+#    #+#             */
-/*   Updated: 2025/06/18 19:53:10 by rtodaro          ###   ########.fr       */
+/*   Updated: 2025/06/30 20:44:10 by rtodaro          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,7 +141,7 @@ typedef struct s_ray
 typedef struct s_image
 {
 	void			*img;
-	char			*addr;
+	void			*addr;
 	int				bits_per_pixel;
 	int				line_length;
 	int				endian;
