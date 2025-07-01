@@ -1,22 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   vector3_set_zero.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ibrunial <ibrunial@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/11 16:51:06 by rtodaro           #+#    #+#             */
-/*   Updated: 2025/07/01 18:24:17 by ibrunial         ###   ########.fr       */
+/*   Created: 2025/06/23 21:43:26 by ibrunial          #+#    #+#             */
+/*   Updated: 2025/06/24 17:42:29 by ibrunial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "vector.h"
 
-char	*ft_strchr(const char *s, int c)
+void	vector3_set_zero(t_vector *vec)
 {
-	while (*s && *s != (char)c)
-		s++;
-	if (*s == (char)c)
-		return ((char *)s);
-	return (NULL);
+	vec->x = 0;
+	vec->y = 0;
+	vec->z = 0;
 }

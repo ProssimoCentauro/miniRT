@@ -1,22 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   vector_normalize.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ibrunial <ibrunial@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/11 16:51:06 by rtodaro           #+#    #+#             */
-/*   Updated: 2025/07/01 18:24:17 by ibrunial         ###   ########.fr       */
+/*   Created: 2025/06/23 21:47:55 by ibrunial          #+#    #+#             */
+/*   Updated: 2025/07/01 16:30:13 by ibrunial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "vector.h"
 
-char	*ft_strchr(const char *s, int c)
+t_vector	vector_normalize(t_vector v)
 {
-	while (*s && *s != (char)c)
-		s++;
-	if (*s == (char)c)
-		return ((char *)s);
-	return (NULL);
+	const double	len2 = v.x * v.x + v.y * v.y + v.z * v.z;
+	const double	inv_len = 1.0 / sqrt(len2);
+
+	v.x *= inv_len;
+	v.y *= inv_len;
+	v.z *= inv_len;
+	return (v);
 }

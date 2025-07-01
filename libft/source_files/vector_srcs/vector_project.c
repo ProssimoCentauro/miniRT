@@ -1,22 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   vector_project.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ibrunial <ibrunial@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/11 16:51:06 by rtodaro           #+#    #+#             */
-/*   Updated: 2025/07/01 18:24:17 by ibrunial         ###   ########.fr       */
+/*   Created: 2025/06/23 21:48:31 by ibrunial          #+#    #+#             */
+/*   Updated: 2025/06/27 10:47:24 by ibrunial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "vector.h"
 
-char	*ft_strchr(const char *s, int c)
+t_vector	vector3_project(t_vector vec1, t_vector vec2)
 {
-	while (*s && *s != (char)c)
-		s++;
-	if (*s == (char)c)
-		return ((char *)s);
-	return (NULL);
+	double	dot;
+	double	b_len_sq;
+	double	scale;
+
+	dot = vec1.x * vec2.x + vec1.y * vec2.y + vec1.z * vec2.z;
+	b_len_sq = vec2.x * vec2.x + vec2.y * vec2.y + vec2.z * vec2.z;
+	if (b_len_sq == 0.0f)
+		return ((t_vector){0, 0, 0});
+	scale = dot / b_len_sq;
+	return ((t_vector){vec2.x * scale, vec2.y * scale, vec2.z * scale});
 }

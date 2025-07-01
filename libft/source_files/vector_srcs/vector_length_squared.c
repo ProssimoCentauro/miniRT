@@ -1,22 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   vector_length_squared.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ibrunial <ibrunial@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/11 16:51:06 by rtodaro           #+#    #+#             */
-/*   Updated: 2025/07/01 18:24:17 by ibrunial         ###   ########.fr       */
+/*   Created: 2025/06/23 21:47:34 by ibrunial          #+#    #+#             */
+/*   Updated: 2025/06/27 10:45:18 by ibrunial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "vector.h"
 
-char	*ft_strchr(const char *s, int c)
+double	vector3_length_squared(t_vector vec)
 {
-	while (*s && *s != (char)c)
-		s++;
-	if (*s == (char)c)
-		return ((char *)s);
-	return (NULL);
+	return (vec.x * vec.x + vec.y * vec.y + vec.z * vec.z);
 }

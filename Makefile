@@ -69,6 +69,8 @@ UTILSF = ./srcs/utils/
 DEBUGF = ./srcs/debug_funcs/
 SRC = \
 	$(SRCSF)main.c \
+	$(SRCSF)generate_rays.c \
+	$(SRCSF)calculate_hit.c \
 	$(CHECKERF)file_checker_funcs.c \
 	$(CHECKERF)general_checker_funcs.c \
 	$(CREATIONF)environment_funcs.c \
@@ -91,8 +93,9 @@ SRC = \
 OBJ = $(SRC:.c=.o)
 
 # === COMPILAZIONE ===
+
 CC = cc
-CFLAGS = -Wall -Werror -Wextra -g -gdwarf-4
+CFLAGS = -Wall -Werror -Wextra -g -gdwarf-4 -flto -O3
 INCLUDE = -Ilibft/header_files -I/usr/include -I./includes -I./minilibx-linux
 LIBFLAGS = -Llibft -lft -lm
 MLXFLAGS = -Imlx -Lmlx -lX11 -lXext
@@ -110,7 +113,7 @@ all: $(NAME)
 # Compila libft con spinner e poi miniRT
 $(NAME): .header_shown libft/libft.a minilibx-linux/libmlx.a $(OBJ)
 	@printf "\n$(GREEN)[✓] Source files compiled. Linking...$(RESET)\n"
-	@$(CC) $(OBJ) -o $(NAME) libft/libft.a minilibx-linux/libmlx.a $(MLXFLAGS) $(LIBFLAGS) -lreadline -lncurses -lm -g
+	@$(CC) $(OBJ) -o $(NAME) libft/libft.a minilibx-linux/libmlx.a $(MLXFLAGS) $(LIBFLAGS) -lreadline -lncurses -lm -g -flto -O3
 	@printf "$(GREEN)✔ Compilation completed successfully!$(RESET)\n"
 	@printf "$(BLUE)"
 	@printf "      _----------_,\n"
@@ -138,7 +141,7 @@ minilibx-linux/libmlx.a: .header_shown
 # === COMPILAZIONE OGNI FILE .o con messaggio sulla stessa riga ===
 %.o: %.c .header_shown
 	@printf "\r\033[K$(YELLOW)🔨 Compiling $@...$(RESET)"
-	@$(CC) $(CFLAGS) -c $< -o $@ $(INCLUDE)
+	@$(CC) $(CFLAGS) -c $< -o $@ $(INCLUDE) -g
 
 # === PULIZIA ===
 clean:

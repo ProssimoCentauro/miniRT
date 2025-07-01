@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rtodaro <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: ibrunial <ibrunial@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 19:52:54 by rtodaro           #+#    #+#             */
 /*   Updated: 2025/06/30 21:03:32 by rtodaro          ###   ########.fr       */
@@ -13,10 +13,12 @@
 #ifndef MINIRT_H
 # define MINIRT_H
 
+# include "../minilibx-linux/mlx.h"
 # include "defines.h"
 # include "ft_printf.h"
 # include "get_next_line.h"
 # include "libft.h"
+# include "vector.h"
 # include "structures.h"
 # include "mlx.h"
 # include <errno.h>
@@ -110,5 +112,10 @@ int			check_file(t_renderer *r);
 int			detect_checker(char **line, t_renderer *r);
 void		check_scene(t_renderer *r);
 void		check_args(int ac, char *file);
+
+// rendering
+void		generate_rays(t_renderer *renderer);
+t_rgb		calculate_hit(t_scene *scene, t_ray *ray);
+t_rgb		calculate_hit(t_scene *scene, t_ray *ray);
 
 #endif

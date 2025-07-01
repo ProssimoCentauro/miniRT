@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libc_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rtodaro <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: ibrunial <ibrunial@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 15:15:29 by rtodaro           #+#    #+#             */
-/*   Updated: 2024/12/27 15:15:30 by rtodaro          ###   ########.fr       */
+/*   Updated: 2025/07/01 18:23:32 by ibrunial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,36 +14,34 @@
 
 int	printf_ft_putchar(char c)
 {
-	write(1, &c, 1);
-	return (1);
+	return (write(1, &c, 1));
 }
 
 int	printf_ft_putstr(char *str)
 {
-	int	count;
+	ssize_t	len;
 
 	if (!str)
 		return (printf_ft_putstr(FT_NULL_STR));
-	count = 0;
-	while (*str)
+	len = 0;
+	while (str[len] != '\0')
 	{
-		write(1, str++, 1);
-		count++;
+		++len;
 	}
-	return (count);
+	return (write(STDOUT_FILENO, str, len));
 }
 
 int	printf_ft_putnbr(int n, int count)
 {
 	if (n == -2147483648)
 	{
-		write(1, "-2147483648", 11);
+		printf_ft_putstr("-2147483648");
 		return (11);
 	}
 	if (n < 0)
 	{
 		n = -n;
-		write(1, "-", 1);
+		printf_ft_putchar('-');
 		count++;
 	}
 	if (n >= 10)
