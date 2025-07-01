@@ -30,6 +30,31 @@ define spinner
 	'
 endef
 
+
+# === MLX SPINNER ===
+define mlx_spinner
+	@printf "$(YELLOW)🖼️  Compiling MiniLibX... $(RESET)"
+	@bash -c ' \
+		spin="/-\\|"; \
+		i=0; \
+		( make -C minilibx-linux > /dev/null 2>&1 ) & \
+		pid=$$!; \
+		while kill -0 $$pid 2>/dev/null; do \
+			printf "\r🖼️  Compiling MiniLibX... $${spin:$$((i%4)):1} "; \
+			i=$$((i+1)); \
+			sleep 0.1; \
+		done; \
+		wait $$pid; \
+		if [ $$? -eq 0 ]; then \
+			printf "\r$(GREEN)🖼️  MiniLibX compiled successfully!    $(RESET)\n"; \
+		else \
+			printf "\r$(RED)✗ MiniLibX compilation failed!      $(RESET)\n"; \
+			exit 1; \
+		fi \
+	'
+endef
+
+
 # === NOME E FILE ===
 NAME = minirt
 SRCSF = ./srcs/
@@ -83,7 +108,7 @@ all: $(NAME)
 	@touch .header_shown
 
 # Compila libft con spinner e poi miniRT
-$(NAME): .header_shown libft/libft.a $(OBJ)
+$(NAME): .header_shown libft/libft.a minilibx-linux/libmlx.a $(OBJ)
 	@printf "\n$(GREEN)[✓] Source files compiled. Linking...$(RESET)\n"
 	@$(CC) $(OBJ) -o $(NAME) libft/libft.a minilibx-linux/libmlx.a $(MLXFLAGS) $(LIBFLAGS) -lreadline -lncurses -lm -g
 	@printf "$(GREEN)✔ Compilation completed successfully!$(RESET)\n"
@@ -105,6 +130,11 @@ $(NAME): .header_shown libft/libft.a $(OBJ)
 libft/libft.a: .header_shown
 	$(call spinner)
 
+# === MLX COMPILATION CON SPINNER ===
+minilibx-linux/libmlx.a: .header_shown
+	$(call mlx_spinner)
+
+
 # === COMPILAZIONE OGNI FILE .o con messaggio sulla stessa riga ===
 %.o: %.c .header_shown
 	@printf "\r\033[K$(YELLOW)🔨 Compiling $@...$(RESET)"
@@ -114,11 +144,13 @@ libft/libft.a: .header_shown
 clean:
 	@rm -f $(OBJ) .header_shown
 	@make clean -C libft > /dev/null
+	@make clean -C minilibx-linux > /dev/null
 	@printf "$(RED)🧹 Cleaned object files.$(RESET)\n"
 
 fclean: clean
 	@rm -f $(NAME)
 	@make fclean -C libft > /dev/null
+	@make clean -C minilibx-linux > /dev/null
 	@printf "$(RED)🧹 Removed binary and libft objects.$(RESET)\n"
 
 re: fclean all
