@@ -6,7 +6,7 @@
 /*   By: rtodaro <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 16:53:21 by rtodaro           #+#    #+#             */
-/*   Updated: 2025/05/14 17:28:23 by rtodaro          ###   ########.fr       */
+/*   Updated: 2025/07/01 10:18:23 by rtodaro          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ int					ft_isprint(int c);
 int					ft_strncmp(const char *s1, const char *s2, size_t n);
 int					ft_lstsize(t_list *lst);
 int					ft_memcmp(const void *s1, const void *s2, size_t n);
+size_t				ft_count_words(const char *str, const char *delims);
 size_t				ft_strlcat(char *dst, const char *src, size_t size);
 size_t				ft_strlen(const char *s);
 size_t				ft_strlcpy(char *dst, const char *src, size_t size);
