@@ -58,6 +58,7 @@ endef
 # === NOME E FILE ===
 NAME = minirt
 SRCSF = ./srcs/
+RENDERERF = ./srcs/renderer/
 PARSERF = ./srcs/parser/
 CHECKERF = ./srcs/parser/checker/
 CREATIONF = ./srcs/parser/objects_creation_funcs/
@@ -69,8 +70,8 @@ UTILSF = ./srcs/utils/
 DEBUGF = ./srcs/debug_funcs/
 SRC = \
 	$(SRCSF)main.c \
-	$(SRCSF)generate_rays.c \
-	$(SRCSF)calculate_hit.c \
+	$(RENDERERF)generate_rays.c \
+	$(RENDERERF)calculate_hit.c \
 	$(CHECKERF)file_checker_funcs.c \
 	$(CHECKERF)general_checker_funcs.c \
 	$(CREATIONF)environment_funcs.c \
