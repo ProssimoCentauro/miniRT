@@ -6,7 +6,7 @@
 /*   By: rtodaro <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 20:02:34 by rtodaro           #+#    #+#             */
-/*   Updated: 2025/07/02 23:13:13 by rtodaro          ###   ########.fr       */
+/*   Updated: 2025/07/02 23:27:17 by rtodaro          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ NOT EXIST!\x1b[0m"
 # define COLOR_ERROR "\x1b[1;31m⬤ \x1b[0mInvalid color for "
 # define DIAMETER_ERROR "\x1b[1;31m⬤ \x1b[0mInvalid DIAMETER for "
 # define HEIGHT_ERROR "\x1b[1;31m⬤ \x1b[0mInvalid HEIGHT for "
+# define ANGLE_ERROR "\x1b[1;31m⬤ \x1b[0mInvalid ANGLE for "
 
 // Objs Messages
 # define CAM_MSG "\x1b[1;36mCAMERA\x1b[0m object"
@@ -58,6 +59,7 @@ NOT EXIST!\x1b[0m"
 # define PL_MSG "\x1b[1;33mPLANE\x1b[0m object"
 # define SP_MSG "\x1b[1;33mSPHERE\x1b[0m object"
 # define CY_MSG "\x1b[1;33mCYLINDER\x1b[0m object"
+# define CO_MSG "\x1b[1;33mCONE\x1b[0m object"
 
 // Objs Errors
 # define CAM_ERROR "\x1b[1;36mCAMERA\x1b[1;31m object"
@@ -66,8 +68,19 @@ NOT EXIST!\x1b[0m"
 # define PL_ERROR "\x1b[1;33mPLANE\x1b[1;31m object"
 # define SP_ERROR "\x1b[1;33mSPHERE\x1b[1;31m object"
 # define CY_ERROR "\x1b[1;33mCYLINDER\x1b[1;31m object"
+# define CO_ERROR "\x1b[1;33mCONE\x1b[1;31m object"
 
 // Messages
 # define VALID_FILE_MSG "\x1b[1;32m\nVALID FILE!\n\x1b[0m"
+
+// mlx
+# define WINDOW_NAME "miniRT"
+# define HEIGHT 500
+# define WIDTH 500
+
+// mathematical constant
+# define PI 3.14159265358979323846
+# define SEED 2524232
+# define EPSILON 0.001
 
 #endif

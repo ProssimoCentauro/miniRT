@@ -6,7 +6,7 @@
 /*   By: ibrunial <ibrunial@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 19:52:54 by rtodaro           #+#    #+#             */
-/*   Updated: 2025/07/02 22:59:53 by rtodaro          ###   ########.fr       */
+/*   Updated: 2025/07/02 23:24:51 by rtodaro          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include "ft_printf.h"
 # include "get_next_line.h"
 # include "libft.h"
+# include "vector.h"
 # include "mlx.h"
 # include "structures.h"
 # include "vector.h"
