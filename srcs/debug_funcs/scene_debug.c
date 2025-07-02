@@ -59,6 +59,16 @@ static void print_object(t_object *obj)
             print_rgb(obj->figure.cylinder.rgb);
             printf("\n");
             break;
+        case CONE:
+            printf("  Coord: ");
+            print_vector(obj->figure.cone.coord);
+            printf("\n  Normal: ");
+            print_vector(obj->figure.cone.normal);
+            printf("\n  Angle: %.2f°\n  Height: %.2f\n  Color: ", 
+                obj->figure.cone.angle, obj->figure.cone.height);
+            print_rgb(obj->figure.cone.rgb);
+            printf("\n");
+            break;
         default:
             printf("  [No detailed printer implemented]\n");
             break;

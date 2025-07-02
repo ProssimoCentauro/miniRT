@@ -6,7 +6,7 @@
 /*   By: rtodaro <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 16:44:03 by rtodaro           #+#    #+#             */
-/*   Updated: 2025/06/17 16:44:04 by rtodaro          ###   ########.fr       */
+/*   Updated: 2025/07/02 23:00:40 by rtodaro          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,5 +70,28 @@ int	check_cylinder(char **line, t_renderer *r)
 		return (launch_error(1, SYNTAX_ERROR, COLOR_ERROR, CY_MSG));
 	create_from_data(&data, (void **)&cy);
 	add_object(r->scene, cy);
+	return (0);
+}
+
+int	check_cone(char **line, t_renderer *r)
+{
+	t_object		*co;
+	t_object_data	data;
+
+	data.type = CONE;
+	if (count_lines(line) != 6)
+		return (launch_error(1, SYNTAX_ERROR, INVALID_PARAMS, CY_MSG));
+	if (check_coordinates(line[1], &(data).coord))
+		return (launch_error(1, SYNTAX_ERROR, COORD_ERROR, CY_MSG));
+	if (check_normal(line[2], &(data).normal))
+		return (launch_error(1, SYNTAX_ERROR, NORMAL_ERROR, CY_MSG));
+	if (is_valid_angle(line[3], &(data).angle))
+		return (launch_error(1, SYNTAX_ERROR, DIAMETER_ERROR, CY_MSG));
+	if (is_valid_double(line[4], &(data).height))
+		return (launch_error(1, SYNTAX_ERROR, HEIGHT_ERROR, CY_MSG));
+	if (check_colors(line[5], &(data).rgb))
+		return (launch_error(1, SYNTAX_ERROR, COLOR_ERROR, CY_MSG));
+	create_from_data(&data, (void **)&co);
+	add_object(r->scene, co);
 	return (0);
 }

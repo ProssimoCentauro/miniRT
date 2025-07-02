@@ -6,7 +6,7 @@
 /*   By: rtodaro <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 19:48:40 by rtodaro           #+#    #+#             */
-/*   Updated: 2025/06/18 19:48:59 by rtodaro          ###   ########.fr       */
+/*   Updated: 2025/07/02 22:41:33 by rtodaro          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ int	detect_checker(char **line, t_renderer *r)
 		return (check_plane(line, r));
 	if (!ft_strncmp(*line, "cy\0", 3))
 		return (check_cylinder(line, r));
+	if (!ft_strncmp(*line, "co\0", 3))
+		return (check_cone(line, r));
 	return (1);
 }
 

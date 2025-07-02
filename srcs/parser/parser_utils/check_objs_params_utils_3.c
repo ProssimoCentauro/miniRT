@@ -6,7 +6,7 @@
 /*   By: rtodaro <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 16:43:57 by rtodaro           #+#    #+#             */
-/*   Updated: 2025/06/17 16:43:59 by rtodaro          ###   ########.fr       */
+/*   Updated: 2025/07/02 22:54:18 by rtodaro          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,14 @@ int	check_fov(char *line, double *num)
 		return (1);
 	*num = ft_atod(line);
 	return (0);
+}
+
+int	is_valid_angle(char* line, double *num)
+{
+	if (!is_valid_double(line, num))
+	{
+		if (*num > 0.0 && *num <= 90.0)
+			return (0);
+	}
+	return (1);
 }

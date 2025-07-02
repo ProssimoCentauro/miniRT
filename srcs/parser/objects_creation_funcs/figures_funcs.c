@@ -6,7 +6,7 @@
 /*   By: rtodaro <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 19:51:38 by rtodaro           #+#    #+#             */
-/*   Updated: 2025/06/16 19:51:40 by rtodaro          ###   ########.fr       */
+/*   Updated: 2025/07/02 22:57:52 by rtodaro          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,21 @@ t_object	*create_cylinder(t_object_data *d)
 	obj->figure.cylinder.diameter = d->diameter;
 	obj->figure.cylinder.height = d->height;
 	obj->figure.cylinder.rgb = d->rgb;
+	return (obj);
+}
+
+t_object	*create_cone(t_object_data *d)
+{
+	t_object	*obj;
+
+	obj = ft_calloc(1, sizeof(t_object));
+	if (!obj)
+		return (NULL);
+	obj->type = CONE;
+	obj->figure.cone.coord = d->coord;
+	obj->figure.cone.normal = d->normal;
+	obj->figure.cone.angle = d->angle;
+	obj->figure.cone.height = d->height;
+	obj->figure.cone.rgb = d->rgb;
 	return (obj);
 }

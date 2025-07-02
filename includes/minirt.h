@@ -6,7 +6,7 @@
 /*   By: ibrunial <ibrunial@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 19:52:54 by rtodaro           #+#    #+#             */
-/*   Updated: 2025/06/30 21:03:32 by rtodaro          ###   ########.fr       */
+/*   Updated: 2025/07/02 22:59:53 by rtodaro          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void		print_scene(t_scene *scene);
 t_object	*create_sphere(t_object_data *d);
 t_object	*create_plane(t_object_data *d);
 t_object	*create_cylinder(t_object_data *d);
+t_object	*create_cone(t_object_data *d);
 
 // environment_funcs.c
 t_camera	*create_camera(t_object_data *d);
@@ -61,6 +62,7 @@ int			check_light(char **line, t_renderer *r);
 int			check_sphere(char **line, t_renderer *r);
 int			check_plane(char **line, t_renderer *r);
 int			check_cylinder(char **line, t_renderer *r);
+int			check_cone(char **line, t_renderer *r);
 
 // check_objs_params_utils_1.c
 int			is_valid_integer(char *str);
@@ -77,6 +79,7 @@ int			check_normal(char *line, t_vector *normal);
 // check_objs_params_utils_3.c
 int			check_ratio(char *ratio, double *num);
 int			check_fov(char *line, double *num);
+int			is_valid_angle(char* line, double *num);
 
 // scene_utils.c
 void		add_object(t_scene *scene, t_object *new_obj);

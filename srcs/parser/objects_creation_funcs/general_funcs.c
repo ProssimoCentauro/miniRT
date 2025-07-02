@@ -6,7 +6,7 @@
 /*   By: rtodaro <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 19:51:43 by rtodaro           #+#    #+#             */
-/*   Updated: 2025/06/16 19:51:44 by rtodaro          ###   ########.fr       */
+/*   Updated: 2025/07/02 22:55:50 by rtodaro          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ t_type	create_from_data(t_object_data *d, void **out)
 		*out = create_plane(d);
 	else if (d->type == CYLINDER)
 		*out = create_cylinder(d);
+	else if (d->type == CONE)
+		*out = create_cone(d);
 	else
 		return (1);
 	if (!*out)

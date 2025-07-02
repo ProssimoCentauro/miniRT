@@ -6,7 +6,7 @@
 /*   By: ibrunial <ibrunial@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 19:53:03 by rtodaro           #+#    #+#             */
-/*   Updated: 2025/07/02 22:39:54 by rtodaro          ###   ########.fr       */
+/*   Updated: 2025/07/02 22:45:03 by rtodaro          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ typedef struct s_object_data
 	t_vector		normal;
 	double			diameter;
 	double			height;
+	double			angle;
 	t_rgb			rgb;
 	double			fov;
 	double			ratio;
