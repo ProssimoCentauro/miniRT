@@ -6,7 +6,7 @@
 /*   By: ibrunial <ibrunial@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 14:17:03 by ibrunial          #+#    #+#             */
-/*   Updated: 2025/07/01 18:48:05 by ibrunial         ###   ########.fr       */
+/*   Updated: 2025/07/02 20:10:41 by rtodaro          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	check_collision_sphere(t_sphere *sphere, t_ray *ray, t_hit *hit_info)
     }
 	hit_info->dist = t;
 	hit_info->point = vector_add(ray->coord, vector_scale(ray->direction, t));
-	hit_info->normal = vector_normalize(vector_sub(ray->hit->point,
+	hit_info->normal = vector_normalize(vector_sub(hit_info->point,
 				sphere->coord));
 	hit_info->rgb = sphere->rgb;
     hit_info->obj = (t_figures *)sphere;
