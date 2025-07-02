@@ -6,7 +6,7 @@
 /*   By: ibrunial <ibrunial@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 19:53:03 by rtodaro           #+#    #+#             */
-/*   Updated: 2025/06/30 20:44:10 by rtodaro          ###   ########.fr       */
+/*   Updated: 2025/07/02 22:39:54 by rtodaro          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,11 +94,22 @@ typedef struct s_cylinder
 	t_rgb			rgb;
 }					t_cylinder;
 
+typedef struct s_cone
+{
+	t_vector		coord;
+	t_vector		normal;
+	double			angle;
+	double			height;
+	t_rgb			rgb;
+}					t_cone;
+
+
 typedef union u_figures
 {
 	t_sphere		sphere;
 	t_plane			plane;
 	t_cylinder		cylinder;
+	t_cone			cone;
 }					t_figures;
 
 typedef struct s_object
