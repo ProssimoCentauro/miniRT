@@ -18,9 +18,9 @@
 # include "ft_printf.h"
 # include "get_next_line.h"
 # include "libft.h"
-# include "vector.h"
-# include "structures.h"
 # include "mlx.h"
+# include "structures.h"
+# include "vector.h"
 # include <errno.h>
 # include <fcntl.h>
 # include <math.h>
@@ -79,15 +79,15 @@ int			check_normal(char *line, t_vector *normal);
 // check_objs_params_utils_3.c
 int			check_ratio(char *ratio, double *num);
 int			check_fov(char *line, double *num);
-int			is_valid_angle(char* line, double *num);
+int			is_valid_angle(char *line, double *num);
 
 // scene_utils.c
 void		add_object(t_scene *scene, t_object *new_obj);
 void		add_light(t_scene *scene, t_light *new_light);
 
-//events_handlers.c
-int	events_handler(int key, t_renderer *r);
-int	exit_handler(t_renderer *r);
+// events_handlers.c
+int			events_handler(int key, t_renderer *r);
+int			exit_handler(t_renderer *r);
 
 // free_utils.c
 void		free_mlx(t_mlx *mlx);
@@ -102,11 +102,11 @@ void		print_error(char *line1, char *line2, char *line3);
 void		exit_error(t_renderer *r, char *l1, char *l2, char *l3);
 
 // data_init.c
-void	init_data(t_data *data, char *line);
+void		init_data(t_data *data, char *line);
 t_renderer	*init_renderer(char *line);
 
-//mlx_init.c
-void	init_mlx(t_mlx	*mlx);
+// mlx_init.c
+void		init_mlx(t_mlx *mlx);
 
 // file_checker_funcs.c
 int			check_file(t_renderer *r);
