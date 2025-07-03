@@ -6,7 +6,7 @@
 /*   By: ibrunial <ibrunial@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 14:17:03 by ibrunial          #+#    #+#             */
-/*   Updated: 2025/07/02 20:20:36 by rtodaro          ###   ########.fr       */
+/*   Updated: 2025/07/03 15:41:22 by rtodaro          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,7 @@ t_rgb	calculate_hit(t_scene *scene, t_ray *ray)
 	}
     if (hit_info.dist != INFINITY)
         return (hit_info.rgb);
-    return ((t_rgb){0,0,0});
+    return ((t_rgb){{0,0,0,100}});
 }
 
 #define MAX_RAY_BOUNCE 1

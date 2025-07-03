@@ -6,7 +6,7 @@
 /*   By: rtodaro <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 15:33:16 by rtodaro           #+#    #+#             */
-/*   Updated: 2025/07/03 15:34:44 by rtodaro          ###   ########.fr       */
+/*   Updated: 2025/07/03 15:47:22 by rtodaro          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define GET_NEXT_LINE_BONUS_H
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1
+#  define BUFFER_SIZE 30
 # endif
 
 # ifndef FT_FD_MAX

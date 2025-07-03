@@ -6,7 +6,7 @@
 /*   By: ibrunial <ibrunial@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 19:53:03 by rtodaro           #+#    #+#             */
-/*   Updated: 2025/07/02 22:45:03 by rtodaro          ###   ########.fr       */
+/*   Updated: 2025/07/03 16:44:37 by rtodaro          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,15 @@ typedef enum s_type
 	TRIANGLE
 }						t_type;
 
+/*
 typedef struct s_rgb
 {
 	int					r;
 	int					g;
 	int					b;
 }						t_rgb;
+*/
 
-// secondo me i colori è meglio gestirli così che occumano meno memoria
-/*
 typedef union u_rgb
 {
 	struct
@@ -47,7 +47,7 @@ typedef union u_rgb
 	};
 	uint32_t			rgb;
 }						t_rgb;
-*/
+
 
 // spostato in vector.h
 // typedef struct s_vector
