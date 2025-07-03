@@ -6,7 +6,7 @@
 /*   By: ibrunial <ibrunial@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 11:01:23 by ibrunial          #+#    #+#             */
-/*   Updated: 2025/07/01 16:59:01 by ibrunial         ###   ########.fr       */
+/*   Updated: 2025/07/02 22:31:38 by ibrunial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,16 @@
 
 void	generate_rays(t_renderer *renderer)
 {
-	float focal_length = 1; // forse non è necessario sia una variabile, o una constante o non necessaria
-	float viewport_height = 2.0f * tanf((renderer->scene->cam->fov * 0.5f) // altezza del piano
-			* PI / 180.0f) * focal_length; 
+	const float focal_length = 0.5; // forse non è necessario sia una variabile, o una constante o non necessaria
+	float viewport_height = 2.0f * tan((renderer->scene->cam->fov * 0.5f) // altezza del piano
+			* PI / 180.0f); 
 	float viewport_width = viewport_height * ((double)renderer->mlx->width // larghezza del piano
 			/ renderer->mlx->height);
 
     /* cambio di sistema di riferimento, calcolo degli assi ortonormali alla camera orientation*/
 	t_vector camera_dir = vector_normalize((renderer->scene->cam->orientation));
-	t_vector camera_right = vector_normalize(vector_cross(camera_dir,
-				(t_vector){0, 1, 0}));
-	t_vector camera_up = vector_normalize(vector_cross(camera_right,
-				camera_dir));
+    t_vector camera_right = vector_normalize(vector_cross((t_vector){0, 1, 0}, camera_dir));
+    t_vector camera_up = vector_normalize(vector_cross(camera_dir, camera_right));
 
     /* calcolo dei delta_x e delta_y sul piano*/
 	t_vector px_step = vector_scale(camera_right, viewport_width
@@ -67,7 +65,6 @@ void	generate_rays(t_renderer *renderer)
 					* (renderer->mlx->image.bits_per_pixel >> 3)) = argb;
             
             /* non dovrebbe stare qua ma per ora lo lascio (forse meglio mettere ray.hit sullo stack e non come puntatore)*/
-			free(ray.hit);
 		}
 	}
 }
