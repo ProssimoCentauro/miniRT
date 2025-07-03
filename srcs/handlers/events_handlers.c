@@ -22,7 +22,7 @@ int	exit_handler(t_renderer *r)
 int	events_handler(int key, t_renderer *r)
 {
 	printf("key: %d\n", key);
-	if (key == 65307)
+	if ((char)key == '\033')
 		exit_handler(r);
 	return (0);
 }

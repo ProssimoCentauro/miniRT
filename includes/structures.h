@@ -6,7 +6,7 @@
 /*   By: ibrunial <ibrunial@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 19:53:03 by rtodaro           #+#    #+#             */
-/*   Updated: 2025/06/30 20:44:10 by rtodaro          ###   ########.fr       */
+/*   Updated: 2025/07/03 12:42:33 by ibrunial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,5 +187,20 @@ typedef struct s_renderer
 	t_mlx			*mlx;
 	t_scene			*scene;
 }					t_renderer;
+
+typedef struct s_circle
+{
+    t_vector coord;
+    t_vector normal;
+    double  radius_squared;
+}               t_circle;
+
+typedef struct s_equation
+{
+    double a;
+    double b;
+    double c;
+    double t;
+}           t_equation;
 
 #endif

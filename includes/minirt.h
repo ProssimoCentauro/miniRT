@@ -6,7 +6,7 @@
 /*   By: ibrunial <ibrunial@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 19:52:54 by rtodaro           #+#    #+#             */
-/*   Updated: 2025/06/30 21:03:32 by rtodaro          ###   ########.fr       */
+/*   Updated: 2025/07/03 12:30:08 by ibrunial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 # include <stdlib.h>
 # include <string.h>
 # include <unistd.h>
+# include <stdbool.h>
 
 // debug_utils.c
 void		print_object_data(t_object_data obj);
