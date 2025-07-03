@@ -59,6 +59,7 @@ endef
 NAME = minirt
 SRCSF = ./srcs/
 RENDERERF = ./srcs/renderer/
+COLLISION = ./srcs/renderer/collision_function/
 PARSERF = ./srcs/parser/
 CHECKERF = ./srcs/parser/checker/
 CREATIONF = ./srcs/parser/objects_creation_funcs/
@@ -72,6 +73,11 @@ SRC = \
 	$(SRCSF)main.c \
 	$(RENDERERF)generate_rays.c \
 	$(RENDERERF)calculate_hit.c \
+	$(COLLISION)collision_circle.c \
+	$(COLLISION)collision_cone.c \
+	$(COLLISION)collision_cylinder.c \
+	$(COLLISION)collision_plane.c \
+	$(COLLISION)collision_sphere.c \
 	$(CHECKERF)file_checker_funcs.c \
 	$(CHECKERF)general_checker_funcs.c \
 	$(CREATIONF)environment_funcs.c \
@@ -89,6 +95,7 @@ SRC = \
 	$(INITF)mlx_init.c \
 	$(UTILSF)error_utils.c \
 	$(UTILSF)free_utils.c \
+	$(UTILSF)equation_utils.c \
 	$(DEBUGF)debug_utils.c \
 	$(DEBUGF)scene_debug.c
 OBJ = $(SRC:.c=.o)

@@ -6,7 +6,7 @@
 /*   By: ibrunial <ibrunial@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 21:22:15 by rtodaro           #+#    #+#             */
-/*   Updated: 2025/07/03 14:11:29 by ibrunial         ###   ########.fr       */
+/*   Updated: 2025/07/03 14:19:03 by ibrunial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ void	init_mlx(t_mlx	*mlx)
 {
 	mlx->mlx_instance = mlx_init();
 	mlx_get_screen_size(mlx->mlx_instance, &(mlx)->width, &(mlx)->height);
-	mlx->width = mlx->width / 2;
-	mlx->height = mlx->height / 2;
+	mlx->width = 1280;
+	mlx->height = 720;
 	mlx->window = mlx_new_window(mlx->mlx_instance,
 			mlx->width, mlx->height, "miniRT!");
 	init_image(mlx, &(mlx)->image);
