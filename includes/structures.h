@@ -28,15 +28,15 @@ typedef enum s_type
 	TRIANGLE
 }						t_type;
 
+/*
 typedef struct s_rgb
 {
 	int					r;
 	int					g;
 	int					b;
 }						t_rgb;
+*/
 
-// secondo me i colori è meglio gestirli così che occumano meno memoria
-/*
 typedef union u_rgb
 {
 	struct
@@ -48,7 +48,7 @@ typedef union u_rgb
 	};
 	uint32_t			rgb;
 }						t_rgb;
-*/
+
 
 // spostato in vector.h
 // typedef struct s_vector

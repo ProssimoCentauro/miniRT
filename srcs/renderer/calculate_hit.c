@@ -38,7 +38,7 @@ t_rgb	calculate_hit(t_scene *scene, t_ray *ray)
 	}
     if (hit_info.dist != INFINITY)
         return (hit_info.rgb);
-    return ((t_rgb){0,0,0});
+    return ((t_rgb){{0,0,0,100}});
 }
 
 #define MAX_RAY_BOUNCE 1
