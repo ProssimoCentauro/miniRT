@@ -6,7 +6,7 @@
 /*   By: rtodaro <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 19:51:49 by rtodaro           #+#    #+#             */
-/*   Updated: 2025/06/18 19:48:29 by rtodaro          ###   ########.fr       */
+/*   Updated: 2025/07/03 15:14:35 by rtodaro          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,13 @@ static int	not_empty_line(char *line)
 	if (*line == '\n' || !*line)
 		return (1);
 	return (0);
+}
+
+static void	loop_exit_error(t_renderer *r, char *line, char **mat)
+{
+		free(line);
+		free_mat(mat);
+		exit_error(r, NULL, NULL, NULL);
 }
 
 static void	checker_loop(t_renderer *r, int *fd)
@@ -43,7 +50,7 @@ static void	checker_loop(t_renderer *r, int *fd)
 			break ;
 		}
 		if (detect_checker(mat, r))
-			exit_error(r, NULL, NULL, NULL);
+			loop_exit_error(r, line, mat);
 		free(line);
 		free_mat(mat);
 	}

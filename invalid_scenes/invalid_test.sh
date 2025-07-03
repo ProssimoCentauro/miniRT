@@ -7,7 +7,7 @@ YELLOW='\033[1;33m'
 NC='\033[0m' # Nessun colore
 
 # Executable Path
-EXEC="./minirt"
+EXEC="valgrind --leak-check=full --show-leak-kinds=all ./minirt"
 
 # Scenes Folder
 SCENES_DIR="invalid_scenes"
