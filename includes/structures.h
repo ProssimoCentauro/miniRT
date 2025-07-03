@@ -6,7 +6,7 @@
 /*   By: ibrunial <ibrunial@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 19:53:03 by rtodaro           #+#    #+#             */
-/*   Updated: 2025/07/03 21:08:24 by ibrunial         ###   ########.fr       */
+/*   Updated: 2025/07/03 21:31:47 by ibrunial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -213,5 +213,6 @@ typedef struct s_equation
 	double				c;
 	double				t;
 }						t_equation;
+
 
 #endif
