@@ -6,11 +6,18 @@
 /*   By: ibrunial <ibrunial@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 21:48:31 by ibrunial          #+#    #+#             */
-/*   Updated: 2025/06/27 10:47:24 by ibrunial         ###   ########.fr       */
+/*   Updated: 2025/07/02 10:30:59 by ibrunial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vector.h"
+
+/**
+ * mathematicaly a projection is:
+ * ((A ⋅ B) / ||B||^2 ) * B or
+ * (<A, B> / <B, B>) * b
+ * 
+ */
 
 t_vector	vector3_project(t_vector vec1, t_vector vec2)
 {
