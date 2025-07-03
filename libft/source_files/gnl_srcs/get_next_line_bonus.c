@@ -6,7 +6,7 @@
 /*   By: rtodaro <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 15:32:38 by rtodaro           #+#    #+#             */
-/*   Updated: 2025/02/15 17:12:26 by rtodaro          ###   ########.fr       */
+/*   Updated: 2025/07/03 15:17:02 by rtodaro          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,7 @@ char	*create_buffer(int fd, char *buffer)
 	return (buffer);
 }
 
-char	*get_next_line(int fd)
+char	*get_next_line_bonus(int fd)
 {
 	static char	*buffer[FT_FD_MAX];
 	char		*line;

@@ -6,7 +6,7 @@
 /*   By: rtodaro <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 20:02:34 by rtodaro           #+#    #+#             */
-/*   Updated: 2025/07/02 23:27:17 by rtodaro          ###   ########.fr       */
+/*   Updated: 2025/07/03 14:57:14 by rtodaro          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ NOT EXIST!\x1b[0m"
 # define EMPTY_FILE_ERROR "\x1b[1;31mTHE SELECTED FILE IS EMPTY!\x1b[0m"
 
 // Syntax Errors
-# define SYNTAX_ERROR "\x1b[1;31mError\nINVALID_SYNTAX!\n\x1b[0m"
+# define SYNTAX_ERROR "\x1b[1;31mError\nINVALID SYNTAX!\n\x1b[0m"
+# define INV_IDF "\x1b[1;31m⬤ \x1b[0mInvalid identifier: "
 # define MISSING_ERROR "\x1b[1;31m⬤ \x1b[0mMissing istance of "
 # define TOO_MANY "\x1b[1;31m⬤ \x1b[0mToo many istances of "
 # define INVALID_PARAMS "\x1b[1;31m⬤ \x1b[0mInvalid number of params for "
