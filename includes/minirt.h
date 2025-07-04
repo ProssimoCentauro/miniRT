@@ -6,7 +6,7 @@
 /*   By: ibrunial <ibrunial@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 19:52:54 by rtodaro           #+#    #+#             */
-/*   Updated: 2025/07/02 23:24:51 by rtodaro          ###   ########.fr       */
+/*   Updated: 2025/07/03 21:28:20 by ibrunial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,18 @@
 # include "ft_printf.h"
 # include "get_next_line.h"
 # include "libft.h"
-# include "vector.h"
 # include "mlx.h"
 # include "structures.h"
-# include "vector.h"
+# include <assert.h>
 # include <errno.h>
 # include <fcntl.h>
 # include <math.h>
+# include <stdbool.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
 # include <unistd.h>
+# include <stdbool.h>
 
 // debug_utils.c
 void		print_object_data(t_object_data obj);
@@ -102,6 +103,9 @@ int			launch_error(int error, char *line1, char *line2, char *line3);
 void		print_error(char *line1, char *line2, char *line3);
 void		exit_error(t_renderer *r, char *l1, char *l2, char *l3);
 
+// equation_utils.c
+bool		equation_solve(t_equation *eq);
+
 // data_init.c
 void		init_data(t_data *data, char *line);
 t_renderer	*init_renderer(char *line);
@@ -120,6 +124,14 @@ void		check_args(int ac, char *file);
 // rendering
 void		generate_rays(t_renderer *renderer);
 t_rgb		calculate_hit(t_scene *scene, t_ray *ray);
-t_rgb		calculate_hit(t_scene *scene, t_ray *ray);
+
+// collision
+bool		check_collision_circle(t_circle *circle, t_ray *ray,
+				t_hit *hit_info);
+void		check_collision_cone(t_cone *cone, t_ray *ray, t_hit *hit_info);
+void		check_collision_cylinder(t_cylinder *cylinder, t_ray *ray,
+				t_hit *hit_info);
+void		check_collision_plane(t_plane *plane, t_ray *ray, t_hit *hit_info);
+void		check_collision_sphere(t_sphere *sphere, t_ray *ray, t_hit *hit);
 
 #endif

@@ -1,28 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   events_handlers.c                                  :+:      :+:    :+:   */
+/*   vector_invert.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rtodaro <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: ibrunial <ibrunial@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/30 21:20:44 by rtodaro           #+#    #+#             */
-/*   Updated: 2025/06/30 21:20:45 by rtodaro          ###   ########.fr       */
+/*   Created: 2025/07/02 17:02:24 by ibrunial          #+#    #+#             */
+/*   Updated: 2025/07/02 17:03:25 by ibrunial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "vector.h"
 
-int	exit_handler(t_renderer *r)
+t_vector vector_invert(t_vector vec)
 {
-	free_renderer(r);
-	exit(EXIT_SUCCESS);
-	return (0);
-}
-
-int	events_handler(int key, t_renderer *r)
-{
-	printf("key: %d\n", key);
-	if ((char)key == '\033')
-		exit_handler(r);
-	return (0);
+    return ((t_vector){-vec.x, -vec.y, -vec.z});
 }

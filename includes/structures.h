@@ -6,7 +6,7 @@
 /*   By: ibrunial <ibrunial@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 19:53:03 by rtodaro           #+#    #+#             */
-/*   Updated: 2025/07/03 16:44:37 by rtodaro          ###   ########.fr       */
+/*   Updated: 2025/07/03 21:31:47 by ibrunial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define STRUCTURES_H
 
 # include "minirt.h"
+# include "../libft/header_files/vector.h"
 
 typedef enum s_type
 {
@@ -102,6 +103,13 @@ typedef struct s_cone
 	double				height;
 	t_rgb				rgb;
 }						t_cone;
+
+typedef struct s_circle
+{
+	t_vector			coord;
+	t_vector			normal;
+	double				radius_squared;
+}						t_circle;
 
 typedef union u_figures
 {
@@ -197,5 +205,14 @@ typedef struct s_renderer
 	t_mlx				*mlx;
 	t_scene				*scene;
 }						t_renderer;
+
+typedef struct s_equation
+{
+	double				a;
+	double				b;
+	double				c;
+	double				t;
+}						t_equation;
+
 
 #endif
