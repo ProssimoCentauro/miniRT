@@ -6,7 +6,7 @@
 /*   By: ibrunial <ibrunial@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 20:34:52 by ibrunial          #+#    #+#             */
-/*   Updated: 2025/07/03 20:35:00 by ibrunial         ###   ########.fr       */
+/*   Updated: 2025/07/04 16:25:46 by rtodaro          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	check_collision_cone(t_cone *cone, t_ray *ray, t_hit *hit_info)
 	t_circle	base;
 
 	cos2 = pow(cos(cone->angle), 2);
-	/* for the base*/
+	// for the base
 	base.coord = vector_add(cone->coord, vector_scale(cone->normal,
 				-cone->height));
 	base.normal = vector_invert(cone->normal);
@@ -37,7 +37,7 @@ void	check_collision_cone(t_cone *cone, t_ray *ray, t_hit *hit_info)
 		hit_info->rgb = cone->rgb;
 		hit_info->obj = (t_figures *)cone;
 	}
-	/*           */
+	//
 	oc = vector_sub(ray->coord, cone->coord);
 	A = vector_dot(oc, cone->normal);
 	B = vector_dot(ray->direction, cone->normal);

@@ -6,7 +6,7 @@
 /*   By: ibrunial <ibrunial@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 19:52:54 by rtodaro           #+#    #+#             */
-/*   Updated: 2025/07/03 21:28:20 by ibrunial         ###   ########.fr       */
+/*   Updated: 2025/07/04 15:39:26 by rtodaro          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,5 +133,8 @@ void		check_collision_cylinder(t_cylinder *cylinder, t_ray *ray,
 				t_hit *hit_info);
 void		check_collision_plane(t_plane *plane, t_ray *ray, t_hit *hit_info);
 void		check_collision_sphere(t_sphere *sphere, t_ray *ray, t_hit *hit);
+
+// 
+t_rgb apply_lighting(t_scene *scene, t_hit *hit);
 
 #endif

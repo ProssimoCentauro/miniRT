@@ -73,6 +73,7 @@ SRC = \
 	$(SRCSF)main.c \
 	$(RENDERERF)generate_rays.c \
 	$(RENDERERF)calculate_hit.c \
+	$(RENDERERF)lighting.c \
 	$(COLLISION)collision_circle.c \
 	$(COLLISION)collision_cone.c \
 	$(COLLISION)collision_cylinder.c \
