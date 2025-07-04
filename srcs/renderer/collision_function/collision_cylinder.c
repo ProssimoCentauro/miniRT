@@ -6,7 +6,7 @@
 /*   By: ibrunial <ibrunial@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 20:31:10 by ibrunial          #+#    #+#             */
-/*   Updated: 2025/07/04 16:28:48 by rtodaro          ###   ########.fr       */
+/*   Updated: 2025/07/04 17:17:29 by rtodaro          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,9 +87,9 @@ void	check_collision_cylinder(t_cylinder *cylinder, t_ray *ray, t_hit *hit_info)
 	check_collision_bottom_top(cylinder, ray, hit_info);
 	get_projection(cylinder, ray, &d_proj, &oc_proj);
 
-	eq.a = vector_lenght_squared(d_proj);
+	eq.a = vector_length_squared(d_proj);
 	eq.b = 2 * vector_dot(d_proj, oc_proj);
-	eq.c = vector_lenght_squared(oc_proj) - pow(cylinder->diameter / 2, 2);
+	eq.c = vector_length_squared(oc_proj) - pow(cylinder->diameter / 2, 2);
 
 	if (!equation_solve(&eq) || eq.t <= 0 || eq.t > hit_info->dist)
 		return ;
@@ -162,9 +162,9 @@ void	check_collision_cylinder(t_cylinder *cylinder, t_ray *ray,
 
 	check_collision_bottom_top(cylinder, ray, hit_info);
 	get_projection(cylinder, ray, &d_project, &oc_project);
-	eq.a = vector_lenght_squared(d_project);
+	eq.a = vector_length_squared(d_project);
 	eq.b = 2.0 * (vector_dot(oc_project, d_project));
-	eq.c = vector_lenght_squared(oc_project) - pow((cylinder->diameter / 2), 2);
+	eq.c = vector_length_squared(oc_project) - pow((cylinder->diameter / 2), 2);
 	if (!equation_solve(&eq) || (eq.t <= 0 || eq.t > hit_info->dist))
 		return ;
 	p = vector_add(ray->coord, vector_scale(ray->direction, eq.t));

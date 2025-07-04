@@ -6,7 +6,7 @@
 /*   By: ibrunial <ibrunial@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 20:34:52 by ibrunial          #+#    #+#             */
-/*   Updated: 2025/07/04 16:25:46 by rtodaro          ###   ########.fr       */
+/*   Updated: 2025/07/04 17:16:57 by rtodaro          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,9 @@ void	check_collision_cone(t_cone *cone, t_ray *ray, t_hit *hit_info)
 	oc = vector_sub(ray->coord, cone->coord);
 	A = vector_dot(oc, cone->normal);
 	B = vector_dot(ray->direction, cone->normal);
-	C = vector_lenght_squared(oc);
+	C = vector_length_squared(oc);
 	D = vector_dot(oc, ray->direction);
-	E = vector_lenght_squared(ray->direction);
+	E = vector_length_squared(ray->direction);
 	eq.a = B * B - E * cos2;
 	eq.b = 2 * A * B - 2 * D * cos2;
 	eq.c = A * A - C * cos2;

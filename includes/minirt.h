@@ -6,7 +6,7 @@
 /*   By: ibrunial <ibrunial@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 19:52:54 by rtodaro           #+#    #+#             */
-/*   Updated: 2025/07/04 15:39:26 by rtodaro          ###   ########.fr       */
+/*   Updated: 2025/07/04 17:23:27 by rtodaro          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include "libft.h"
 # include "mlx.h"
 # include "structures.h"
+# include "../libft/header_files/vector.h"
 # include <assert.h>
 # include <errno.h>
 # include <fcntl.h>

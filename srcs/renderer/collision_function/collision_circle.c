@@ -6,7 +6,7 @@
 /*   By: ibrunial <ibrunial@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 20:29:38 by ibrunial          #+#    #+#             */
-/*   Updated: 2025/07/03 21:06:16 by ibrunial         ###   ########.fr       */
+/*   Updated: 2025/07/04 17:16:06 by rtodaro          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ bool	check_collision_circle(t_circle *circle, t_ray *ray, t_hit *hit_info)
 	if (t < EPSILON || t > hit_info->dist)
 		return (false);
 	p = vector_add(ray->coord, vector_scale(ray->direction, t));
-	if (vector_lenght_squared(vector_sub(p,
+	if (vector_length_squared(vector_sub(p,
 				circle->coord)) > circle->radius_squared)
 		return (false);
 	hit_info->dist = t;
