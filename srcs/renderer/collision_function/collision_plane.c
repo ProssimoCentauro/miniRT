@@ -6,7 +6,7 @@
 /*   By: ibrunial <ibrunial@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 20:28:50 by ibrunial          #+#    #+#             */
-/*   Updated: 2025/07/03 20:29:11 by ibrunial         ###   ########.fr       */
+/*   Updated: 2025/07/04 14:37:53 by ibrunial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
  * t(n ⋅ D) = (n ⋅ po)
  * t = (n ⋅ po) / (n ⋅ D)
  */
-void	check_collision_plane(t_plane *plane, t_ray *ray, t_hit *hit_info)
+void	check_collision_plane(t_plane *plane, t_ray *ray, t_hit *hit, double *dist)
 {
 	t_vector	po;
 	double		denom;
@@ -36,15 +36,15 @@ void	check_collision_plane(t_plane *plane, t_ray *ray, t_hit *hit_info)
 		return ;
 	po = vector_sub(plane->coord, ray->coord);
 	t = vector_dot(plane->normal, po) / denom;
-	if (t < EPSILON || t > hit_info->dist)
+	if (t < EPSILON || t > *dist)
 		return ;
-	hit_info->dist = t;
-	hit_info->point = vector_add(ray->coord, vector_scale(ray->direction, t));
-	hit_info->normal = plane->normal;
+	*dist = t;
+	hit->point = vector_add(ray->coord, vector_scale(ray->direction, t));
+	hit->normal = plane->normal;
 	if (vector_dot(plane->normal, ray->direction) > 0)
 	{
-		hit_info->normal = vector_invert(hit_info->normal);
+		hit->normal = vector_invert(hit->normal);
 	}
-	hit_info->rgb = plane->rgb;
-	hit_info->obj = (t_figures *)plane;
+    hit->did_hit = true;
+	hit->material = plane->material;
 }

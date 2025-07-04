@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rtodaro <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: ibrunial <ibrunial@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 19:54:35 by rtodaro           #+#    #+#             */
-/*   Updated: 2025/06/30 21:23:37 by rtodaro          ###   ########.fr       */
+/*   Updated: 2025/07/04 14:07:00 by ibrunial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,16 +31,9 @@ void	free_mlx(t_mlx *mlx)
 void	free_scene(t_scene *scene)
 {
 	t_object	*tmp_obj;
-	t_light		*tmp_light;
 
 	free(scene->cam);
 	free(scene->amb);
-	while (scene->lights)
-	{
-		tmp_light = scene->lights;
-		scene->lights = scene->lights->next;
-		free(tmp_light);
-	}
 	while (scene->objs)
 	{
 		tmp_obj = scene->objs;

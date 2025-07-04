@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   figures_funcs.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rtodaro <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: ibrunial <ibrunial@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 19:51:38 by rtodaro           #+#    #+#             */
-/*   Updated: 2025/07/02 22:57:52 by rtodaro          ###   ########.fr       */
+/*   Updated: 2025/07/04 14:30:39 by ibrunial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,9 @@ t_object	*create_sphere(t_object_data *d)
 	obj->type = SPHERE;
 	obj->figure.sphere.coord = d->coord;
 	obj->figure.sphere.diameter = d->diameter;
-	obj->figure.sphere.rgb = d->rgb;
+    obj->figure.sphere.material.color = d->material.color;
+    obj->figure.sphere.material.em_color = d->material.em_color;
+    obj->figure.sphere.material.em_strenght = d->material.em_strenght;
 	return (obj);
 }
 
@@ -36,7 +38,9 @@ t_object	*create_plane(t_object_data *d)
 	obj->type = PLANE;
 	obj->figure.plane.coord = d->coord;
 	obj->figure.plane.normal = d->normal;
-	obj->figure.plane.rgb = d->rgb;
+    obj->figure.plane.material.color = d->material.color;
+    obj->figure.plane.material.em_color = d->material.em_color;
+    obj->figure.plane.material.em_strenght = d->material.em_strenght;
 	return (obj);
 }
 
@@ -52,7 +56,9 @@ t_object	*create_cylinder(t_object_data *d)
 	obj->figure.cylinder.normal = d->normal;
 	obj->figure.cylinder.diameter = d->diameter;
 	obj->figure.cylinder.height = d->height;
-	obj->figure.cylinder.rgb = d->rgb;
+    obj->figure.cylinder.material.color = d->material.color;
+    obj->figure.cylinder.material.em_color = d->material.em_color;
+    obj->figure.cylinder.material.em_strenght = d->material.em_strenght;
 	return (obj);
 }
 
@@ -68,6 +74,8 @@ t_object	*create_cone(t_object_data *d)
 	obj->figure.cone.normal = d->normal;
 	obj->figure.cone.angle = d->angle;
 	obj->figure.cone.height = d->height;
-	obj->figure.cone.rgb = d->rgb;
+    obj->figure.cone.material.color = d->material.color;
+    obj->figure.cone.material.em_color = d->material.em_color;
+    obj->figure.cone.material.em_strenght = d->material.em_strenght;
 	return (obj);
 }

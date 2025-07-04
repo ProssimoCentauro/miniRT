@@ -6,21 +6,21 @@
 /*   By: ibrunial <ibrunial@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 19:53:03 by rtodaro           #+#    #+#             */
-/*   Updated: 2025/07/03 21:31:47 by ibrunial         ###   ########.fr       */
+/*   Updated: 2025/07/04 14:39:13 by ibrunial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTURES_H
 # define STRUCTURES_H
 
-# include "minirt.h"
 # include "../libft/header_files/vector.h"
+# include "minirt.h"
+# include <stdbool.h>
 
 typedef enum s_type
 {
 	A_LIGHT,
 	CAMERA,
-	LIGHT,
 	SPHERE,
 	PLANE,
 	CYLINDER,
@@ -49,6 +49,12 @@ typedef union u_rgb
 	uint32_t			rgb;
 }						t_rgb;
 
+typedef struct s_color
+{
+	float			r;
+	float			g;
+	float			b;
+}					t_color;
 
 // spostato in vector.h
 // typedef struct s_vector
@@ -58,6 +64,13 @@ typedef union u_rgb
 // 	double			z;
 // }					t_vector;
 
+typedef struct s_material
+{
+    t_color             color; // l'rgb
+	t_color				em_color;   // un'altro rgb
+	double				em_strenght;    // un float
+}						t_material;
+
 typedef struct s_object_data
 {
 	t_type				type;
@@ -66,24 +79,25 @@ typedef struct s_object_data
 	double				diameter;
 	double				height;
 	double				angle;
-	t_rgb				rgb;
+	t_color				color;
 	double				fov;
 	double				ratio;
 	double				brightness;
+    t_material          material;
 }						t_object_data;
 
 typedef struct s_sphere
 {
 	t_vector			coord;
 	double				diameter;
-	t_rgb				rgb;
+	t_material			material;
 }						t_sphere;
 
 typedef struct s_plane
 {
 	t_vector			coord;
 	t_vector			normal;
-	t_rgb				rgb;
+	t_material			material;
 }						t_plane;
 
 typedef struct s_cylinder
@@ -92,7 +106,7 @@ typedef struct s_cylinder
 	t_vector			normal;
 	double				diameter;
 	double				height;
-	t_rgb				rgb;
+	t_material			material;
 }						t_cylinder;
 
 typedef struct s_cone
@@ -101,7 +115,7 @@ typedef struct s_cone
 	t_vector			normal;
 	double				angle;
 	double				height;
-	t_rgb				rgb;
+	t_material			material;
 }						t_cone;
 
 typedef struct s_circle
@@ -138,32 +152,23 @@ typedef struct s_ambient
 {
 	t_type				type;
 	double				ratio;
-	t_rgb				rgb;
+	t_color				color;
 }						t_ambient;
 
-typedef struct s_light
-{
-	t_vector			coord;
-	double				brightness;
-	t_rgb				rgb;
-	struct s_light		*next;
-}						t_light;
 
 typedef struct s_scene
 {
 	t_camera			*cam;
 	t_ambient			*amb;
-	t_light				*lights;
 	t_object			*objs;
 }						t_scene;
 
 typedef struct s_hit
 {
-	t_figures			*obj;
-	double				dist;
 	t_vector			point;
 	t_vector			normal;
-	t_rgb				rgb;
+	t_material          material;
+    bool                did_hit;
 }						t_hit;
 
 typedef struct s_ray
@@ -213,6 +218,5 @@ typedef struct s_equation
 	double				c;
 	double				t;
 }						t_equation;
-
 
 #endif

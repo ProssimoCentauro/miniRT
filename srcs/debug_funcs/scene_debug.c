@@ -6,7 +6,6 @@ static const char *type_to_string(t_type type)
     {
         case A_LIGHT: return "Ambient Light";
         case CAMERA: return "Camera";
-        case LIGHT: return "Light";
         case SPHERE: return "Sphere";
         case PLANE: return "Plane";
         case CYLINDER: return "Cylinder";
@@ -37,7 +36,7 @@ static void print_object(t_object *obj)
             printf("  Coord: ");
             print_vector(obj->figure.sphere.coord);
             printf("\n  Diameter: %.2f\n  Color: ", obj->figure.sphere.diameter);
-            print_rgb(obj->figure.sphere.rgb);
+            print_rgb(convert_color(obj->figure.sphere.material.color));
             printf("\n");
             break;
         case PLANE:
@@ -46,7 +45,7 @@ static void print_object(t_object *obj)
             printf("\n  Normal: ");
             print_vector(obj->figure.plane.normal);
             printf("\n  Color: ");
-            print_rgb(obj->figure.plane.rgb);
+            print_rgb(convert_color(obj->figure.plane.material.color));
             printf("\n");
             break;
         case CYLINDER:
@@ -56,7 +55,7 @@ static void print_object(t_object *obj)
             print_vector(obj->figure.cylinder.normal);
             printf("\n  Diameter: %.2f\n  Height: %.2f\n  Color: ", 
                 obj->figure.cylinder.diameter, obj->figure.cylinder.height);
-            print_rgb(obj->figure.cylinder.rgb);
+            print_rgb(convert_color(obj->figure.cylinder.material.color));
             printf("\n");
             break;
         case CONE:
@@ -66,7 +65,7 @@ static void print_object(t_object *obj)
             print_vector(obj->figure.cone.normal);
             printf("\n  Angle: %.2f°\n  Height: %.2f\n  Color: ", 
                 obj->figure.cone.angle, obj->figure.cone.height);
-            print_rgb(obj->figure.cone.rgb);
+            print_rgb(convert_color(obj->figure.cone.material.color));
             printf("\n");
             break;
         default:
@@ -90,29 +89,13 @@ void print_scene(t_scene *scene)
     // Ambient Light
     printf(BOLD_MAGENTA "=== Ambient Light ===\n" RESET);
     printf("Ratio: %.2f\nColor: ", scene->amb->ratio);
-    print_rgb(scene->amb->rgb);
+    print_rgb(convert_color(scene->amb->color));
     printf("\n\n");
-
-    // Lights (linked list)
-    printf(BOLD_GREEN "=== Lights ===\n" RESET);
-    t_light *light = scene->lights;
-    int i = 0;
-    while (light)
-    {
-        printf("Light %d:\n", i);
-        printf("  Coord: ");
-        print_vector(light->coord);
-        printf("\n  Brightness: %.2f\n  Color: ", light->brightness);
-        print_rgb(light->rgb);
-        printf("\n\n");
-        light = light->next;
-        i++;
-    }
 
     // Objects (linked list)
     printf(BOLD_YELLOW "=== Objects ===\n" RESET);
     t_object *obj = scene->objs;
-    i = 0;
+    int i = 0;
     while (obj)
     {
         printf("Object %d:\n", i);

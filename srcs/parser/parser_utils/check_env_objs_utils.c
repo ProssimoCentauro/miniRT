@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_env_objs_utils.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rtodaro <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: ibrunial <ibrunial@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 16:43:39 by rtodaro           #+#    #+#             */
-/*   Updated: 2025/06/17 16:43:41 by rtodaro          ###   ########.fr       */
+/*   Updated: 2025/07/04 14:01:54 by ibrunial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	check_amb_light(char **line, t_renderer *r)
 		return (launch_error(1, SYNTAX_ERROR, INVALID_PARAMS, A_LIGHT_MSG));
 	if (check_ratio(line[1], &(data).ratio))
 		return (launch_error(1, SYNTAX_ERROR, RATIO_ERROR, A_LIGHT_MSG));
-	if (check_colors(line[2], &(data).rgb))
+	if (check_colors(line[2], &(data).color))
 		return (launch_error(1, SYNTAX_ERROR, COLOR_ERROR, A_LIGHT_MSG));
 	r->data->a_lights++;
 	create_from_data(&data, (void **)&a_light);
@@ -54,21 +54,3 @@ int	check_amb_light(char **line, t_renderer *r)
 	return (0);
 }
 
-int	check_light(char **line, t_renderer *r)
-{
-	t_light			*light;
-	t_object_data	data;
-
-	data.type = LIGHT;
-	if (count_lines(line) != 4)
-		return (launch_error(1, SYNTAX_ERROR, INVALID_PARAMS, LIGHT_MSG));
-	if (check_coordinates(line[1], &(data).coord))
-		return (launch_error(1, SYNTAX_ERROR, COORD_ERROR, LIGHT_MSG));
-	if (check_ratio(line[2], &(data).brightness))
-		return (launch_error(1, SYNTAX_ERROR, RATIO_ERROR, LIGHT_MSG));
-	if (check_colors(line[3], &(data).rgb))
-		return (launch_error(1, SYNTAX_ERROR, COLOR_ERROR, LIGHT_MSG));
-	create_from_data(&data, (void **)&light);
-	add_light(r->scene, light);
-	return (0);
-}

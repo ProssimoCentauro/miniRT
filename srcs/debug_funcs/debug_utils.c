@@ -10,8 +10,6 @@ static const char *get_type_name(t_type type)
         return "CYLINDER";
     if (type == CAMERA)
         return "CAMERA";
-    if (type == LIGHT)
-        return "LIGHT";
     if (type == A_LIGHT)
         return "AMBIENT LIGHT";
     return "UNKNOWN";
@@ -35,7 +33,7 @@ void print_object_data(t_object_data obj)
     printf("Normal: "); print_vector(obj.normal); printf("\n");
     printf("Diameter: %.2f\n", obj.diameter);
     printf("Height: %.2f\n", obj.height);
-    printf("RGB: "); print_rgb(obj.rgb); printf("\n");
+    printf("RGB: "); print_rgb(convert_color(obj.color)); printf("\n");
     printf("FOV: %.2f\n", obj.fov);
     printf("Ratio: %.2f\n", obj.ratio);
     printf("Brightness: %.2f\n", obj.brightness);

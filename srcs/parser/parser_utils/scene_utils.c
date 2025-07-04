@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scene_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rtodaro <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: ibrunial <ibrunial@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 19:52:04 by rtodaro           #+#    #+#             */
-/*   Updated: 2025/06/16 19:52:05 by rtodaro          ###   ########.fr       */
+/*   Updated: 2025/07/04 14:06:34 by ibrunial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,20 +30,3 @@ void	add_object(t_scene *scene, t_object *new_obj)
 	tmp->next = new_obj;
 }
 
-void	add_light(t_scene *scene, t_light *new_light)
-{
-	t_light	*tmp;
-
-	if (!scene || !new_light)
-		return ;
-	new_light->next = NULL;
-	if (!scene->lights)
-	{
-		scene->lights = new_light;
-		return ;
-	}
-	tmp = scene->lights;
-	while (tmp->next)
-		tmp = tmp->next;
-	tmp->next = new_light;
-}

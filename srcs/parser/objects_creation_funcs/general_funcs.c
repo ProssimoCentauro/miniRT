@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   general_funcs.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rtodaro <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: ibrunial <ibrunial@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 19:51:43 by rtodaro           #+#    #+#             */
-/*   Updated: 2025/07/02 22:55:50 by rtodaro          ###   ########.fr       */
+/*   Updated: 2025/07/04 14:05:59 by ibrunial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@ t_type	create_from_data(t_object_data *d, void **out)
 		*out = create_ambient(d);
 	else if (d->type == CAMERA)
 		*out = create_camera(d);
-	else if (d->type == LIGHT)
-		*out = create_light(d);
 	else if (d->type == SPHERE)
 		*out = create_sphere(d);
 	else if (d->type == PLANE)

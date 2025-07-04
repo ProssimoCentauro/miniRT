@@ -6,13 +6,13 @@
 /*   By: ibrunial <ibrunial@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 11:01:23 by ibrunial          #+#    #+#             */
-/*   Updated: 2025/07/02 22:31:38 by ibrunial         ###   ########.fr       */
+/*   Updated: 2025/07/04 16:04:20 by ibrunial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-void	generate_rays(t_renderer *renderer)
+void	generate_rays(t_renderer *renderer, int iteration)
 {
 	const float focal_length = 0.5; // forse non è necessario sia una variabile, o una constante o non necessaria
 	float viewport_height = 2.0f * tan((renderer->scene->cam->fov * 0.5f) // altezza del piano
@@ -57,9 +57,21 @@ void	generate_rays(t_renderer *renderer)
 			ray.coord = renderer->scene->cam->coord;
 
             /* per ora restituisce rosso se è stato colpito nero altrimenti*/
-			t_rgb col = calculate_hit(renderer->scene, &ray);
+			t_color color = follow_ray(renderer->scene, &ray);
+            unsigned int argb;
             /* coloro il pixel*/
-			unsigned int argb = (col.r << 16) | (col.g << 8) | col.b;
+            if (iteration >= 1)
+            {
+                t_color screen_color = convert_rgb((t_rgb)*(unsigned int *)(renderer->mlx->image.addr + y
+					* renderer->mlx->image.line_length + x
+					* (renderer->mlx->image.bits_per_pixel >> 3)));
+                argb = convert_color(mean_color(screen_color, iteration, color)).rgb;
+            }
+            else
+            {
+                color = add_color(color, multiply_color_scalar(renderer->scene->amb->color, renderer->scene->amb->ratio));
+			    argb = convert_color(color).rgb;
+            }
 			*(unsigned int *)(renderer->mlx->image.addr + y
 					* renderer->mlx->image.line_length + x
 					* (renderer->mlx->image.bits_per_pixel >> 3)) = argb;

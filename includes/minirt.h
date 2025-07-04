@@ -6,7 +6,7 @@
 /*   By: ibrunial <ibrunial@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 19:52:54 by rtodaro           #+#    #+#             */
-/*   Updated: 2025/07/03 21:28:20 by ibrunial         ###   ########.fr       */
+/*   Updated: 2025/07/04 15:34:24 by ibrunial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@
 # include <stdlib.h>
 # include <string.h>
 # include <unistd.h>
-# include <stdbool.h>
 
 // debug_utils.c
 void		print_object_data(t_object_data obj);
@@ -43,7 +42,6 @@ t_object	*create_cone(t_object_data *d);
 
 // environment_funcs.c
 t_camera	*create_camera(t_object_data *d);
-t_light		*create_light(t_object_data *d);
 t_ambient	*create_ambient(t_object_data *d);
 
 // general_funcs.c
@@ -74,7 +72,7 @@ int			is_valid_vector_range(char *str);
 // check_objs_params_utils_2.c
 int			check_ratio(char *ratio, double *num);
 int			is_valid_rgb_component(char *str);
-int			check_colors(char *line, t_rgb *colors);
+int			check_colors(char *line, t_color *colors);
 int			check_coordinates(char *line, t_vector *coords);
 int			check_normal(char *line, t_vector *normal);
 
@@ -85,7 +83,6 @@ int			is_valid_angle(char *line, double *num);
 
 // scene_utils.c
 void		add_object(t_scene *scene, t_object *new_obj);
-void		add_light(t_scene *scene, t_light *new_light);
 
 // events_handlers.c
 int			events_handler(int key, t_renderer *r);
@@ -122,16 +119,28 @@ void		check_scene(t_renderer *r);
 void		check_args(int ac, char *file);
 
 // rendering
-void		generate_rays(t_renderer *renderer);
-t_rgb		calculate_hit(t_scene *scene, t_ray *ray);
+void		generate_rays(t_renderer *renderer, int iteration);
+t_hit		calculate_hit(t_scene *scene, t_ray *ray);
 
 // collision
-bool		check_collision_circle(t_circle *circle, t_ray *ray,
-				t_hit *hit_info);
-void		check_collision_cone(t_cone *cone, t_ray *ray, t_hit *hit_info);
+bool		check_collision_circle(t_circle *circle, t_ray *ray, t_hit *hit,
+				double *dist);
+void		check_collision_cone(t_cone *cone, t_ray *ray, t_hit *hit,
+				double *dist);
 void		check_collision_cylinder(t_cylinder *cylinder, t_ray *ray,
-				t_hit *hit_info);
-void		check_collision_plane(t_plane *plane, t_ray *ray, t_hit *hit_info);
-void		check_collision_sphere(t_sphere *sphere, t_ray *ray, t_hit *hit);
+				t_hit *hit, double *dist);
+void		check_collision_plane(t_plane *plane, t_ray *ray, t_hit *hit,
+				double *dist);
+void		check_collision_sphere(t_sphere *sphere, t_ray *ray, t_hit *hit,
+				double *dist);
+
+t_color		convert_rgb(t_rgb rgb);
+t_rgb		convert_color(t_color color);
+t_vector	random_semisphere_direction(t_vector normal);
+t_color		multiply_color(t_color a, t_color b);
+t_color		multiply_color_scalar(t_color a, float b);
+t_color		add_color(t_color a, t_color b);
+t_color		follow_ray(t_scene *scene, t_ray *ray);
+t_color		mean_color(t_color a, int i, t_color b);
 
 #endif

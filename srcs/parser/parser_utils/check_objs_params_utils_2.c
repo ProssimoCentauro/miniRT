@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_objs_params_utils_2.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rtodaro <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: ibrunial <ibrunial@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 16:43:51 by rtodaro           #+#    #+#             */
-/*   Updated: 2025/06/17 16:43:52 by rtodaro          ###   ########.fr       */
+/*   Updated: 2025/07/04 14:26:54 by ibrunial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	is_valid_rgb_component(char *str)
 	return (0);
 }
 
-int	check_colors(char *line, t_rgb *colors)
+int	check_colors(char *line, t_color *color)
 {
 	char	**rgb;
 	int		i;
@@ -51,7 +51,12 @@ int	check_colors(char *line, t_rgb *colors)
 			free_mat(rgb);
 			return (1);
 		}
-		modify_rgb(colors, ft_atoi(rgb[i]), i);
+        if (i == 0)
+            color->b = (float)ft_atoi(rgb[i]) / 255.0f;
+        else if (i == 1)
+            color->g = (float)ft_atoi(rgb[i]) / 255.0f;
+        else if (i == 2)
+            color->r = (float)ft_atoi(rgb[i]) / 255.0f;
 		i++;
 	}
 	free_mat(rgb);

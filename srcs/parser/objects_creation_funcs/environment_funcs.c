@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   environment_funcs.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rtodaro <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: ibrunial <ibrunial@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 19:51:30 by rtodaro           #+#    #+#             */
-/*   Updated: 2025/06/16 19:51:33 by rtodaro          ###   ########.fr       */
+/*   Updated: 2025/07/04 14:03:11 by ibrunial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,19 +26,6 @@ t_camera	*create_camera(t_object_data *d)
 	return (cam);
 }
 
-t_light	*create_light(t_object_data *d)
-{
-	t_light	*light;
-
-	light = ft_calloc(1, sizeof(t_light));
-	if (!light)
-		return (NULL);
-	light->coord = d->coord;
-	light->brightness = d->brightness;
-	light->rgb = d->rgb;
-	return (light);
-}
-
 t_ambient	*create_ambient(t_object_data *d)
 {
 	t_ambient	*amb;
@@ -48,6 +35,6 @@ t_ambient	*create_ambient(t_object_data *d)
 		return (NULL);
 	amb->type = A_LIGHT;
 	amb->ratio = d->ratio;
-	amb->rgb = d->rgb;
+	amb->color = d->color;
 	return (amb);
 }
