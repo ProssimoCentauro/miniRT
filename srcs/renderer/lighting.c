@@ -84,7 +84,7 @@ static bool is_in_shadow(t_scene *scene, t_vector point, t_light *light, t_vecto
 
 t_rgb apply_lighting(t_scene *scene, t_hit *hit)
 {
-    t_rgb result = {{0, 0, 0, 100}};
+    t_rgb result = {0, 0, 0};
     t_light *light = scene->lights;
     t_vector light_dir;
     double diff;

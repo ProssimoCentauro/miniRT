@@ -6,7 +6,7 @@
 /*   By: ibrunial <ibrunial@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 14:17:03 by ibrunial          #+#    #+#             */
-/*   Updated: 2025/07/04 15:38:25 by rtodaro          ###   ########.fr       */
+/*   Updated: 2025/07/07 19:29:23 by rtodaro          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ t_rgb calculate_hit(t_scene *scene, t_ray *ray)
 	}
 	if (hit_info.dist != INFINITY)
 		return apply_lighting(scene, &hit_info);
-	return (t_rgb){{0, 0, 0, 100}};
+	return (t_rgb){0, 0, 0};
 }
 
 

@@ -13,7 +13,7 @@ define spinner
 	@bash -c ' \
 		spin="/-\\|"; \
 		i=0; \
-		( make -C libft > /dev/null 2>&1 ) & \
+		( make -j$(nproc) -C libft > /dev/null 2>&1 ) & \
 		pid=$$!; \
 		while kill -0 $$pid 2>/dev/null; do \
 			printf "\r📦 Compiling libft... $${spin:$$((i%4)):1} "; \
@@ -37,7 +37,7 @@ define mlx_spinner
 	@bash -c ' \
 		spin="/-\\|"; \
 		i=0; \
-		( make -C minilibx-linux > /dev/null 2>&1 ) & \
+		( make -j$(nproc) -C minilibx-linux > /dev/null 2>&1 ) & \
 		pid=$$!; \
 		while kill -0 $$pid 2>/dev/null; do \
 			printf "\r🖼️  Compiling MiniLibX... $${spin:$$((i%4)):1} "; \
