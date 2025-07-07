@@ -105,7 +105,7 @@ OBJ = $(SRC:.c=.o)
 # === COMPILAZIONE ===
 
 CC = cc
-CFLAGS = -Wall -Werror -Wextra -g -gdwarf-4 -flto -O3
+CFLAGS = -Wall -Werror -Wextra -g -gdwarf-4 -flto -O0
 INCLUDE = -Ilibft/header_files -I/usr/include -I./includes -I./minilibx-linux
 LIBFLAGS = -Llibft -lft -lm
 MLXFLAGS = -Imlx -Lmlx -lX11 -lXext
@@ -123,7 +123,7 @@ all: $(NAME)
 # Compila libft con spinner e poi miniRT
 $(NAME): .header_shown libft/libft.a minilibx-linux/libmlx.a $(OBJ)
 	@printf "\n$(GREEN)[✓] Source files compiled. Linking...$(RESET)\n"
-	@$(CC) $(OBJ) -o $(NAME) libft/libft.a minilibx-linux/libmlx.a $(MLXFLAGS) $(LIBFLAGS) -lreadline -lncurses -lm -g -flto -O3
+	@$(CC) $(OBJ) -o $(NAME) libft/libft.a minilibx-linux/libmlx.a $(MLXFLAGS) $(LIBFLAGS) -lreadline -lncurses -lm -g -flto -O0
 	@printf "$(GREEN)✔ Compilation completed successfully!$(RESET)\n"
 	@printf "$(BLUE)"
 	@printf "      _----------_,\n"

@@ -6,7 +6,7 @@
 /*   By: ibrunial <ibrunial@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 14:17:03 by ibrunial          #+#    #+#             */
-/*   Updated: 2025/07/04 16:16:10 by ibrunial         ###   ########.fr       */
+/*   Updated: 2025/07/05 08:54:57 by ibrunial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,10 @@ t_color	follow_ray(t_scene *scene, t_ray *ray)
 	{
         hit = calculate_hit(scene, ray);
         if (hit.did_hit == false)
+        {
+            total_ligth = add_color(total_ligth, multiply_color_scalar(scene->amb->color, scene->amb->ratio));
             break;
+        }
         ray->coord = hit.point;
         ray->direction = random_semisphere_direction(hit.normal);
 

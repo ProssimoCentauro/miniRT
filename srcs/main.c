@@ -6,7 +6,7 @@
 /*   By: ibrunial <ibrunial@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 19:49:55 by rtodaro           #+#    #+#             */
-/*   Updated: 2025/07/04 15:38:32 by ibrunial         ###   ########.fr       */
+/*   Updated: 2025/07/05 09:19:42 by ibrunial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,10 @@ int general_loop(void *param)
     generate_rays(renderer, i);
 	mlx_put_image_to_window(renderer->mlx->mlx_instance, renderer->mlx->window,
 		renderer->mlx->image.img, 0, 0);
+    printf("\r\033[K%d\n", i);
+    fflush(stdout);
+    if (i == 250)
+        sleep(7349);
     ++i;
     return (0);
 }

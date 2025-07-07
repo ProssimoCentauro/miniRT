@@ -6,7 +6,7 @@
 /*   By: ibrunial <ibrunial@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 14:46:36 by ibrunial          #+#    #+#             */
-/*   Updated: 2025/07/04 15:19:10 by ibrunial         ###   ########.fr       */
+/*   Updated: 2025/07/05 08:48:30 by ibrunial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ static float	random_value(uint32_t *state)
 	return (result / 4294967295.0);
 }
 
+/* questo logaritmo costa un fottio da solo tipo il 7% del rendering*/
 static float	random_value_normal_distribution(uint32_t *state)
 {
 	float	theta;

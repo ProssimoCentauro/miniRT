@@ -6,7 +6,7 @@
 /*   By: ibrunial <ibrunial@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 11:01:23 by ibrunial          #+#    #+#             */
-/*   Updated: 2025/07/04 16:04:20 by ibrunial         ###   ########.fr       */
+/*   Updated: 2025/07/05 08:39:51 by ibrunial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,8 @@ void	generate_rays(t_renderer *renderer, int iteration)
 					* renderer->mlx->image.line_length + x
 					* (renderer->mlx->image.bits_per_pixel >> 3)) = argb;
             
+            printf("\r\033[K%.2lf%%", (double)(renderer->mlx->height * y + x + 1) / (renderer->mlx->height * renderer->mlx->width) * 100);
+            fflush(stdout);
             /* non dovrebbe stare qua ma per ora lo lascio (forse meglio mettere ray.hit sullo stack e non come puntatore)*/
 		}
 	}
