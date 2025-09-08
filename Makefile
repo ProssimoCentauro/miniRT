@@ -72,8 +72,10 @@ DEBUGF = ./srcs/debug_funcs/
 SRC = \
 	$(SRCSF)main.c \
 	$(RENDERERF)generate_rays.c \
-	$(RENDERERF)calculate_hit.c \
+	$(RENDERERF)fill_hit_info_ray.c \
 	$(RENDERERF)lighting.c \
+	$(RENDERERF)color_pixel.c \
+	$(RENDERERF)calculate_up_left_and_steps.c \
 	$(COLLISION)collision_circle.c \
 	$(COLLISION)collision_cone.c \
 	$(COLLISION)collision_cylinder.c \

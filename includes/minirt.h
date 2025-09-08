@@ -6,13 +6,14 @@
 /*   By: ibrunial <ibrunial@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 19:52:54 by rtodaro           #+#    #+#             */
-/*   Updated: 2025/07/04 17:23:27 by rtodaro          ###   ########.fr       */
+/*   Updated: 2025/09/08 12:31:49 by ibrunial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINIRT_H
 # define MINIRT_H
 
+# include "../libft/header_files/vector.h"
 # include "../minilibx-linux/mlx.h"
 # include "defines.h"
 # include "ft_printf.h"
@@ -20,7 +21,6 @@
 # include "libft.h"
 # include "mlx.h"
 # include "structures.h"
-# include "../libft/header_files/vector.h"
 # include <assert.h>
 # include <errno.h>
 # include <fcntl.h>
@@ -30,7 +30,6 @@
 # include <stdlib.h>
 # include <string.h>
 # include <unistd.h>
-# include <stdbool.h>
 
 // debug_utils.c
 void		print_object_data(t_object_data obj);
@@ -124,7 +123,8 @@ void		check_args(int ac, char *file);
 
 // rendering
 void		generate_rays(t_renderer *renderer);
-t_rgb		calculate_hit(t_scene *scene, t_ray *ray);
+void		calculate_up_left_and_steps(t_renderer *r);
+void	    fill_hit_info_ray(t_scene *scene, t_ray *ray)
 
 // collision
 bool		check_collision_circle(t_circle *circle, t_ray *ray,
@@ -135,7 +135,10 @@ void		check_collision_cylinder(t_cylinder *cylinder, t_ray *ray,
 void		check_collision_plane(t_plane *plane, t_ray *ray, t_hit *hit_info);
 void		check_collision_sphere(t_sphere *sphere, t_ray *ray, t_hit *hit);
 
-// 
-t_rgb apply_lighting(t_scene *scene, t_hit *hit);
+//
+t_rgb		apply_lighting(t_scene *scene, t_hit *hit);
+
+// color_pixel.c
+void		color_pixel(t_renderer *r, t_ray *ray, int32_t x, int32_t y);
 
 #endif

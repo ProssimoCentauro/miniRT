@@ -6,7 +6,7 @@
 /*   By: ibrunial <ibrunial@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 19:53:03 by rtodaro           #+#    #+#             */
-/*   Updated: 2025/07/07 19:29:01 by rtodaro          ###   ########.fr       */
+/*   Updated: 2025/09/08 12:21:20 by ibrunial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,13 @@ typedef enum s_type
 }						t_type;
 
 
-typedef struct s_rgb
-{
-	int					r;
-	int					g;
-	int					b;
-}						t_rgb;
-/*
+// typedef struct s_rgb
+// {
+// 	int					r;
+// 	int					g;
+// 	int					b;
+// }						t_rgb;
+
 typedef union u_rgb
 {
 	struct
@@ -47,7 +47,7 @@ typedef union u_rgb
 	};
 	uint32_t			rgb;
 }						t_rgb;
-*/
+
 
 // spostato in vector.h
 // typedef struct s_vector
@@ -130,6 +130,11 @@ typedef struct s_camera
 	t_type				type;
 	t_vector			coord;
 	t_vector			orientation;
+    t_vector            right;
+    t_vector            up;
+    t_vector            vp_up_left;
+    t_vector            px_step;
+    t_vector            py_step;
 	double				fov;
 }						t_camera;
 
@@ -169,7 +174,7 @@ typedef struct s_ray
 {
 	t_vector			direction;
 	t_vector			coord;
-	t_hit				*hit;
+	t_hit				hit;
 }						t_ray;
 
 typedef struct s_image

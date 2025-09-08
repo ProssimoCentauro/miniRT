@@ -6,7 +6,7 @@
 /*   By: ibrunial <ibrunial@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 19:49:55 by rtodaro           #+#    #+#             */
-/*   Updated: 2025/07/01 19:22:54 by ibrunial         ###   ########.fr       */
+/*   Updated: 2025/09/08 12:22:43 by ibrunial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	main(int ac, char **av)
 	check_args(ac, av[1]);
 	renderer = init_renderer(av[1]);
 	check_file(renderer);
+    calculate_up_left_and_steps(renderer);
 	generate_rays(renderer);
 	mlx_put_image_to_window(renderer->mlx->mlx_instance, renderer->mlx->window,
 		renderer->mlx->image.img, 0, 0);

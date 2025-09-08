@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rtodaro <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: ibrunial <ibrunial@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 20:02:34 by rtodaro           #+#    #+#             */
-/*   Updated: 2025/07/03 14:57:14 by rtodaro          ###   ########.fr       */
+/*   Updated: 2025/09/08 11:28:58 by ibrunial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,5 +83,7 @@ NOT EXIST!\x1b[0m"
 # define PI 3.14159265358979323846
 # define SEED 2524232
 # define EPSILON 0.001
+
+#define FOCAL_LENGTH 0.5
 
 #endif
