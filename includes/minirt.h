@@ -6,7 +6,7 @@
 /*   By: ibrunial <ibrunial@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 19:52:54 by rtodaro           #+#    #+#             */
-/*   Updated: 2025/09/08 12:31:49 by ibrunial         ###   ########.fr       */
+/*   Updated: 2025/09/15 10:24:51 by rtodaro          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,7 @@ void		check_args(int ac, char *file);
 // rendering
 void		generate_rays(t_renderer *renderer);
 void		calculate_up_left_and_steps(t_renderer *r);
-void	    fill_hit_info_ray(t_scene *scene, t_ray *ray)
+void	    fill_hit_info_ray(t_scene *scene, t_ray *ray);
 
 // collision
 bool		check_collision_circle(t_circle *circle, t_ray *ray,
