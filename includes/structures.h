@@ -6,7 +6,7 @@
 /*   By: ibrunial <ibrunial@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 19:53:03 by rtodaro           #+#    #+#             */
-/*   Updated: 2025/09/08 12:21:20 by ibrunial         ###   ########.fr       */
+/*   Updated: 2025/09/15 15:46:39 by ibrunial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,24 +29,24 @@ typedef enum s_type
 }						t_type;
 
 
-// typedef struct s_rgb
-// {
-// 	int					r;
-// 	int					g;
-// 	int					b;
-// }						t_rgb;
-
-typedef union u_rgb
+typedef struct s_rgb
 {
-	struct
-	{
-		unsigned char	r;
-		unsigned char	g;
-		unsigned char	b;
-		unsigned char	t;
-	};
-	uint32_t			rgb;
+	int					r;
+	int					g;
+	int					b;
 }						t_rgb;
+
+// typedef union u_rgb
+// {
+// 	struct
+// 	{
+// 		unsigned char	r;
+// 		unsigned char	g;
+// 		unsigned char	b;
+// 		unsigned char	t;
+// 	};
+// 	uint32_t			rgb;
+// }						t_rgb;
 
 
 // spostato in vector.h
@@ -164,7 +164,7 @@ typedef struct s_scene
 
 typedef struct s_hit
 {
-	t_figures			*obj;
+	t_object			*obj;
 	double				dist;
 	t_vector			point;
 	t_vector			normal;

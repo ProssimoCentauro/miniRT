@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lighting.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rtodaro <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: ibrunial <ibrunial@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/15 11:35:41 by rtodaro           #+#    #+#             */
-/*   Updated: 2025/09/15 11:35:43 by rtodaro          ###   ########.fr       */
+/*   Updated: 2025/09/15 15:39:35 by ibrunial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,13 +55,13 @@ static bool is_in_shadow(t_scene *scene, t_vector point, t_light *light, t_vecto
     while (obj)
     {
         if (obj->type == SPHERE)
-            check_collision_sphere((t_sphere *)&obj->figure, &shadow_ray, &shadow_hit);
+            check_collision_sphere(obj, &shadow_ray, &shadow_hit);
         else if (obj->type == PLANE)
-            check_collision_plane((t_plane *)&obj->figure, &shadow_ray, &shadow_hit);
+            check_collision_plane(obj, &shadow_ray, &shadow_hit);
         else if (obj->type == CYLINDER)
-            check_collision_cylinder((t_cylinder *)&obj->figure, &shadow_ray, &shadow_hit);
+            check_collision_cylinder(obj, &shadow_ray, &shadow_hit);
         else if (obj->type == CONE)
-            check_collision_cone((t_cone *)&obj->figure, &shadow_ray, &shadow_hit);
+            check_collision_cone(obj, &shadow_ray, &shadow_hit);
         else
             assert(false);
 

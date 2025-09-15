@@ -6,7 +6,7 @@
 /*   By: ibrunial <ibrunial@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 20:31:10 by ibrunial          #+#    #+#             */
-/*   Updated: 2025/07/04 17:17:29 by rtodaro          ###   ########.fr       */
+/*   Updated: 2025/09/15 15:39:56 by ibrunial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-static void	check_collision_bottom_top(t_cylinder *cylinder, t_ray *ray, t_hit *hit_info)
+static void	check_collision_bottom_top(t_object *obj, t_ray *ray, t_hit *hit_info)
 {
+    t_cylinder *cylinder = (t_cylinder *)&obj->figure;
 	t_circle	base;
 	t_hit		temp_hit;
 
@@ -53,7 +54,7 @@ static void	check_collision_bottom_top(t_cylinder *cylinder, t_ray *ray, t_hit *
 	{
 		*hit_info = temp_hit;
 		hit_info->rgb = cylinder->rgb;
-		hit_info->obj = (t_figures *)cylinder;
+		hit_info->obj = obj;
 	}
 
 	temp_hit = *hit_info;
@@ -63,7 +64,7 @@ static void	check_collision_bottom_top(t_cylinder *cylinder, t_ray *ray, t_hit *
 	{
 		*hit_info = temp_hit;
 		hit_info->rgb = cylinder->rgb;
-		hit_info->obj = (t_figures *)cylinder;
+		hit_info->obj = obj;
 	}
 }
 
@@ -77,14 +78,15 @@ static void	get_projection(t_cylinder *cylinder, t_ray *ray, t_vector *d_proj, t
 			vector_scale(cylinder->normal, vector_dot(oc, cylinder->normal)));
 }
 
-void	check_collision_cylinder(t_cylinder *cylinder, t_ray *ray, t_hit *hit_info)
+void	check_collision_cylinder(t_object *obj, t_ray *ray, t_hit *hit_info)
 {
+    t_cylinder *cylinder = (t_cylinder *)&obj->figure;
 	t_vector	d_proj;
 	t_vector	oc_proj;
 	t_vector	p;
 	t_equation	eq;
 
-	check_collision_bottom_top(cylinder, ray, hit_info);
+	check_collision_bottom_top(obj, ray, hit_info);
 	get_projection(cylinder, ray, &d_proj, &oc_proj);
 
 	eq.a = vector_length_squared(d_proj);
@@ -108,7 +110,7 @@ void	check_collision_cylinder(t_cylinder *cylinder, t_ray *ray, t_hit *hit_info)
 	t_vector	axis_proj = vector_scale(cylinder->normal, vector_dot(pc, cylinder->normal));
 	hit_info->normal = vector_normalize(vector_sub(pc, axis_proj));
 
-	hit_info->obj = (t_figures *)cylinder;
+	hit_info->obj = obj;
 }
 
 

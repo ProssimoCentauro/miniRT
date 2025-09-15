@@ -6,13 +6,13 @@
 /*   By: ibrunial <ibrunial@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 20:34:52 by ibrunial          #+#    #+#             */
-/*   Updated: 2025/07/07 19:31:22 by rtodaro          ###   ########.fr       */
+/*   Updated: 2025/09/15 15:36:00 by ibrunial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-void	check_collision_cone(t_cone *cone, t_ray *ray, t_hit *hit_info)
+void	check_collision_cone(t_object *obj, t_ray *ray, t_hit *hit_info)
 {
 	t_vector	oc;
 	t_equation	eq;
@@ -25,7 +25,8 @@ void	check_collision_cone(t_cone *cone, t_ray *ray, t_hit *hit_info)
 	double		D;
 	double		E;
 	t_circle	base;
-
+    const t_cone *cone = (t_cone *)&obj->figure;
+    
 	cos2 = pow(cos(cone->angle), 2);
 	// for the base
 	base.coord = vector_add(cone->coord, vector_scale(cone->normal,
@@ -35,7 +36,7 @@ void	check_collision_cone(t_cone *cone, t_ray *ray, t_hit *hit_info)
 	if (check_collision_circle(&base, ray, hit_info))
 	{
 		hit_info->rgb = cone->rgb;
-		hit_info->obj = (t_figures *)cone;
+		hit_info->obj = obj;
 	}
 	//
 	oc = vector_sub(ray->coord, cone->coord);
@@ -58,7 +59,7 @@ void	check_collision_cone(t_cone *cone, t_ray *ray, t_hit *hit_info)
 	hit_info->dist = eq.t;
 	hit_info->point = p;
 	hit_info->rgb = cone->rgb;
-	hit_info->obj = (t_figures *)cone;
+	hit_info->obj = obj;
 ///////////
 	t_vector v = vector_sub(p, cone->coord);
 	t_vector axis_component = vector_scale(cone->normal, vector_dot(v, cone->normal));

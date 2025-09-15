@@ -6,7 +6,7 @@
 /*   By: ibrunial <ibrunial@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 20:24:42 by ibrunial          #+#    #+#             */
-/*   Updated: 2025/07/03 20:28:33 by ibrunial         ###   ########.fr       */
+/*   Updated: 2025/09/15 15:41:57 by ibrunial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,9 @@
  *
  * NOTE: we reuse discriminant variable after the check of positivity
  */
-void	check_collision_sphere(t_sphere *sphere, t_ray *ray, t_hit *hit)
+void	check_collision_sphere(t_object *obj, t_ray *ray, t_hit *hit)
 {
+    t_sphere *sphere = (t_sphere *)&obj->figure;
 	t_vector	oc;
 	double		b;
 	double		c;
@@ -61,5 +62,5 @@ void	check_collision_sphere(t_sphere *sphere, t_ray *ray, t_hit *hit)
 	hit->point = vector_add(ray->coord, vector_scale(ray->direction, t));
 	hit->normal = vector_normalize(vector_sub(hit->point, sphere->coord));
 	hit->rgb = sphere->rgb;
-	hit->obj = (t_figures *)sphere;
+	hit->obj = obj;
 }
