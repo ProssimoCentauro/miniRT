@@ -76,6 +76,7 @@ SRC = \
 	$(RENDERERF)lighting.c \
 	$(RENDERERF)color_pixel.c \
 	$(RENDERERF)calculate_up_left_and_steps.c \
+	$(RENDERERF)get_object_from_pixel.c \
 	$(COLLISION)collision_circle.c \
 	$(COLLISION)collision_cone.c \
 	$(COLLISION)collision_cylinder.c \

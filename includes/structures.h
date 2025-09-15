@@ -159,6 +159,7 @@ typedef struct s_scene
 	t_ambient			*amb;
 	t_light				*lights;
 	t_object			*objs;
+	t_object			*selected_obj;
 }						t_scene;
 
 typedef struct s_hit

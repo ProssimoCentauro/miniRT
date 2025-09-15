@@ -12,10 +12,19 @@
 
 #include "minirt.h"
 
-static void	start_hooks(t_renderer *renderer)
+static inline void	start_hooks(t_renderer *r)
 {
-	mlx_key_hook(renderer->mlx->window, events_handler, renderer);
-	mlx_hook(renderer->mlx->window, 17, 0, exit_handler, renderer);
+	mlx_key_hook(r->mlx->window, events_handler, r);
+	mlx_hook(r->mlx->window, 17, 0, exit_handler, r);
+	mlx_mouse_hook(r->mlx->window, mouse_handler, r);
+}
+
+static inline void render_scene(t_renderer *r)
+{
+    calculate_up_left_and_steps(r);
+	generate_rays(r);
+	mlx_put_image_to_window(r->mlx->mlx_instance, r->mlx->window,
+		r->mlx->image.img, 0, 0);
 }
 
 int	main(int ac, char **av)
@@ -25,11 +34,8 @@ int	main(int ac, char **av)
 	check_args(ac, av[1]);
 	renderer = init_renderer(av[1]);
 	check_file(renderer);
-    calculate_up_left_and_steps(renderer);
-	generate_rays(renderer);
-	mlx_put_image_to_window(renderer->mlx->mlx_instance, renderer->mlx->window,
-		renderer->mlx->image.img, 0, 0);
 	start_hooks(renderer);
+	render_scene(renderer);
 	mlx_loop(renderer->mlx->mlx_instance);
 	return (0);
 }

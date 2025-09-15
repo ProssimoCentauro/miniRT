@@ -6,7 +6,7 @@
 /*   By: ibrunial <ibrunial@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 19:52:54 by rtodaro           #+#    #+#             */
-/*   Updated: 2025/09/15 10:24:51 by rtodaro          ###   ########.fr       */
+/*   Updated: 2025/09/15 12:08:56 by rtodaro          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ void		add_light(t_scene *scene, t_light *new_light);
 // events_handlers.c
 int			events_handler(int key, t_renderer *r);
 int			exit_handler(t_renderer *r);
+int 		mouse_handler(int button, int x, int y, t_renderer* r);
 
 // free_utils.c
 void		free_mlx(t_mlx *mlx);
@@ -140,5 +141,9 @@ t_rgb		apply_lighting(t_scene *scene, t_hit *hit);
 
 // color_pixel.c
 void		color_pixel(t_renderer *r, t_ray *ray, int32_t x, int32_t y);
+
+//get_object_from_pixel.c
+t_object	*get_object_from_pixel(t_renderer *r, int32_t x, int32_t y);
+void	change_selected_obj(t_renderer *r, int32_t x, int32_t y);
 
 #endif

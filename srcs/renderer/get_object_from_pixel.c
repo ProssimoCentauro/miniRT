@@ -6,7 +6,7 @@
 /*   By: ibrunial <ibrunial@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 12:28:46 by ibrunial          #+#    #+#             */
-/*   Updated: 2025/09/08 12:35:31 by ibrunial         ###   ########.fr       */
+/*   Updated: 2025/09/15 12:08:43 by rtodaro          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,9 @@ t_object	*get_object_from_pixel(t_renderer *r, int32_t x, int32_t y)
 		return (ray.hit.obj);
 	else
 		return (NULL);
+}
+
+void	change_selected_obj(t_renderer *r, int32_t x, int32_t y)
+{
+	r->scene->selected_obj = get_object_from_pixel(r, x , y);
 }
