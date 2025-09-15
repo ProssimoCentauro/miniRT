@@ -6,11 +6,45 @@
 /*   By: rtodaro <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 21:20:44 by rtodaro           #+#    #+#             */
-/*   Updated: 2025/09/15 12:22:10 by rtodaro          ###   ########.fr       */
+/*   Updated: 2025/09/15 19:55:05 by rtodaro          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+
+t_vector	*get_obj_coord(t_object *obj)
+{
+	if (!obj)
+		return (NULL);
+	if (obj->type == SPHERE)
+		return (&obj->figure.sphere.coord);
+	if (obj->type == PLANE)
+		return (&obj->figure.plane.coord);
+	if (obj->type == CYLINDER)
+		return (&obj->figure.cylinder.coord);
+	if (obj->type == CONE)
+		return (&obj->figure.cone.coord);
+	return (NULL);
+}
+
+void	move_selected_obj(int key, t_renderer *r)
+{
+	t_vector	*obj_coord;
+
+	obj_coord = get_obj_coord(r->scene->selected_obj);
+	if (key == 49)
+		*obj_coord = vector_sub(*obj_coord, r->scene->cam->right);
+	else if (key == 50)
+		*obj_coord = vector_add(*obj_coord, r->scene->cam->right);
+	else if (key == 51)
+		*obj_coord = vector_sub(*obj_coord, r->scene->cam->up);
+	else if (key == 52)
+		*obj_coord = vector_add(*obj_coord, r->scene->cam->up);
+	else if (key == 53)
+		*obj_coord = vector_add(*obj_coord, r->scene->cam->orientation);
+	else if (key == 54)
+		*obj_coord = vector_sub(*obj_coord, r->scene->cam->orientation);
+}
 
 int	exit_handler(t_renderer *r)
 {
@@ -24,6 +58,11 @@ int	events_handler(int key, t_renderer *r)
 	printf("key: %d\n", key);
 	if ((char)key == '\033')
 		exit_handler(r);
+	if (key >= 49 && key <= 54 && r->scene->selected_obj)
+	{
+		move_selected_obj(key, r);
+		render_scene(r);
+	}
 	return (0);
 }
 

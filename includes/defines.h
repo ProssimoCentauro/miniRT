@@ -6,7 +6,7 @@
 /*   By: ibrunial <ibrunial@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 20:02:34 by rtodaro           #+#    #+#             */
-/*   Updated: 2025/09/08 11:28:58 by ibrunial         ###   ########.fr       */
+/*   Updated: 2025/09/15 19:53:31 by rtodaro          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ NOT EXIST!\x1b[0m"
 
 // Messages
 # define VALID_FILE_MSG "\x1b[1;32m\nVALID FILE!\n\x1b[0m"
+# define SCENE_RENDERED_MSG "\x1b[1;32m\nSCENE RENDERED!\n\x1b[0m"
 
 // mlx
 # define WINDOW_NAME "miniRT"

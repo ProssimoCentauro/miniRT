@@ -6,7 +6,7 @@
 /*   By: ibrunial <ibrunial@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 19:52:54 by rtodaro           #+#    #+#             */
-/*   Updated: 2025/09/15 15:38:49 by ibrunial         ###   ########.fr       */
+/*   Updated: 2025/09/15 19:24:34 by rtodaro          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,5 +145,7 @@ void		color_pixel(t_renderer *r, t_ray *ray, int32_t x, int32_t y);
 // get_object_from_pixel.c
 t_object	*get_object_from_pixel(t_renderer *r, int32_t x, int32_t y);
 void		change_selected_obj(t_renderer *r, int32_t x, int32_t y);
+
+void render_scene(t_renderer *r);
 
 #endif
