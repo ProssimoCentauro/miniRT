@@ -107,7 +107,7 @@ OBJ = $(SRC:.c=.o)
 # === COMPILAZIONE ===
 
 CC = cc
-CFLAGS = -Wall -Werror -Wextra -g -gdwarf-4 -flto -O0
+CFLAGS = -Wall -Werror -Wextra -g -gdwarf-4 -flto -O3
 INCLUDE = -Ilibft/header_files -I/usr/include -I./includes -I./minilibx-linux
 LIBFLAGS = -Llibft -lft -lm
 MLXFLAGS = -Imlx -Lmlx -lX11 -lXext
