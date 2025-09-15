@@ -6,7 +6,7 @@
 /*   By: ibrunial <ibrunial@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 20:02:34 by rtodaro           #+#    #+#             */
-/*   Updated: 2025/09/15 19:53:31 by rtodaro          ###   ########.fr       */
+/*   Updated: 2025/09/15 21:31:46 by rtodaro          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 # define DEFINES_H
 
 # include "minirt.h"
+
+#define STEP_SIZE 0.2
+#define ANGLE_STEP 0.05
 
 // Reset
 # define RESET "\x1b[0m"

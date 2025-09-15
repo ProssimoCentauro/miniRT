@@ -6,7 +6,7 @@
 /*   By: rtodaro <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 21:20:44 by rtodaro           #+#    #+#             */
-/*   Updated: 2025/09/15 21:14:33 by rtodaro          ###   ########.fr       */
+/*   Updated: 2025/09/15 21:25:21 by rtodaro          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,53 @@ void	move_selected_obj(int key, t_renderer *r)
 		*obj_normal = rotate_vector_axis(*obj_normal, r->scene->cam->right, M_PI / 36);
 }
 
+static void modify_sphere(t_sphere *s, int key)
+{
+	if (key == 65362)
+		s->diameter += STEP_SIZE;
+	else if (key == 65364 && s->diameter > STEP_SIZE)
+		s->diameter -= STEP_SIZE;
+}
+
+static void modify_cylinder(t_cylinder *c, int key)
+{
+	if (key == 65362)
+		c->height += STEP_SIZE;
+	else if (key == 65364 && c->height > STEP_SIZE)
+		c->height -= STEP_SIZE;
+	else if (key == 65361)
+		c->diameter -= STEP_SIZE;
+	else if (key == 65363)
+		c->diameter += STEP_SIZE;
+}
+
+static void modify_cone(t_cone *c, int key)
+{
+	if (key == 65362)
+		c->angle += ANGLE_STEP;
+	else if (key == 65364 && c->angle > ANGLE_STEP)
+		c->angle -= ANGLE_STEP;
+	else if (key == 65361)
+		c->height -= STEP_SIZE;
+	else if (key == 65363)
+		c->height += STEP_SIZE;
+}
+
+void modify_selected_obj(int key, t_renderer *r)
+{
+	t_object *obj = r->scene->selected_obj;
+
+	if (!obj)
+		return ;
+	if (obj->type == SPHERE)
+		modify_sphere(&obj->figure.sphere, key);
+	else if (obj->type == CYLINDER)
+		modify_cylinder(&obj->figure.cylinder, key);
+	else if (obj->type == CONE)
+		modify_cone(&obj->figure.cone, key);
+	// esempio: il piano non ha "dimensioni", quindi niente
+}
+
 int	exit_handler(t_renderer *r)
 {
 	free_renderer(r);
@@ -108,7 +155,7 @@ int	events_handler(int key, t_renderer *r)
 	}
 	if (key >= 65361 && key <= 65364 && r->scene->selected_obj)
 	{
-		move_selected_obj(key, r);
+		modify_selected_obj(key, r);
 		render_scene(r);
 	}
 	return (0);
