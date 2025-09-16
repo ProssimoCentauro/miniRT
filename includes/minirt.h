@@ -107,6 +107,10 @@ void		exit_error(t_renderer *r, char *l1, char *l2, char *l3);
 // equation_utils.c
 bool		equation_solve(t_equation *eq);
 
+//rgb_utils.c
+t_rgb  rgb_add(t_rgb a, t_rgb b);
+t_rgb  rgb_scale(t_rgb a, double scale);
+	
 // data_init.c
 void		init_data(t_data *data, char *line);
 t_renderer	*init_renderer(char *line);
@@ -124,6 +128,7 @@ void		check_args(int ac, char *file);
 
 // rendering
 void		generate_rays(t_renderer *renderer);
+void		generate_rays_supersampling(t_renderer *r);
 void		calculate_up_left_and_steps(t_renderer *r);
 void		fill_hit_info_ray(t_scene *scene, t_ray *ray);
 
@@ -147,5 +152,6 @@ t_object	*get_object_from_pixel(t_renderer *r, int32_t x, int32_t y);
 void		change_selected_obj(t_renderer *r, int32_t x, int32_t y);
 
 void render_scene(t_renderer *r);
+void render_supersampled_scene(t_renderer *r);
 
 #endif

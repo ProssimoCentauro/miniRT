@@ -21,8 +21,12 @@ static inline void	start_hooks(t_renderer *r)
 
 void render_scene(t_renderer *r)
 {
+	ft_printf(SCENE_RENDERING_MSG);
     calculate_up_left_and_steps(r);
-	generate_rays(r);
+	if (r->scene->supersampled == 0)
+		generate_rays(r);
+	else
+		generate_rays_supersampling(r);
 	mlx_put_image_to_window(r->mlx->mlx_instance, r->mlx->window,
 		r->mlx->image.img, 0, 0);
 	printf(SCENE_RENDERED_MSG);

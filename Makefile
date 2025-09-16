@@ -100,6 +100,7 @@ SRC = \
 	$(UTILSF)error_utils.c \
 	$(UTILSF)free_utils.c \
 	$(UTILSF)equation_utils.c \
+	$(UTILSF)rgb_utils.c \
 	$(DEBUGF)debug_utils.c \
 	$(DEBUGF)scene_debug.c
 OBJ = $(SRC:.c=.o)

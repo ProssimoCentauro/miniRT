@@ -143,6 +143,15 @@ int	exit_handler(t_renderer *r)
 	return (0);
 }
 
+void	supersampler(t_renderer *r)
+{
+	if (r->scene->supersampled == 0)
+		r->scene->supersampled = 1;
+	else
+		r->scene->supersampled = 0;
+	render_scene(r);
+}
+
 int	events_handler(int key, t_renderer *r)
 {
 	printf("key: %d\n", key);
@@ -157,6 +166,10 @@ int	events_handler(int key, t_renderer *r)
 	{
 		modify_selected_obj(key, r);
 		render_scene(r);
+	}
+	if (key == 97)
+	{
+		supersampler(r);
 	}
 	return (0);
 }

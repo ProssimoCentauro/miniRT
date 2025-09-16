@@ -36,6 +36,12 @@ typedef struct s_rgb
 	int					b;
 }						t_rgb;
 
+typedef struct s_offset
+{
+	double	ox;
+	double	oy;
+}			t_offset;
+
 // typedef union u_rgb
 // {
 // 	struct
@@ -160,6 +166,7 @@ typedef struct s_scene
 	t_light				*lights;
 	t_object			*objs;
 	t_object			*selected_obj;
+	int					supersampled;
 }						t_scene;
 
 typedef struct s_hit
