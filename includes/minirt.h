@@ -135,6 +135,7 @@ void		generate_rays(t_renderer *renderer);
 void		generate_rays_supersampling(t_renderer *r);
 void		calculate_up_left_and_steps(t_renderer *r);
 void		fill_hit_info_ray(t_scene *scene, t_ray *ray);
+t_rgb		trace_ray(t_renderer *r, t_ray *ray);
 
 // collision
 bool		check_collision_circle(t_circle *circle, t_ray *ray,
@@ -163,5 +164,9 @@ void	modify_selected_obj(int key, t_renderer *r);
 
 //move_selected_obj.c
 void	move_selected_obj(int key, t_renderer *r);
+
+//supersampler.c
+void	supersampler(t_renderer *r);
+void	generate_rays_supersampling(t_renderer *r);
 
 #endif

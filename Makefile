@@ -79,6 +79,7 @@ SRC = \
 	$(RENDERERF)get_object_from_pixel.c \
 	$(RENDERERF)modify_selected_obj.c \
 	$(RENDERERF)move_selected_obj.c \
+	$(RENDERERF)supersampler.c \
 	$(COLLISION)collision_circle.c \
 	$(COLLISION)collision_cone.c \
 	$(COLLISION)collision_cylinder.c \

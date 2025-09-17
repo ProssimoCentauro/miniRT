@@ -6,7 +6,7 @@
 /*   By: rtodaro <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 21:20:44 by rtodaro           #+#    #+#             */
-/*   Updated: 2025/09/15 21:25:21 by rtodaro          ###   ########.fr       */
+/*   Updated: 2025/09/17 12:28:43 by rtodaro          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,6 @@ int	exit_handler(t_renderer *r)
 	free_renderer(r);
 	exit(EXIT_SUCCESS);
 	return (0);
-}
-
-void	supersampler(t_renderer *r)
-{
-	if (r->scene->supersampled == 0)
-		r->scene->supersampled = 1;
-	else
-		r->scene->supersampled = 0;
-	render_scene(r);
 }
 
 int	events_handler(int key, t_renderer *r)
