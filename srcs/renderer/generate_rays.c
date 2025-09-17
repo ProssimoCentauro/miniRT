@@ -86,7 +86,7 @@ void	generate_rays_supersampling(t_renderer *r)
 	int		sqrt_s;
 	t_rgb	color;
 
-	sqrt_s = 2;
+	sqrt_s = 4;
 	y = 0;
 	while (y < r->mlx->height)
 	{

@@ -77,6 +77,8 @@ SRC = \
 	$(RENDERERF)color_pixel.c \
 	$(RENDERERF)calculate_up_left_and_steps.c \
 	$(RENDERERF)get_object_from_pixel.c \
+	$(RENDERERF)modify_selected_obj.c \
+	$(RENDERERF)move_selected_obj.c \
 	$(COLLISION)collision_circle.c \
 	$(COLLISION)collision_cone.c \
 	$(COLLISION)collision_cylinder.c \
@@ -101,6 +103,7 @@ SRC = \
 	$(UTILSF)free_utils.c \
 	$(UTILSF)equation_utils.c \
 	$(UTILSF)rgb_utils.c \
+	$(UTILSF)objs_getters_utils.c \
 	$(DEBUGF)debug_utils.c \
 	$(DEBUGF)scene_debug.c
 OBJ = $(SRC:.c=.o)

@@ -110,7 +110,11 @@ bool		equation_solve(t_equation *eq);
 //rgb_utils.c
 t_rgb  rgb_add(t_rgb a, t_rgb b);
 t_rgb  rgb_scale(t_rgb a, double scale);
-	
+
+//objs_getters_utils.c
+t_vector	*get_obj_coord(t_object *obj);
+t_vector	*get_obj_normal(t_object *obj);
+
 // data_init.c
 void		init_data(t_data *data, char *line);
 t_renderer	*init_renderer(char *line);
@@ -153,5 +157,11 @@ void		change_selected_obj(t_renderer *r, int32_t x, int32_t y);
 
 void render_scene(t_renderer *r);
 void render_supersampled_scene(t_renderer *r);
+
+//modify_selected_obj.c
+void	modify_selected_obj(int key, t_renderer *r);
+
+//move_selected_obj.c
+void	move_selected_obj(int key, t_renderer *r);
 
 #endif
