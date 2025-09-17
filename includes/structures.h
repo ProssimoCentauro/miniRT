@@ -6,7 +6,7 @@
 /*   By: ibrunial <ibrunial@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 19:53:03 by rtodaro           #+#    #+#             */
-/*   Updated: 2025/07/03 21:31:47 by ibrunial         ###   ########.fr       */
+/*   Updated: 2025/09/15 15:46:39 by ibrunial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,26 +28,31 @@ typedef enum s_type
 	TRIANGLE
 }						t_type;
 
-/*
+
 typedef struct s_rgb
 {
 	int					r;
 	int					g;
 	int					b;
 }						t_rgb;
-*/
 
-typedef union u_rgb
+typedef struct s_offset
 {
-	struct
-	{
-		unsigned char	r;
-		unsigned char	g;
-		unsigned char	b;
-		unsigned char	t;
-	};
-	uint32_t			rgb;
-}						t_rgb;
+	double	ox;
+	double	oy;
+}			t_offset;
+
+// typedef union u_rgb
+// {
+// 	struct
+// 	{
+// 		unsigned char	r;
+// 		unsigned char	g;
+// 		unsigned char	b;
+// 		unsigned char	t;
+// 	};
+// 	uint32_t			rgb;
+// }						t_rgb;
 
 
 // spostato in vector.h
@@ -131,6 +136,11 @@ typedef struct s_camera
 	t_type				type;
 	t_vector			coord;
 	t_vector			orientation;
+    t_vector            right;
+    t_vector            up;
+    t_vector            vp_up_left;
+    t_vector            px_step;
+    t_vector            py_step;
 	double				fov;
 }						t_camera;
 
@@ -155,11 +165,13 @@ typedef struct s_scene
 	t_ambient			*amb;
 	t_light				*lights;
 	t_object			*objs;
+	t_object			*selected_obj;
+	int					supersampled;
 }						t_scene;
 
 typedef struct s_hit
 {
-	t_figures			*obj;
+	t_object			*obj;
 	double				dist;
 	t_vector			point;
 	t_vector			normal;
@@ -170,7 +182,7 @@ typedef struct s_ray
 {
 	t_vector			direction;
 	t_vector			coord;
-	t_hit				*hit;
+	t_hit				hit;
 }						t_ray;
 
 typedef struct s_image

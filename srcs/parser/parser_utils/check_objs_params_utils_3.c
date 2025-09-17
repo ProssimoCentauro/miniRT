@@ -6,7 +6,7 @@
 /*   By: rtodaro <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 16:43:57 by rtodaro           #+#    #+#             */
-/*   Updated: 2025/07/02 23:17:11 by rtodaro          ###   ########.fr       */
+/*   Updated: 2025/08/19 17:40:13 by rtodaro          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,22 @@ int	check_ratio(char *ratio, double *num)
 {
 	if (ratio[0] == '0')
 	{
-		if (ratio[1] != '.')
+		if (ratio[1] && ratio[1] == '.' && (!ratio[2] || ratio[2] < '0'
+				|| ratio[2] > '9'))
 			return (1);
-		if (ratio[2] < '0' && ratio[2] > '9')
+		else if (ratio[1] && ratio[1] != '.')
 			return (1);
 	}
 	else if (ratio[0] == '1')
 	{
-		if (ratio[1] != '.')
+		if (ratio[1] && ratio[1] == '.' && (!ratio[2] || ratio[2] != '0'))
 			return (1);
-		if (ratio[2] != '0')
+		else if (ratio[1] && ratio[1] != '.')
 			return (1);
 	}
 	else
+		return (1);
+	if (ft_strlen(ratio) >= 3 && ratio[3])
 		return (1);
 	*num = ft_atod(ratio);
 	return (0);

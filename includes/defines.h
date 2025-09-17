@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rtodaro <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: ibrunial <ibrunial@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 20:02:34 by rtodaro           #+#    #+#             */
-/*   Updated: 2025/07/03 14:57:14 by rtodaro          ###   ########.fr       */
+/*   Updated: 2025/09/15 21:44:38 by rtodaro          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 # define DEFINES_H
 
 # include "minirt.h"
+
+#define STEP_SIZE 0.5
+#define ANGLE_STEP 0.05
 
 // Reset
 # define RESET "\x1b[0m"
@@ -73,6 +76,8 @@ NOT EXIST!\x1b[0m"
 
 // Messages
 # define VALID_FILE_MSG "\x1b[1;32m\nVALID FILE!\n\x1b[0m"
+# define SCENE_RENDERING_MSG "\x1b[1;33m\nSCENE RENDERING...\x1b[0m"
+# define SCENE_RENDERED_MSG "\x1b[1;32m\nSCENE RENDERED!\n\x1b[0m"
 
 // mlx
 # define WINDOW_NAME "miniRT"
@@ -83,5 +88,7 @@ NOT EXIST!\x1b[0m"
 # define PI 3.14159265358979323846
 # define SEED 2524232
 # define EPSILON 0.001
+
+#define FOCAL_LENGTH 0.5
 
 #endif
