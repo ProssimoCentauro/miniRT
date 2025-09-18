@@ -6,7 +6,7 @@
 /*   By: ibrunial <ibrunial@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 11:01:23 by ibrunial          #+#    #+#             */
-/*   Updated: 2025/09/17 12:28:12 by rtodaro          ###   ########.fr       */
+/*   Updated: 2025/09/18 12:31:26 by rtodaro          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	generate_rays(t_renderer *r)
 					vector_scale(r->scene->cam->px_step, x));
 			ray.direction = vector_normalize(vector_sub(ray.direction,
 						r->scene->cam->coord));
-			ray.coord = r->scene->cam->coord; // forse da togliere //
+			ray.coord = r->scene->cam->coord;
 			color_pixel(r, &ray, x, y);
 			++x;
 		}
