@@ -6,7 +6,7 @@
 /*   By: ibrunial <ibrunial@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 20:30:25 by ibrunial          #+#    #+#             */
-/*   Updated: 2025/07/03 20:30:37 by ibrunial         ###   ########.fr       */
+/*   Updated: 2025/09/18 11:21:21 by rtodaro          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /* solve the equation and fill the t with the minumum positive solution*/
 bool	equation_solve(t_equation *eq)
 {
-	double discriminant;
+	double	discriminant;
 
 	discriminant = eq->b * eq->b - 4 * eq->a * eq->c;
 	if (discriminant < EPSILON)
