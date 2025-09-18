@@ -6,7 +6,7 @@
 /*   By: ibrunial <ibrunial@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 21:22:15 by rtodaro           #+#    #+#             */
-/*   Updated: 2025/07/03 21:32:56 by ibrunial         ###   ########.fr       */
+/*   Updated: 2025/09/18 11:18:14 by rtodaro          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,8 @@ void	init_mlx(t_mlx	*mlx)
 {
 	mlx->mlx_instance = mlx_init();
 	mlx_get_screen_size(mlx->mlx_instance, &(mlx)->width, &(mlx)->height);
-    // alla fine rimodificherò per mettere la metà ma 
-    // per i test mi servono dimensioni fisse
-	mlx->width = 1280;
-	mlx->height = 720;
+	mlx->width /= 2;
+	mlx->height /= 2;
 	mlx->window = mlx_new_window(mlx->mlx_instance,
 			mlx->width, mlx->height, "miniRT!");
 	init_image(mlx, &(mlx)->image);
