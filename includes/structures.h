@@ -6,7 +6,7 @@
 /*   By: ibrunial <ibrunial@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 19:53:03 by rtodaro           #+#    #+#             */
-/*   Updated: 2025/09/15 15:46:39 by ibrunial         ###   ########.fr       */
+/*   Updated: 2025/09/18 12:12:05 by rtodaro          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,31 @@
 
 # include "minirt.h"
 # include "../libft/header_files/vector.h"
+
+typedef enum s_type t_type;
+
+typedef struct s_rgb t_rgb;
+typedef struct s_offset t_offset;
+typedef struct s_shadow_data t_shadow_data;
+typedef struct s_object_data t_object_data;
+typedef struct s_sphere t_sphere;
+typedef struct s_plane t_plane;
+typedef struct s_cylinder t_cylinder;
+typedef struct s_cone t_cone;
+typedef struct s_circle t_circle;
+typedef union  u_figures t_figures;
+typedef struct s_object t_object;
+typedef struct s_camera t_camera;
+typedef struct s_ambient t_ambient;
+typedef struct s_light t_light;
+typedef struct s_scene t_scene;
+typedef struct s_hit t_hit;
+typedef struct s_ray t_ray;
+typedef struct s_image t_image;
+typedef struct s_mlx t_mlx;
+typedef struct s_data t_data;
+typedef struct s_renderer t_renderer;
+typedef struct s_equation t_equation;
 
 typedef enum s_type
 {
@@ -226,5 +251,11 @@ typedef struct s_equation
 	double				t;
 }						t_equation;
 
+typedef struct s_shadow_data
+{
+    t_ray   ray;
+    t_hit   hit;
+    double  dist_to_light;
+} t_shadow_data;
 
 #endif
