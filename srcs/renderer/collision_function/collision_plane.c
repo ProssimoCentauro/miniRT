@@ -6,7 +6,7 @@
 /*   By: ibrunial <ibrunial@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 20:28:50 by ibrunial          #+#    #+#             */
-/*   Updated: 2025/07/03 20:29:11 by ibrunial         ###   ########.fr       */
+/*   Updated: 2025/09/15 15:40:43 by ibrunial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,9 @@
  * t(n ⋅ D) = (n ⋅ po)
  * t = (n ⋅ po) / (n ⋅ D)
  */
-void	check_collision_plane(t_plane *plane, t_ray *ray, t_hit *hit_info)
+void	check_collision_plane(t_object *obj, t_ray *ray, t_hit *hit_info)
 {
+    const t_plane *plane = (t_plane *)&obj->figure;
 	t_vector	po;
 	double		denom;
 	double		t;
@@ -46,5 +47,5 @@ void	check_collision_plane(t_plane *plane, t_ray *ray, t_hit *hit_info)
 		hit_info->normal = vector_invert(hit_info->normal);
 	}
 	hit_info->rgb = plane->rgb;
-	hit_info->obj = (t_figures *)plane;
+	hit_info->obj = obj;
 }

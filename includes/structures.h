@@ -6,7 +6,7 @@
 /*   By: ibrunial <ibrunial@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 19:53:03 by rtodaro           #+#    #+#             */
-/*   Updated: 2025/07/03 21:31:47 by ibrunial         ###   ########.fr       */
+/*   Updated: 2025/09/18 12:12:05 by rtodaro          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,31 @@
 
 # include "minirt.h"
 # include "../libft/header_files/vector.h"
+
+typedef enum s_type t_type;
+
+typedef struct s_rgb t_rgb;
+typedef struct s_offset t_offset;
+typedef struct s_shadow_data t_shadow_data;
+typedef struct s_object_data t_object_data;
+typedef struct s_sphere t_sphere;
+typedef struct s_plane t_plane;
+typedef struct s_cylinder t_cylinder;
+typedef struct s_cone t_cone;
+typedef struct s_circle t_circle;
+typedef union  u_figures t_figures;
+typedef struct s_object t_object;
+typedef struct s_camera t_camera;
+typedef struct s_ambient t_ambient;
+typedef struct s_light t_light;
+typedef struct s_scene t_scene;
+typedef struct s_hit t_hit;
+typedef struct s_ray t_ray;
+typedef struct s_image t_image;
+typedef struct s_mlx t_mlx;
+typedef struct s_data t_data;
+typedef struct s_renderer t_renderer;
+typedef struct s_equation t_equation;
 
 typedef enum s_type
 {
@@ -28,26 +53,31 @@ typedef enum s_type
 	TRIANGLE
 }						t_type;
 
-/*
+
 typedef struct s_rgb
 {
 	int					r;
 	int					g;
 	int					b;
 }						t_rgb;
-*/
 
-typedef union u_rgb
+typedef struct s_offset
 {
-	struct
-	{
-		unsigned char	r;
-		unsigned char	g;
-		unsigned char	b;
-		unsigned char	t;
-	};
-	uint32_t			rgb;
-}						t_rgb;
+	double	ox;
+	double	oy;
+}			t_offset;
+
+// typedef union u_rgb
+// {
+// 	struct
+// 	{
+// 		unsigned char	r;
+// 		unsigned char	g;
+// 		unsigned char	b;
+// 		unsigned char	t;
+// 	};
+// 	uint32_t			rgb;
+// }						t_rgb;
 
 
 // spostato in vector.h
@@ -131,6 +161,11 @@ typedef struct s_camera
 	t_type				type;
 	t_vector			coord;
 	t_vector			orientation;
+    t_vector            right;
+    t_vector            up;
+    t_vector            vp_up_left;
+    t_vector            px_step;
+    t_vector            py_step;
 	double				fov;
 }						t_camera;
 
@@ -155,11 +190,13 @@ typedef struct s_scene
 	t_ambient			*amb;
 	t_light				*lights;
 	t_object			*objs;
+	t_object			*selected_obj;
+	int					supersampled;
 }						t_scene;
 
 typedef struct s_hit
 {
-	t_figures			*obj;
+	t_object			*obj;
 	double				dist;
 	t_vector			point;
 	t_vector			normal;
@@ -170,7 +207,7 @@ typedef struct s_ray
 {
 	t_vector			direction;
 	t_vector			coord;
-	t_hit				*hit;
+	t_hit				hit;
 }						t_ray;
 
 typedef struct s_image
@@ -214,5 +251,11 @@ typedef struct s_equation
 	double				t;
 }						t_equation;
 
+typedef struct s_shadow_data
+{
+    t_ray   ray;
+    t_hit   hit;
+    double  dist_to_light;
+} t_shadow_data;
 
 #endif

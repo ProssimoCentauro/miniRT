@@ -6,13 +6,14 @@
 /*   By: ibrunial <ibrunial@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 19:52:54 by rtodaro           #+#    #+#             */
-/*   Updated: 2025/07/03 21:28:20 by ibrunial         ###   ########.fr       */
+/*   Updated: 2025/09/15 19:24:34 by rtodaro          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINIRT_H
 # define MINIRT_H
 
+# include "../libft/header_files/vector.h"
 # include "../minilibx-linux/mlx.h"
 # include "defines.h"
 # include "ft_printf.h"
@@ -29,7 +30,6 @@
 # include <stdlib.h>
 # include <string.h>
 # include <unistd.h>
-# include <stdbool.h>
 
 // debug_utils.c
 void		print_object_data(t_object_data obj);
@@ -90,6 +90,7 @@ void		add_light(t_scene *scene, t_light *new_light);
 // events_handlers.c
 int			events_handler(int key, t_renderer *r);
 int			exit_handler(t_renderer *r);
+int			mouse_handler(int button, int x, int y, t_renderer *r);
 
 // free_utils.c
 void		free_mlx(t_mlx *mlx);
@@ -105,6 +106,14 @@ void		exit_error(t_renderer *r, char *l1, char *l2, char *l3);
 
 // equation_utils.c
 bool		equation_solve(t_equation *eq);
+
+//rgb_utils.c
+t_rgb  rgb_add(t_rgb a, t_rgb b);
+t_rgb  rgb_scale(t_rgb a, double scale);
+
+//objs_getters_utils.c
+t_vector	*get_obj_coord(t_object *obj);
+t_vector	*get_obj_normal(t_object *obj);
 
 // data_init.c
 void		init_data(t_data *data, char *line);
@@ -123,15 +132,41 @@ void		check_args(int ac, char *file);
 
 // rendering
 void		generate_rays(t_renderer *renderer);
-t_rgb		calculate_hit(t_scene *scene, t_ray *ray);
+void		generate_rays_supersampling(t_renderer *r);
+void		calculate_up_left_and_steps(t_renderer *r);
+void		fill_hit_info_ray(t_scene *scene, t_ray *ray);
+t_rgb		trace_ray(t_renderer *r, t_ray *ray);
 
 // collision
 bool		check_collision_circle(t_circle *circle, t_ray *ray,
 				t_hit *hit_info);
-void		check_collision_cone(t_cone *cone, t_ray *ray, t_hit *hit_info);
-void		check_collision_cylinder(t_cylinder *cylinder, t_ray *ray,
+void		check_collision_cone(t_object *obj, t_ray *ray, t_hit *hit_info);
+void		check_collision_cylinder(t_object *obj, t_ray *ray,
 				t_hit *hit_info);
-void		check_collision_plane(t_plane *plane, t_ray *ray, t_hit *hit_info);
-void		check_collision_sphere(t_sphere *sphere, t_ray *ray, t_hit *hit);
+void		check_collision_plane(t_object *obj, t_ray *ray, t_hit *hit_info);
+void		check_collision_sphere(t_object *obj, t_ray *ray, t_hit *hit);
+
+//
+t_rgb		apply_lighting(t_scene *scene, t_hit *hit);
+
+// color_pixel.c
+void		color_pixel(t_renderer *r, t_ray *ray, int32_t x, int32_t y);
+
+// get_object_from_pixel.c
+t_object	*get_object_from_pixel(t_renderer *r, int32_t x, int32_t y);
+void		change_selected_obj(t_renderer *r, int32_t x, int32_t y);
+
+void render_scene(t_renderer *r);
+void render_supersampled_scene(t_renderer *r);
+
+//modify_selected_obj.c
+void	modify_selected_obj(int key, t_renderer *r);
+
+//move_selected_obj.c
+void	move_selected_obj(int key, t_renderer *r);
+
+//supersampler.c
+void	supersampler(t_renderer *r);
+void	generate_rays_supersampling(t_renderer *r);
 
 #endif

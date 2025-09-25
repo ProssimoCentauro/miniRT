@@ -6,16 +6,30 @@
 /*   By: ibrunial <ibrunial@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 19:49:55 by rtodaro           #+#    #+#             */
-/*   Updated: 2025/07/01 19:22:54 by ibrunial         ###   ########.fr       */
+/*   Updated: 2025/09/15 19:53:43 by rtodaro          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-static void	start_hooks(t_renderer *renderer)
+static inline void	start_hooks(t_renderer *r)
 {
-	mlx_key_hook(renderer->mlx->window, events_handler, renderer);
-	mlx_hook(renderer->mlx->window, 17, 0, exit_handler, renderer);
+	mlx_key_hook(r->mlx->window, events_handler, r);
+	mlx_hook(r->mlx->window, 17, 0, exit_handler, r);
+	mlx_mouse_hook(r->mlx->window, mouse_handler, r);
+}
+
+void render_scene(t_renderer *r)
+{
+	ft_printf(SCENE_RENDERING_MSG);
+    calculate_up_left_and_steps(r);
+	if (r->scene->supersampled == 0)
+		generate_rays(r);
+	else
+		generate_rays_supersampling(r);
+	mlx_put_image_to_window(r->mlx->mlx_instance, r->mlx->window,
+		r->mlx->image.img, 0, 0);
+	printf(SCENE_RENDERED_MSG);
 }
 
 int	main(int ac, char **av)
@@ -25,10 +39,8 @@ int	main(int ac, char **av)
 	check_args(ac, av[1]);
 	renderer = init_renderer(av[1]);
 	check_file(renderer);
-	generate_rays(renderer);
-	mlx_put_image_to_window(renderer->mlx->mlx_instance, renderer->mlx->window,
-		renderer->mlx->image.img, 0, 0);
 	start_hooks(renderer);
+	render_scene(renderer);
 	mlx_loop(renderer->mlx->mlx_instance);
 	return (0);
 }

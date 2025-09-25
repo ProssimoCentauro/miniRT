@@ -13,7 +13,7 @@ define spinner
 	@bash -c ' \
 		spin="/-\\|"; \
 		i=0; \
-		( make -C libft > /dev/null 2>&1 ) & \
+		( make -j$(nproc) -C libft > /dev/null 2>&1 ) & \
 		pid=$$!; \
 		while kill -0 $$pid 2>/dev/null; do \
 			printf "\r📦 Compiling libft... $${spin:$$((i%4)):1} "; \
@@ -37,7 +37,7 @@ define mlx_spinner
 	@bash -c ' \
 		spin="/-\\|"; \
 		i=0; \
-		( make -C minilibx-linux > /dev/null 2>&1 ) & \
+		( make -j$(nproc) -C minilibx-linux > /dev/null 2>&1 ) & \
 		pid=$$!; \
 		while kill -0 $$pid 2>/dev/null; do \
 			printf "\r🖼️  Compiling MiniLibX... $${spin:$$((i%4)):1} "; \
@@ -72,7 +72,14 @@ DEBUGF = ./srcs/debug_funcs/
 SRC = \
 	$(SRCSF)main.c \
 	$(RENDERERF)generate_rays.c \
-	$(RENDERERF)calculate_hit.c \
+	$(RENDERERF)fill_hit_info_ray.c \
+	$(RENDERERF)lighting.c \
+	$(RENDERERF)color_pixel.c \
+	$(RENDERERF)calculate_up_left_and_steps.c \
+	$(RENDERERF)get_object_from_pixel.c \
+	$(RENDERERF)modify_selected_obj.c \
+	$(RENDERERF)move_selected_obj.c \
+	$(RENDERERF)supersampler.c \
 	$(COLLISION)collision_circle.c \
 	$(COLLISION)collision_cone.c \
 	$(COLLISION)collision_cylinder.c \
@@ -96,6 +103,8 @@ SRC = \
 	$(UTILSF)error_utils.c \
 	$(UTILSF)free_utils.c \
 	$(UTILSF)equation_utils.c \
+	$(UTILSF)rgb_utils.c \
+	$(UTILSF)objs_getters_utils.c \
 	$(DEBUGF)debug_utils.c \
 	$(DEBUGF)scene_debug.c
 OBJ = $(SRC:.c=.o)
@@ -103,7 +112,7 @@ OBJ = $(SRC:.c=.o)
 # === COMPILAZIONE ===
 
 CC = cc
-CFLAGS = -Wall -Werror -Wextra -g -gdwarf-4 -flto -O0
+CFLAGS = -Wall -Werror -Wextra -g -gdwarf-4 -flto -O3
 INCLUDE = -Ilibft/header_files -I/usr/include -I./includes -I./minilibx-linux
 LIBFLAGS = -Llibft -lft -lm
 MLXFLAGS = -Imlx -Lmlx -lX11 -lXext

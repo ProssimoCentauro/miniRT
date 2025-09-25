@@ -23,9 +23,9 @@ PRINTF_SRCS := $(PRINTF_DIR)ft_printf.c  $(PRINTF_DIR)libc_utils.c  $(PRINTF_DIR
 
 GNL_SRCS := $(GNL_DIR)get_next_line_bonus.c  $(GNL_DIR)get_next_line_utils_bonus.c $(GNL_DIR)get_next_line.c $(GNL_DIR)get_next_line_utils.c
 
-VECTOR_SRCS = vector_add.c  vector_cross.c  vector_dot.c  vector_lenght.c \
-		vector_lenght_squared.c  vector_normalize.c  vector_project.c  vector_set_zero.c \
-		vector_sub.c vector_scale.c vector_invert.c
+VECTOR_SRCS = vector_add.c  vector_cross.c  vector_dot.c  vector_length.c \
+		vector_length_squared.c  vector_normalize.c  vector_project.c  vector_set_zero.c \
+		vector_sub.c vector_scale.c vector_invert.c rotate_vector_axis.c
 VECTOR_SRCS := $(addprefix $(VECTOR_DIR), $(VECTOR_SRCS))
 
 
