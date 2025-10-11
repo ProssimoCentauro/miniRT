@@ -106,7 +106,9 @@ SRC = \
 	$(UTILSF)rgb_utils.c \
 	$(UTILSF)objs_getters_utils.c \
 	$(DEBUGF)debug_utils.c \
-	$(DEBUGF)scene_debug.c
+	$(DEBUGF)scene_debug.c \
+	$(DEBUGF)print_func.c \
+	$(DEBUGF)print_func2.c 
 OBJ = $(SRC:.c=.o)
 
 # === COMPILAZIONE ===

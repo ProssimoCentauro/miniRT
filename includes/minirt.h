@@ -6,7 +6,7 @@
 /*   By: ibrunial <ibrunial@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 19:52:54 by rtodaro           #+#    #+#             */
-/*   Updated: 2025/10/11 15:37:48 by ibrunial         ###   ########.fr       */
+/*   Updated: 2025/10/11 16:11:21 by ibrunial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,20 @@
 
 // debug_utils.c
 void		print_object_data(t_object_data obj);
-void		print_scene(t_scene *scene);
+void		print_scene(const t_scene *scene);
+void		print_object(const t_object *o);
+void		print_camera(const t_camera *c);
+void		print_ambient(const t_ambient *a);
+void		print_lights(const t_light *lst);
+void		print_objects(const t_object *lst);
+void		print_sphere(const t_sphere *s);
+void		print_plane(const t_plane *p);
+void		print_cylinder(const t_cylinder *c);
+void		print_cone(const t_cone *c);
+void		print_rgb(t_rgb rgb);
+void		print_vec(t_vector v);
+const char	*type_name(t_type t);
+
 
 // figures_funcs.c
 t_object	*create_sphere(t_object_data *d);

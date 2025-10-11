@@ -1,134 +1,45 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   scene_debug.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ibrunial <ibrunial@student.42roma.it>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/10/11 16:21:06 by ibrunial          #+#    #+#             */
+/*   Updated: 2025/10/11 16:21:41 by ibrunial         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minirt.h"
+#include <stdio.h>
 
-static const char	*type_to_string(t_type type)
+const char	*type_name(t_type t)
 {
-	switch (type)
-	{
-	case A_LIGHT:
+	if (t == A_LIGHT)
 		return ("Ambient Light");
-	case CAMERA:
+	if (t == CAMERA)
 		return ("Camera");
-	case LIGHT:
+	if (t == LIGHT)
 		return ("Light");
-	case SPHERE:
+	if (t == SPHERE)
 		return ("Sphere");
-	case PLANE:
+	if (t == PLANE)
 		return ("Plane");
-	case CYLINDER:
+	if (t == CYLINDER)
 		return ("Cylinder");
-	case CONE:
+	if (t == CONE)
 		return ("Cone");
-	case TRIANGLE:
+	if (t == TRIANGLE)
 		return ("Triangle");
-	default:
-		return ("Unknown");
-	}
+	return ("Unknown");
 }
 
-static void	print_rgb(t_rgb rgb)
+void	print_scene(const t_scene *s)
 {
-	printf("R: %d G: %d B: %d", rgb.r, rgb.g, rgb.b);
-}
-
-static void	print_vector(t_vector v)
-{
-	printf("(%.2f, %.2f, %.2f)", v.x, v.y, v.z);
-}
-
-static void	print_object(t_object *obj)
-{
-	if (!obj)
+	if (!s)
 		return ;
-	printf(BOLD_YELLOW "Object type: %s\n" RESET, type_to_string(obj->type));
-	switch (obj->type)
-	{
-	case SPHERE:
-		printf("  Coord: ");
-		print_vector(obj->figure.sphere.coord);
-		printf("\n  Diameter: %.2f\n  Color: ", obj->figure.sphere.diameter);
-		print_rgb(obj->figure.sphere.rgb);
-		printf("\n");
-		break ;
-	case PLANE:
-		printf("  Coord: ");
-		print_vector(obj->figure.plane.coord);
-		printf("\n  Normal: ");
-		print_vector(obj->figure.plane.normal);
-		printf("\n  Color: ");
-		print_rgb(obj->figure.plane.rgb);
-		printf("\n");
-		break ;
-	case CYLINDER:
-		printf("  Coord: ");
-		print_vector(obj->figure.cylinder.coord);
-		printf("\n  Normal: ");
-		print_vector(obj->figure.cylinder.normal);
-		printf("\n  Diameter: %.2f\n  Height: %.2f\n  Color: ",
-			obj->figure.cylinder.diameter, obj->figure.cylinder.height);
-		print_rgb(obj->figure.cylinder.rgb);
-		printf("\n");
-		break ;
-	case CONE:
-		printf("  Coord: ");
-		print_vector(obj->figure.cone.coord);
-		printf("\n  Normal: ");
-		print_vector(obj->figure.cone.normal);
-		printf("\n  Angle: %.2f°\n  Height: %.2f\n  Color: ",
-			obj->figure.cone.angle, obj->figure.cone.height);
-		print_rgb(obj->figure.cone.rgb);
-		printf("\n");
-		break ;
-	default:
-		printf("  [No detailed printer implemented]\n");
-		break ;
-	}
-}
-
-void	print_scene(t_scene *scene)
-{
-	t_light		*light;
-	int			i;
-	t_object	*obj;
-
-	if (!scene)
-		return ;
-	// Camera
-	printf(BOLD_CYAN "=== Camera ===\n" RESET);
-	printf("Coord: ");
-	print_vector(scene->cam->coord);
-	printf("\nOrientation: ");
-	print_vector(scene->cam->orientation);
-	printf("\nFOV: %.2f\n\n", scene->cam->fov);
-	// Ambient Light
-	printf(BOLD_MAGENTA "=== Ambient Light ===\n" RESET);
-	printf("Ratio: %.2f\nColor: ", scene->amb->ratio);
-	print_rgb(scene->amb->rgb);
-	printf("\n\n");
-	// Lights (linked list)
-	printf(BOLD_GREEN "=== Lights ===\n" RESET);
-	light = scene->lights;
-	i = 0;
-	while (light)
-	{
-		printf("Light %d:\n", i);
-		printf("  Coord: ");
-		print_vector(light->coord);
-		printf("\n  Brightness: %.2f\n  Color: ", light->brightness);
-		print_rgb(light->rgb);
-		printf("\n\n");
-		light = light->next;
-		i++;
-	}
-	// Objects (linked list)
-	printf(BOLD_YELLOW "=== Objects ===\n" RESET);
-	obj = scene->objs;
-	i = 0;
-	while (obj)
-	{
-		printf("Object %d:\n", i);
-		print_object(obj);
-		printf("\n");
-		obj = obj->next;
-		i++;
-	}
+	print_camera(s->cam);
+	print_ambient(s->amb);
+	print_lights(s->lights);
+	print_objects(s->objs);
 }
