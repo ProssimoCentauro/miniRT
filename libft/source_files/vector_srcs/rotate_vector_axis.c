@@ -1,5 +1,16 @@
-#include "vector.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   rotate_vector_axis.c                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ibrunial <ibrunial@student.42roma.it>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/10/11 15:42:32 by ibrunial          #+#    #+#             */
+/*   Updated: 2025/10/11 15:42:37 by ibrunial         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include "vector.h"
 
 t_vector	rotate_vector_axis(t_vector v, t_vector axis, double angle)
 {
