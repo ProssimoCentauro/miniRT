@@ -6,7 +6,7 @@
 /*   By: ibrunial <ibrunial@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 20:28:50 by ibrunial          #+#    #+#             */
-/*   Updated: 2025/09/15 15:40:43 by ibrunial         ###   ########.fr       */
+/*   Updated: 2025/10/11 10:35:52 by ibrunial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@
  */
 void	check_collision_plane(t_object *obj, t_ray *ray, t_hit *hit_info)
 {
-    const t_plane *plane = (t_plane *)&obj->figure;
-	t_vector	po;
-	double		denom;
-	double		t;
+	const t_plane	*plane = (t_plane *)&obj->figure;
+	t_vector		po;
+	double			denom;
+	double			t;
 
 	denom = vector_dot(plane->normal, ray->direction);
 	if (fabs(denom) < EPSILON)

@@ -6,7 +6,7 @@
 /*   By: ibrunial <ibrunial@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 19:49:55 by rtodaro           #+#    #+#             */
-/*   Updated: 2025/09/15 19:53:43 by rtodaro          ###   ########.fr       */
+/*   Updated: 2025/10/11 10:35:02 by ibrunial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ static inline void	start_hooks(t_renderer *r)
 	mlx_mouse_hook(r->mlx->window, mouse_handler, r);
 }
 
-void render_scene(t_renderer *r)
+void	render_scene(t_renderer *r)
 {
 	ft_printf(SCENE_RENDERING_MSG);
-    calculate_up_left_and_steps(r);
+	calculate_up_left_and_steps(r);
 	if (r->scene->supersampled == 0)
 		generate_rays(r);
 	else

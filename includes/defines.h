@@ -6,7 +6,7 @@
 /*   By: ibrunial <ibrunial@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 20:02:34 by rtodaro           #+#    #+#             */
-/*   Updated: 2025/09/15 21:44:38 by rtodaro          ###   ########.fr       */
+/*   Updated: 2025/10/11 15:38:13 by ibrunial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 # include "minirt.h"
 
-#define STEP_SIZE 0.5
-#define ANGLE_STEP 0.05
+# define STEP_SIZE 0.5
+# define ANGLE_STEP 0.05
 
 // Reset
 # define RESET "\x1b[0m"
@@ -89,6 +89,6 @@ NOT EXIST!\x1b[0m"
 # define SEED 2524232
 # define EPSILON 0.001
 
-#define FOCAL_LENGTH 0.5
+# define FOCAL_LENGTH 0.5
 
 #endif

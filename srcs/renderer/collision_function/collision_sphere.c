@@ -6,7 +6,7 @@
 /*   By: ibrunial <ibrunial@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 20:24:42 by ibrunial          #+#    #+#             */
-/*   Updated: 2025/09/15 15:41:57 by ibrunial         ###   ########.fr       */
+/*   Updated: 2025/10/11 13:16:21 by ibrunial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,16 +37,16 @@
  */
 void	check_collision_sphere(t_object *obj, t_ray *ray, t_hit *hit)
 {
-    t_sphere *sphere = (t_sphere *)&obj->figure;
 	t_vector	oc;
 	double		b;
 	double		c;
 	double		discriminant;
 	double		t;
 
-	oc = vector_sub(ray->coord, sphere->coord);
+	oc = vector_sub(ray->coord, ((t_sphere *)&obj->figure)->coord);
 	b = 2.0 * vector_dot(oc, ray->direction);
-	c = vector_dot(oc, oc) - pow((sphere->diameter / 2.0), 2);
+	c = vector_dot(oc, oc) - pow((((t_sphere *)&obj->figure)->diameter / 2.0),
+			2);
 	discriminant = b * b - 4 * c;
 	if (discriminant < 0)
 		return ;
@@ -55,12 +55,11 @@ void	check_collision_sphere(t_object *obj, t_ray *ray, t_hit *hit)
 	if (t <= 0)
 		t = (-b + discriminant) / 2.0;
 	if (t <= 0 || t > hit->dist)
-	{
 		return ;
-	}
 	hit->dist = t;
 	hit->point = vector_add(ray->coord, vector_scale(ray->direction, t));
-	hit->normal = vector_normalize(vector_sub(hit->point, sphere->coord));
-	hit->rgb = sphere->rgb;
+	hit->normal = vector_normalize(vector_sub(hit->point,
+				((t_sphere *)&obj->figure)->coord));
+	hit->rgb = ((t_sphere *)&obj->figure)->rgb;
 	hit->obj = obj;
 }

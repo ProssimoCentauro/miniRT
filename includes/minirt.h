@@ -6,7 +6,7 @@
 /*   By: ibrunial <ibrunial@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 19:52:54 by rtodaro           #+#    #+#             */
-/*   Updated: 2025/09/15 19:24:34 by rtodaro          ###   ########.fr       */
+/*   Updated: 2025/10/11 15:37:48 by ibrunial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,11 +107,11 @@ void		exit_error(t_renderer *r, char *l1, char *l2, char *l3);
 // equation_utils.c
 bool		equation_solve(t_equation *eq);
 
-//rgb_utils.c
-t_rgb  rgb_add(t_rgb a, t_rgb b);
-t_rgb  rgb_scale(t_rgb a, double scale);
+// rgb_utils.c
+t_rgb		rgb_add(t_rgb a, t_rgb b);
+t_rgb		rgb_scale(t_rgb a, double scale);
 
-//objs_getters_utils.c
+// objs_getters_utils.c
 t_vector	*get_obj_coord(t_object *obj);
 t_vector	*get_obj_normal(t_object *obj);
 
@@ -156,17 +156,17 @@ void		color_pixel(t_renderer *r, t_ray *ray, int32_t x, int32_t y);
 t_object	*get_object_from_pixel(t_renderer *r, int32_t x, int32_t y);
 void		change_selected_obj(t_renderer *r, int32_t x, int32_t y);
 
-void render_scene(t_renderer *r);
-void render_supersampled_scene(t_renderer *r);
+void		render_scene(t_renderer *r);
+void		render_supersampled_scene(t_renderer *r);
 
-//modify_selected_obj.c
-void	modify_selected_obj(int key, t_renderer *r);
+// modify_selected_obj.c
+void		modify_selected_obj(int key, t_renderer *r);
 
-//move_selected_obj.c
-void	move_selected_obj(int key, t_renderer *r);
+// move_selected_obj.c
+void		move_selected_obj(int key, t_renderer *r);
 
-//supersampler.c
-void	supersampler(t_renderer *r);
-void	generate_rays_supersampling(t_renderer *r);
+// supersampler.c
+void		supersampler(t_renderer *r);
+void		generate_rays_supersampling(t_renderer *r);
 
 #endif

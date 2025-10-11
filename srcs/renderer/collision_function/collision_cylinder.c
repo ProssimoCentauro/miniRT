@@ -6,13 +6,11 @@
 /*   By: ibrunial <ibrunial@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 20:31:10 by ibrunial          #+#    #+#             */
-/*   Updated: 2025/09/15 15:39:56 by ibrunial         ###   ########.fr       */
+/*   Updated: 2025/10/11 15:37:19 by ibrunial         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "minirt.h"
-
 
 /* ************************************************************************** */
 /*                                MODIFICHE                                   */
@@ -39,15 +37,16 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-static void	check_collision_bottom_top(t_object *obj, t_ray *ray, t_hit *hit_info)
+static void	check_collision_bottom_top(t_object *obj, t_ray *ray,
+		t_hit *hit_info)
 {
-    t_cylinder *cylinder = (t_cylinder *)&obj->figure;
-	t_circle	base;
-	t_hit		temp_hit;
+	const t_cylinder	*cylinder = (t_cylinder *)&obj->figure;
+	t_circle			base;
+	t_hit				temp_hit;
 
 	temp_hit = *hit_info;
-
-	base.coord = vector_sub(cylinder->coord, vector_scale(cylinder->normal, cylinder->height / 2));
+	base.coord = vector_sub(cylinder->coord, vector_scale(cylinder->normal,
+				cylinder->height / 2));
 	base.normal = cylinder->normal;
 	base.radius_squared = pow((cylinder->diameter / 2), 2);
 	if (check_collision_circle(&base, ray, &temp_hit))
@@ -56,9 +55,9 @@ static void	check_collision_bottom_top(t_object *obj, t_ray *ray, t_hit *hit_inf
 		hit_info->rgb = cylinder->rgb;
 		hit_info->obj = obj;
 	}
-
 	temp_hit = *hit_info;
-	base.coord = vector_add(cylinder->coord, vector_scale(cylinder->normal, cylinder->height / 2));
+	base.coord = vector_add(cylinder->coord, vector_scale(cylinder->normal,
+				cylinder->height / 2));
 	base.normal = vector_invert(cylinder->normal);
 	if (check_collision_circle(&base, ray, &temp_hit))
 	{
@@ -68,51 +67,45 @@ static void	check_collision_bottom_top(t_object *obj, t_ray *ray, t_hit *hit_inf
 	}
 }
 
-static void	get_projection(t_cylinder *cylinder, t_ray *ray, t_vector *d_proj, t_vector *oc_proj)
+static void	get_projection(t_cylinder *cylinder, t_ray *ray, t_vector *d_proj,
+		t_vector *oc_proj)
 {
-	t_vector	oc = vector_sub(ray->coord, cylinder->coord);
+	t_vector	oc;
 
-	*d_proj = vector_sub(ray->direction,
-			vector_scale(cylinder->normal, vector_dot(ray->direction, cylinder->normal)));
-	*oc_proj = vector_sub(oc,
-			vector_scale(cylinder->normal, vector_dot(oc, cylinder->normal)));
+	oc = vector_sub(ray->coord, cylinder->coord);
+	*d_proj = vector_sub(ray->direction, vector_scale(cylinder->normal,
+				vector_dot(ray->direction, cylinder->normal)));
+	*oc_proj = vector_sub(oc, vector_scale(cylinder->normal, vector_dot(oc,
+					cylinder->normal)));
 }
 
 void	check_collision_cylinder(t_object *obj, t_ray *ray, t_hit *hit_info)
 {
-    t_cylinder *cylinder = (t_cylinder *)&obj->figure;
-	t_vector	d_proj;
-	t_vector	oc_proj;
-	t_vector	p;
-	t_equation	eq;
+	const t_cylinder	*cylinder = (t_cylinder *)&obj->figure;
+	t_help_cy_coll		h;
+	t_equation			eq;
+	t_vector			axis_proj;
 
 	check_collision_bottom_top(obj, ray, hit_info);
-	get_projection(cylinder, ray, &d_proj, &oc_proj);
-
-	eq.a = vector_length_squared(d_proj);
-	eq.b = 2 * vector_dot(d_proj, oc_proj);
-	eq.c = vector_length_squared(oc_proj) - pow(cylinder->diameter / 2, 2);
-
+	get_projection((t_cylinder *)cylinder, ray, &h.d_proj, &h.oc_proj);
+	eq.a = vector_length_squared(h.d_proj);
+	eq.b = 2 * vector_dot(h.d_proj, h.oc_proj);
+	eq.c = vector_length_squared(h.oc_proj) - pow(cylinder->diameter / 2, 2);
 	if (!equation_solve(&eq) || eq.t <= 0 || eq.t > hit_info->dist)
 		return ;
-
-	p = vector_add(ray->coord, vector_scale(ray->direction, eq.t));
-
-	if (fabs(vector_dot(vector_sub(p, cylinder->coord), cylinder->normal)) > cylinder->height / 2)
+	h.p = vector_add(ray->coord, vector_scale(ray->direction, eq.t));
+	if (fabs(vector_dot(vector_sub(h.p, cylinder->coord),
+				cylinder->normal)) > cylinder->height / 2)
 		return ;
-
 	hit_info->dist = eq.t;
-	hit_info->point = p;
+	hit_info->point = h.p;
 	hit_info->rgb = cylinder->rgb;
-
-	// Calcolo normale lato
-	t_vector	pc = vector_sub(p, cylinder->coord);
-	t_vector	axis_proj = vector_scale(cylinder->normal, vector_dot(pc, cylinder->normal));
-	hit_info->normal = vector_normalize(vector_sub(pc, axis_proj));
-
+	h.pc = vector_sub(h.p, cylinder->coord);
+	axis_proj = vector_scale(cylinder->normal, vector_dot(h.pc,
+				cylinder->normal));
+	hit_info->normal = vector_normalize(vector_sub(h.pc, axis_proj));
 	hit_info->obj = obj;
 }
-
 
 /*
 #include "minirt.h"
@@ -152,15 +145,15 @@ static void	get_projection(t_cylinder *cylinder, t_ray *ray,
 					cylinder->normal)));
 }
 
-// IMPORTANTE: cambiare la struttura per mettere r^2 e cambiare 
+// IMPORTANTE: cambiare la struttura per mettere r^2 e cambiare
 //l'offset del punto coord su una delle due basi
 void	check_collision_cylinder(t_cylinder *cylinder, t_ray *ray,
 		t_hit *hit_info)
 {
-	t_vector	d_project;
-	t_vector	oc_project;
-	t_vector	p;
-	t_equation	eq;
+	t_vector			d_project;
+	t_vector			oc_project;
+	t_vector			p;
+	t_equation			eq;
 
 	check_collision_bottom_top(cylinder, ray, hit_info);
 	get_projection(cylinder, ray, &d_project, &oc_project);
